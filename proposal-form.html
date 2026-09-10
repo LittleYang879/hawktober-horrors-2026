@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawktober Horrors 2026 · 方案书（可填写）</title>
+<style>
+  :root{
+    --bg:#12121a; --panel:#1b1b26; --panel2:#20202e;
+    --ink:#e8e6f2; --muted:#9b97ad; --accent:#ff5a3c; --accent2:#ffd9a0;
+    --ok:#57c785; --warn:#ffb238; --line:#34344a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.6}
+  .wrap{max-width:940px; margin:0 auto; padding:18px 20px 90px}
+  a{color:#8fb7ff; text-decoration:none; border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+
+  /* 工具条 */
+  .toolbar{position:sticky; top:0; z-index:20; background:rgba(18,18,26,.96);
+    border-bottom:1px solid var(--line); padding:10px 0; margin-bottom:14px;
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center}
+  button{background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    border-radius:9px; padding:8px 14px; font-size:13.5px; cursor:pointer;
+    font-family:inherit; transition:.15s}
+  button:hover{border-color:var(--accent); color:#fff}
+  button.primary{background:var(--accent); border-color:var(--accent); color:#fff; font-weight:600}
+  button.primary:hover{filter:brightness(1.1)}
+  button.ghost{background:transparent}
+  .progress{margin-left:auto; font-size:13px; color:var(--muted)}
+  .progress b{color:var(--accent2)}
+  .bar{width:120px; height:6px; background:var(--panel2); border-radius:99px; overflow:hidden; display:inline-block; vertical-align:middle; margin-left:8px}
+  .bar i{display:block; height:100%; background:var(--accent); width:0%; transition:.2s}
+
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line); border-radius:16px; padding:24px 26px; position:relative; overflow:hidden}
+  .hero::after{content:"📝"; position:absolute; right:24px; top:16px; font-size:58px; opacity:.14}
+  .hero .kicker{color:var(--accent2); letter-spacing:3px; font-size:12px; text-transform:uppercase}
+  .hero h1{margin:6px 0 4px; font-size:28px}
+  .hero .sub{color:var(--muted); font-size:14.5px; max-width:640px}
+
+  section{margin-top:20px}
+  .sec-title{display:flex; align-items:center; gap:10px; margin:0 0 10px; font-size:19px}
+  .sec-title .num{width:32px; height:32px; flex:0 0 32px; border-radius:9px;
+    background:var(--accent); color:#fff; display:grid; place-items:center; font-size:14px; font-weight:700}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:13px; padding:16px 18px}
+  .hint{font-size:12.5px; color:var(--muted); margin:2px 0 10px}
+  .hint b{color:var(--accent2)}
+  label.f{display:block; font-size:13px; color:var(--muted); margin:12px 0 4px}
+  label.f:first-child{margin-top:0}
+  input[type=text],textarea{width:100%; background:#141420; border:1px solid var(--line);
+    border-radius:8px; color:var(--ink); padding:8px 11px; font-family:inherit; font-size:14px; line-height:1.5}
+  input[type=text]:focus,textarea:focus{outline:none; border-color:var(--accent); background:#171724}
+  textarea{min-height:72px; resize:vertical}
+  textarea.short{min-height:52px}
+  .cbx{display:flex; align-items:flex-start; gap:9px; margin:6px 0; font-size:14px}
+  .cbx input{margin-top:4px; accent-color:var(--accent); width:15px; height:15px; flex:0 0 15px}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+  @media(max-width:640px){.row{grid-template-columns:1fr} .progress{margin-left:0; width:100%}}
+  .sched{display:grid; grid-template-columns:150px 1fr 1fr; gap:8px; align-items:center; margin:6px 0}
+  .sched .ph{font-size:13px; color:var(--muted)}
+  .note{border-left:4px solid var(--warn); background:rgba(255,178,56,.08);
+    padding:10px 14px; border-radius:0 9px 9px 0; margin:12px 0; font-size:13px; color:var(--muted)}
+  .note.ok{border-left-color:var(--ok); background:rgba(87,199,133,.08)}
+  .toast{position:fixed; left:50%; bottom:26px; transform:translateX(-50%) translateY(20px);
+    background:var(--ok); color:#06210f; padding:10px 20px; border-radius:99px; font-size:14px; font-weight:600;
+    opacity:0; pointer-events:none; transition:.25s; z-index:99}
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+  @page{size:A4; margin:14mm}
+  @media print{
+    .toolbar{display:none} body{background:#fff; color:#000}
+    .card,.hero{background:#fff; border-color:#ccc} .hint,.sec-title{color:#000}
+    input[type=text],textarea{background:#fff; color:#000; border-color:#bbb}
+    a{color:#000}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="toolbar">
+    <button class="primary" id="btnExport">⬇ 导出 Markdown</button>
+    <button id="btnPrint">🖨 打印 / 存 PDF</button>
+    <button class="ghost" id="btnClear">🧹 清空</button>
+    <span class="progress">已填 <b id="pgText">0</b>/<b id="pgTotal">0</b> 项
+      <span class="bar"><i id="pgBar"></i></span></span>
+  </div>
+
+  <div class="hero">
+    <div class="kicker">Proposal Form · Fillable</div>
+    <h1>📝 方案书（可填写）</h1>
+    <div class="sub">一人填一份。<b>内容会自动保存在你自己的浏览器里</b>（刷新不丢）。填完点「导出 Markdown」拿到文件交给团队。
+      不熟悉每节该写什么？看 <a href="proposal.html">只读版说明</a>（含合格标准与评审维度）。
+      <b>本表不涉及引擎与语言</b>——技术部分只写「风险点 / 待验证假设」。</div>
+  </div>
+
+  <!-- 0 -->
+  <section>
+    <h2 class="sec-title"><span class="num">0</span>封面信息</h2>
+    <div class="card">
+      <div class="row">
+        <div><label class="f" for="title">方案名</label><input type="text" id="title" data-track placeholder="例如：XXX"></div>
+        <div><label class="f" for="author">作者</label><input type="text" id="author" data-track placeholder="你的名字"></div>
+      </div>
+      <div class="row">
+        <div><label class="f" for="date">日期</label><input type="text" id="date" data-track placeholder="2026-09-__"></div>
+        <div><label class="f" for="logline">一句话 logline（≤50 字）</label><input type="text" id="logline" data-track placeholder="这是什么恐怖游戏 + 玩家在做什么 + 独特之处"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 1 -->
+  <section>
+    <h2 class="sec-title"><span class="num">1</span>核心概念 ★</h2>
+    <div class="card">
+      <label class="f" for="pitch">电梯陈述（80–150 字）</label>
+      <textarea id="pitch" data-track></textarea>
+      <label class="f" for="experience">希望玩家获得的核心体验（想让人感到什么）</label>
+      <textarea id="experience" data-track class="short"></textarea>
+      <div class="hint"><b>合格标准</b>：说清「为什么好玩」，而不是「有什么功能」。</div>
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section>
+    <h2 class="sec-title"><span class="num">2</span>主题契合 ★★（硬性）</h2>
+    <div class="card">
+      <div class="hint">本届主题：<b>破碎的故事 / 不可靠叙述</b></div>
+      <label class="f" for="themeHow">如何体现这个主题</label>
+      <textarea id="themeHow" data-track></textarea>
+      <label class="f" for="themeMech">具体落在哪个机制上（不能只靠剧情文本说明）</label>
+      <textarea id="themeMech" data-track></textarea>
+      <label class="f" for="themeDoubt">玩家大约在第几分钟开始怀疑自己掌握的信息</label>
+      <input type="text" id="themeDoubt" data-track placeholder="例如：第 6 分钟左右">
+      <div class="hint"><b>合格标准</b>：主题必须落在<b>机制或结构</b>上；只是「剧情里有个反转」不算合格。</div>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section>
+    <h2 class="sec-title"><span class="num">3</span>核心玩法</h2>
+    <div class="card">
+      <label class="f" for="goal">玩家目标 / 失败条件</label>
+      <textarea id="goal" data-track class="short"></textarea>
+      <label class="f" for="loop">核心循环（玩家反复做的 3–5 步）</label>
+      <textarea id="loop" data-track></textarea>
+      <label class="f" for="controls">操作方式（文字描述即可，不要写引擎实现）</label>
+      <textarea id="controls" data-track class="short"></textarea>
+      <label class="f" for="refs">参照物（像什么游戏，2–3 个）</label>
+      <input type="text" id="refs" data-track>
+      <label class="f" for="pacing">单局节奏：开头 → 中段 → 高潮 → 结尾</label>
+      <textarea id="pacing" data-track></textarea>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section>
+    <h2 class="sec-title"><span class="num">4</span>叙事与呈现</h2>
+    <div class="card">
+      <label class="f" for="synopsis">故事梗概（150–300 字）</label>
+      <textarea id="synopsis" data-track style="min-height:96px"></textarea>
+      <label class="f" for="unreliable">「不可靠」的机关设计（信息怎么被隐瞒、扭曲或偏袒）</label>
+      <textarea id="unreliable" data-track></textarea>
+      <label class="f" for="narrativeVehicle">叙事载体（环境 / 文本 / 谜语 / 倒叙 / 多视角 …）</label>
+      <input type="text" id="narrativeVehicle" data-track>
+      <label class="f" for="endings">结局设计（几个结局、分别如何触发）</label>
+      <textarea id="endings" data-track class="short"></textarea>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section>
+    <h2 class="sec-title"><span class="num">5</span>体量控制 ★★</h2>
+    <div class="card">
+      <div class="row">
+        <div><label class="f" for="duration">预估游玩时长（分钟，必须 1–60）</label><input type="text" id="duration" data-track placeholder="例如：12"></div>
+        <div><label class="f" for="scenes">场景 / 关卡数量</label><input type="text" id="scenes" data-track></div>
+      </div>
+      <label class="f" for="must">必须有（MVP）</label>
+      <textarea id="must" data-track></textarea>
+      <label class="f" for="should">最好有</label>
+      <textarea id="should" data-track class="short"></textarea>
+      <label class="f" for="could">可以没有</label>
+      <textarea id="could" data-track class="short"></textarea>
+      <label class="f" for="bottomline">底线版本：时间只剩一半时，砍到什么程度仍然能提交？</label>
+      <textarea id="bottomline" data-track></textarea>
+      <label class="f" for="notDoing">明确「不做」的功能清单（防止范围蔓延）</label>
+      <textarea id="notDoing" data-track class="short"></textarea>
+      <div class="hint"><b>合格标准</b>：MVP 必须小到「一个人也能做完」。</div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section>
+    <h2 class="sec-title"><span class="num">6</span>美术与音频</h2>
+    <div class="card">
+      <label class="f" for="artStyle">视觉风格方向</label>
+      <textarea id="artStyle" data-track class="short"></textarea>
+      <label class="f">素材来源（<b>严禁任何 AI 生成</b>）</label>
+      <div class="cbx"><input type="checkbox" id="as_draw" data-check data-label="自绘"><label for="as_draw">自绘</label></div>
+      <div class="cbx"><input type="checkbox" id="as_free" data-check data-label="免费授权素材"><label for="as_free">免费授权素材</label></div>
+      <label class="f" for="audio">音频方向</label>
+      <textarea id="audio" data-track class="short"></textarea>
+      <label class="f" for="artRisk">美术工作量最大的部分是什么、打算怎么解决</label>
+      <textarea id="artRisk" data-track class="short"></textarea>
+    </div>
+  </section>
+
+  <!-- 7 -->
+  <section>
+    <h2 class="sec-title"><span class="num">7</span>技术风险 ★</h2>
+    <div class="card">
+      <div class="hint">本节<b>不指定引擎与语言</b>，只写「哪里可能做不出来」。</div>
+      <label class="f" for="techRisks">最不确定的技术点（1–3 个）</label>
+      <textarea id="techRisks" data-track></textarea>
+      <label class="f" for="techVerify">每个风险打算先用半天做什么验证</label>
+      <textarea id="techVerify" data-track></textarea>
+      <label class="f" for="techPlanB">验证失败的替代方案</label>
+      <textarea id="techPlanB" data-track class="short"></textarea>
+      <div class="hint"><b>合格标准</b>：至少有一个「先验证最难点」的具体动作。</div>
+    </div>
+  </section>
+
+  <!-- 8 -->
+  <section>
+    <h2 class="sec-title"><span class="num">8</span>团队与分工</h2>
+    <div class="card">
+      <div class="row">
+        <div><label class="f" for="teamSize">需要几人</label><input type="text" id="teamSize" data-track></div>
+        <div><label class="f" for="roles">角色需求（剧本 / 程序 / 美术 / 音频 / 上架…）</label><input type="text" id="roles" data-track></div>
+      </div>
+      <label class="f" for="selfRole">你自己能承担哪部分</label>
+      <textarea id="selfRole" data-track class="short"></textarea>
+      <label class="f" for="missingRoles">目前缺什么角色</label>
+      <input type="text" id="missingRoles" data-track>
+    </div>
+  </section>
+
+  <!-- 9 -->
+  <section>
+    <h2 class="sec-title"><span class="num">9</span>排期</h2>
+    <div class="card">
+      <div class="sched"><span class="ph">阶段</span><span class="ph">目标</span><span class="ph">产出</span></div>
+      <div class="sched"><span class="ph">原型（先验证最难的点）</span><input type="text" id="sc1a" data-track><input type="text" id="sc1b" data-track></div>
+      <div class="sched"><span class="ph">核心系统</span><input type="text" id="sc2a" data-track><input type="text" id="sc2b" data-track></div>
+      <div class="sched"><span class="ph">内容填充</span><input type="text" id="sc3a" data-track><input type="text" id="sc3b" data-track></div>
+      <div class="sched"><span class="ph">打磨 + 试玩</span><input type="text" id="sc4a" data-track><input type="text" id="sc4b" data-track></div>
+      <div class="sched"><span class="ph">提交准备（提前 3 天）</span><input type="text" id="sc5a" data-track><input type="text" id="sc5b" data-track></div>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section>
+    <h2 class="sec-title"><span class="num">10</span>规则合规自查 ★</h2>
+    <div class="card" id="complianceCard"></div>
+  </section>
+
+  <!-- 11 -->
+  <section>
+    <h2 class="sec-title"><span class="num">11</span>调味料采用情况（官方 10 项）</h2>
+    <div class="card" id="spiceCard"></div>
+  </section>
+
+  <!-- 12 -->
+  <section>
+    <h2 class="sec-title"><span class="num">12</span>风险与 Plan B</h2>
+    <div class="card">
+      <label class="f" for="topRisk">最大风险（时间 / 技术 / 人力 / 创意）</label>
+      <input type="text" id="topRisk" data-track>
+      <label class="f" for="planB">Plan B（降级方案）</label>
+      <textarea id="planB" data-track class="short"></textarea>
+      <label class="f" for="giveUp">什么情况下应该果断放弃这个方案</label>
+      <textarea id="giveUp" data-track class="short"></textarea>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section>
+    <h2 class="sec-title"><span class="num">13</span>差异化</h2>
+    <div class="card">
+      <label class="f" for="persuade">一句话说服队友选它</label>
+      <input type="text" id="persuade" data-track>
+      <label class="f" for="difference">它和别的方案最大的不同是什么</label>
+      <textarea id="difference" data-track class="short"></textarea>
+    </div>
+  </section>
+
+  <div class="note ok">填完点顶部「<b>⬇ 导出 Markdown</b>」，会下载一个 <code>方案书_&lt;方案名&gt;.md</code> 文件，直接发给团队即可。内容同时已自动存在你的浏览器里。</div>
+  <div class="note">⚠️ 三条 Jam 保命红线：<b>不用任何 AI 生成</b>、<b>不用已有项目/不扒素材</b>、<b>别搞 18+</b>；另有 Windows 可玩、1–60 分钟、投票期免费。</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "hh2026_proposal_form_v1";
+
+  var COMPLIANCE = [
+    ["c1", "是恐怖游戏"],
+    ["c2", "时长在 1–60 分钟内"],
+    ["c3", "Windows 可运行 / 浏览器 HTML 可玩"],
+    ["c4", "投稿期内才开始的开发（没有拿旧项目）"],
+    ["c5", "素材全部合法授权（无盗用、无未授权同人）"],
+    ["c6", "全程无任何 AI 生成内容"],
+    ["c7", "非 18+ NSFW"],
+    ["c8", "投票期免费、人人可玩"],
+    ["c9", "方案的 MVP 砍到最小仍能交"]
+  ];
+  var SPICES = [
+    ["s1", "HawkZombie 作为角色 / 客串"],
+    ["s2", "全员都是经典恐怖套路角色（Jock、Final Girl、Nerd 等）"],
+    ["s3", "围绕某个重要节日"],
+    ["s4", "整个游戏发生在一个房间"],
+    ["s5", "没有任何台词"],
+    ["s6", "某个角色被救赎"],
+    ["s7", "发生在公共场合"],
+    ["s8", "完全从反派视角讲"],
+    ["s9", "所有信息以谜语传达"],
+    ["s10", "时长不超过 10 分钟"]
+  ];
+  var TEXTS = ["title","author","date","logline","pitch","experience","themeHow","themeMech","themeDoubt",
+    "goal","loop","controls","refs","pacing","synopsis","unreliable","narrativeVehicle","endings",
+    "duration","scenes","must","should","could","bottomline","notDoing","artStyle","audio","artRisk",
+    "techRisks","techVerify","techPlanB","teamSize","roles","selfRole","missingRoles",
+    "sc1a","sc1b","sc2a","sc2b","sc3a","sc3b","sc4a","sc4b","sc5a","sc5b",
+    "topRisk","planB","giveUp","persuade","difference"];
+  var SCHEDULE = [["sc1a","sc1b"],["sc2a","sc2b"],["sc3a","sc3b"],["sc4a","sc4b"],["sc5a","sc5b"]];
+  var SCHED_NAMES = ["原型（先验证最难的点）","核心系统","内容填充","打磨 + 试玩","提交准备（提前 3 天）"];
+
+  function $(id) { return document.getElementById(id); }
+  function val(id) { var e = $(id); return e ? e.value.trim() : ""; }
+  function on(id) { var e = $(id); return !!(e && e.checked); }
+
+  // 生成合规 / 调味料勾选项
+  function buildChecks(cardId, list, group) {
+    var host = $(cardId);
+    var html = "";
+    list.forEach(function (it) {
+      html += '<div class="cbx"><input type="checkbox" id="' + it[0] + '" data-check data-group="' + group +
+        '" data-label="' + it[1] + '"><label for="' + it[0] + '">' + it[1] + "</label></div>";
+    });
+    host.innerHTML = html;
+  }
+  buildChecks("complianceCard", COMPLIANCE, "compliance");
+  buildChecks("spiceCard", SPICES, "spice");
+
+  // ---------- 进度 ----------
+  function refreshProgress() {
+    var total = TEXTS.length, filled = 0;
+    TEXTS.forEach(function (id) { if (val(id)) filled++; });
+    $("pgText").textContent = filled;
+    $("pgTotal").textContent = total;
+    $("pgBar").style.width = Math.round(filled / total * 100) + "%";
+  }
+
+  // ---------- 本地保存 ----------
+  function save() {
+    var data = { t: {}, c: {} };
+    TEXTS.forEach(function (id) { var e = $(id); if (e) data.t[id] = e.value; });
+    document.querySelectorAll("input[data-check]").forEach(function (e) { data.c[e.id] = e.checked; });
+    try { localStorage.setItem(KEY, JSON.stringify(data)); } catch (err) { /* 隐私模式等，忽略 */ }
+    refreshProgress();
+  }
+  function load() {
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch (err) { raw = null; }
+    if (!raw) return;
+    try {
+      var data = JSON.parse(raw);
+      TEXTS.forEach(function (id) { var e = $(id); if (e && data.t && data.t[id] != null) e.value = data.t[id]; });
+      document.querySelectorAll("input[data-check]").forEach(function (e) {
+        if (data.c && data.c[e.id] != null) e.checked = data.c[e.id];
+      });
+    } catch (err) { /* 数据损坏则忽略 */ }
+  }
+
+  // ---------- 导出 Markdown ----------
+  function exportMarkdown() {
+    var L = [];
+    function push(s) { L.push(s == null ? "" : s); }
+    function field(label, id) { var v = val(id); push("- **" + label + "**：" + (v || "（待填）")); }
+    function block(label, id) {
+      push("**" + label + "**");
+      push("");
+      push(val(id) || "（待填）");
+      push("");
+    }
+    function checklist(list) {
+      list.forEach(function (it) { push("- [" + (on(it[0]) ? "x" : " ") + "] " + it[1]); });
+    }
+
+    push("# 方案书 · " + (val("title") || "未命名方案"));
+    push("");
+    push("| 项目 | 内容 |");
+    push("|---|---|");
+    push("| 方案名 | " + val("title") + " |");
+    push("| 作者 | " + val("author") + " |");
+    push("| 日期 | " + val("date") + " |");
+    push("| 一句话 logline | " + val("logline") + " |");
+    push("");
+
+    push("## 1. 核心概念");
+    push("");
+    block("电梯陈述", "pitch");
+    block("核心体验", "experience");
+
+    push("## 2. 主题契合（破碎的故事 / 不可靠叙述）");
+    push("");
+    block("如何体现主题", "themeHow");
+    block("落在哪个机制上", "themeMech");
+    field("玩家开始怀疑信息的时机", "themeDoubt");
+    push("");
+
+    push("## 3. 核心玩法");
+    push("");
+    field("目标 / 失败条件", "goal");
+    field("核心循环", "loop");
+    field("操作方式", "controls");
+    field("参照物", "refs");
+    block("单局节奏", "pacing");
+
+    push("## 4. 叙事与呈现");
+    push("");
+    block("故事梗概", "synopsis");
+    block("「不可靠」机关设计", "unreliable");
+    field("叙事载体", "narrativeVehicle");
+    field("结局设计", "endings");
+    push("");
+
+    push("## 5. 体量控制");
+    push("");
+    field("预估游玩时长（分钟）", "duration");
+    field("场景 / 关卡数量", "scenes");
+    field("必须有（MVP）", "must");
+    field("最好有", "should");
+    field("可以没有", "could");
+    block("底线版本", "bottomline");
+    field("不做清单", "notDoing");
+    push("");
+
+    push("## 6. 美术与音频");
+    push("");
+    field("视觉风格", "artStyle");
+    push("- **素材来源**：" + ([on("as_draw") ? "自绘" : null, on("as_free") ? "免费授权素材" : null].filter(Boolean).join("、") || "（待填）"));
+    field("音频方向", "audio");
+    field("美术最大工作量", "artRisk");
+    push("");
+
+    push("## 7. 技术风险（不指定引擎与语言）");
+    push("");
+    block("不确定的技术点", "techRisks");
+    block("先做什么验证", "techVerify");
+    block("替代方案", "techPlanB");
+
+    push("## 8. 团队与分工");
+    push("");
+    field("需要几人", "teamSize");
+    field("角色需求", "roles");
+    field("我能承担", "selfRole");
+    field("缺什么角色", "missingRoles");
+    push("");
+
+    push("## 9. 排期");
+    push("");
+    push("| 阶段 | 目标 | 产出 |");
+    push("|---|---|---|");
+    SCHEDULE.forEach(function (p, i) {
+      push("| " + SCHED_NAMES[i] + " | " + val(p[0]) + " | " + val(p[1]) + " |");
+    });
+    push("");
+
+    push("## 10. 规则合规自查");
+    push("");
+    checklist(COMPLIANCE);
+    push("");
+
+    push("## 11. 调味料采用情况");
+    push("");
+    checklist(SPICES);
+    push("");
+
+    push("## 12. 风险与 Plan B");
+    push("");
+    field("最大风险", "topRisk");
+    block("Plan B", "planB");
+    block("何时放弃", "giveUp");
+
+    push("## 13. 差异化");
+    push("");
+    field("一句话说服队友", "persuade");
+    block("最大不同", "difference");
+
+    return L.join("\n");
+  }
+  // 暴露给自动化测试
+  window.__exportMarkdown = exportMarkdown;
+  window.__FIELD_IDS = TEXTS.slice();
+
+  // ---------- 下载 ----------
+  function download() {
+    var md = exportMarkdown();
+    var name = (val("title") || "未命名方案").replace(/[\\/:*?"<>|]/g, "_");
+    var blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "方案书_" + name + ".md";
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+    toast("已导出 Markdown ✓");
+    return md;
+  }
+  window.__download = download;
+
+  // ---------- 提示 ----------
+  var toastTimer = null;
+  function toast(msg) {
+    var t = $("toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { t.classList.remove("show"); }, 1800);
+  }
+
+  // ---------- 事件 ----------
+  document.addEventListener("input", function (e) {
+    if (e.target && (e.target.hasAttribute("data-track") || e.target.hasAttribute("data-check"))) save();
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target && e.target.hasAttribute("data-check")) save();
+  });
+  $("btnExport").addEventListener("click", download);
+  $("btnPrint").addEventListener("click", function () { window.print(); });
+  $("btnClear").addEventListener("click", function () {
+    if (!confirm("确定清空所有已填内容吗？此操作不可撤销。")) return;
+    TEXTS.forEach(function (id) { var e = $(id); if (e) e.value = ""; });
+    document.querySelectorAll("input[data-check]").forEach(function (e) { e.checked = false; });
+    save();
+    toast("已清空");
+  });
+
+  load();
+  refreshProgress();
+  window.__ready = true;
+})();
+</script>
+</body>
+</html>
