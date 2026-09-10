@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawktober Horrors 2026 · 方案书模板</title>
+<style>
+  :root{
+    --bg:#12121a; --panel:#1b1b26; --panel2:#20202e;
+    --ink:#e8e6f2; --muted:#9b97ad; --accent:#ff5a3c; --accent2:#ffd9a0;
+    --ok:#57c785; --warn:#ffb238; --line:#34344a;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.6;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  .wrap{max-width:900px; margin:0 auto; padding:28px 22px 80px}
+  a{color:#8fb7ff; text-decoration:none; border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line); border-radius:18px; padding:30px; position:relative; overflow:hidden}
+  .hero::after{content:"📝"; position:absolute; right:26px; top:20px; font-size:64px; opacity:.14}
+  .hero .kicker{color:var(--accent2); letter-spacing:3px; font-size:12px; text-transform:uppercase}
+  .hero h1{margin:8px 0 4px; font-size:31px}
+  .hero .sub{color:var(--muted); font-size:15px; max-width:640px}
+  .navlinks{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px}
+  .navlinks a,.chip{background:var(--panel2); border:1px solid var(--line); border-radius:999px;
+    padding:7px 14px; font-size:13px; color:var(--ink); border-bottom:1px solid var(--line)}
+  section{margin-top:26px}
+  .sec-title{display:flex; align-items:center; gap:11px; margin:0 0 12px; font-size:21px}
+  .sec-title .num{width:34px; height:34px; flex:0 0 34px; border-radius:10px;
+    background:var(--accent); color:#fff; display:grid; place-items:center; font-size:15px; font-weight:700}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px 18px}
+  h3{margin:0 0 8px; font-size:16px}
+  .muted{color:var(--muted)}
+  .small{font-size:13px}
+  ul,ol{margin:6px 0 0; padding-left:20px}
+  li{margin:5px 0}
+  .fill{border-bottom:1px dashed var(--line); display:block; min-height:22px; margin:6px 0}
+  .prompt{background:rgba(255,217,160,.06); border-left:3px solid var(--accent2);
+    padding:8px 12px; border-radius:0 8px 8px 0; margin:10px 0 0; font-size:13px; color:var(--muted)}
+  .prompt b{color:var(--accent2)}
+  .check{list-style:none; padding-left:0}
+  .check li{padding-left:28px; position:relative; margin:7px 0}
+  .check li::before{content:"☐"; position:absolute; left:0; top:0; color:var(--accent2); font-size:18px}
+  .tbl{width:100%; border-collapse:collapse; font-size:13.5px}
+  .tbl th,.tbl td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top}
+  .tbl th{background:var(--panel2); color:var(--accent2)}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  code{background:rgba(255,255,255,.06); padding:1px 6px; border-radius:5px; font-size:13px; color:var(--accent2)}
+  .callout{border-left:4px solid var(--accent); background:rgba(255,90,60,.08);
+    padding:12px 16px; border-radius:0 10px 10px 0; margin:12px 0}
+  .callout.warn{border-left-color:var(--warn); background:rgba(255,178,56,.08)}
+  .callout.ok{border-left-color:var(--ok); background:rgba(87,199,133,.08)}
+  .pbb{break-inside:avoid; page-break-inside:avoid}
+  @page{size:A4; margin:16mm 14mm}
+  @media print{ .wrap{padding:0; max-width:none} .hero{border-radius:10px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kicker">Team Proposal Template</div>
+    <h1>🎃 方案书模板</h1>
+    <div class="sub">一人一份：复制本模板 → 填写你的游戏方案 → 交给团队横向评审。<b>本模板不限定引擎与语言</b>，技术部分只写「风险点 / 待验证假设」；引擎与语言由团队在<b>选定方案之后</b>统一决定。</div>
+    <div class="navlinks">
+      <a href="index.html">← 返回《队友指南》</a>
+      <a href="proposal-template.md">⬇ 下载 Markdown 模板</a>
+    </div>
+  </div>
+
+  <section>
+    <div class="card">
+      <h3>使用说明</h3>
+      <ul>
+        <li>每节都标了「<b>写什么</b>」与「<b>合格标准</b>」。</li>
+        <li>标 ★ 的关键项评审权重最高，<b>★★ 为硬性</b>。</li>
+        <li>拿不准的先写，<b>宁可粗也不要空</b>——空着的方案没法比较。</li>
+        <li>交之前过一遍最后的「合规自查」与「评审维度表」。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">0</span>封面信息</h2>
+    <div class="card pbb">
+      <table class="tbl">
+        <tr><th>项目</th><th>内容</th></tr>
+        <tr><td>方案名</td><td></td></tr>
+        <tr><td>作者</td><td></td></tr>
+        <tr><td>日期</td><td></td></tr>
+        <tr><td>一句话 logline（≤50 字）</td><td></td></tr>
+      </table>
+      <div class="prompt"><b>写什么</b>：用一句话说清「这是什么类型的恐怖游戏 + 玩家在做什么 + 独特之处」。<br><b>合格标准</b>：队友读完能立刻复述出这个游戏在干嘛。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">1</span>核心概念 ★</h2>
+    <div class="card pbb">
+      <div>电梯陈述（80–150 字）：<span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:10px">希望玩家获得的<b>核心体验</b>（想让人感到什么）：<span class="fill"></span></div>
+      <div class="prompt"><b>写什么</b>：写「体验」，不是功能清单。<br><b>合格标准</b>：说清「<b>为什么好玩</b>」，而不是「有什么功能」。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">2</span>主题契合 ★★（硬性）</h2>
+    <div class="card pbb">
+      <p class="small muted">本届主题：<b>破碎的故事 / 不可靠叙述</b></p>
+      <div>如何体现这个主题：<span class="fill"></span></div>
+      <div style="margin-top:8px">具体落在哪个<b>机制</b>上（不能只靠剧情文本说明）：<span class="fill"></span></div>
+      <div style="margin-top:8px">玩家大约在第几分钟开始<b>怀疑自己掌握的信息</b>：<span class="fill"></span></div>
+      <div class="prompt"><b>合格标准</b>：主题必须落在<b>机制或结构</b>上；如果只是「剧情里有个反转」，不算合格。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">3</span>核心玩法</h2>
+    <div class="card pbb">
+      <div>玩家目标 / 失败条件：<span class="fill"></span></div>
+      <div style="margin-top:8px"><b>核心循环</b>（一个循环 = 玩家反复做的 3–5 步）：<span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:8px">操作方式（文字描述即可，<b>不要写引擎相关实现</b>）：<span class="fill"></span></div>
+      <div style="margin-top:8px">参照物（像什么游戏，2–3 个）：<span class="fill"></span></div>
+      <div style="margin-top:8px">单局节奏：开头 → 中段 → 高潮 → 结尾各发生什么：<span class="fill"></span><span class="fill"></span></div>
+      <div class="prompt"><b>合格标准</b>：核心循环能被队友照着复述出来。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">4</span>叙事与呈现</h2>
+    <div class="card pbb">
+      <div>故事梗概（150–300 字）：<span class="fill"></span><span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:8px">「<b>不可靠</b>」的机关设计（信息怎么被隐瞒、扭曲或偏袒）：<span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:8px">叙事载体（环境 / 文本 / 谜语 / 倒叙 / 多视角 / …）：<span class="fill"></span></div>
+      <div style="margin-top:8px">结局设计（几个结局、分别如何触发）：<span class="fill"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">5</span>体量控制 ★★</h2>
+    <div class="card pbb">
+      <div>预估游玩时长：______ 分钟（<b>必须在 1–60 分钟之间</b>）</div>
+      <div style="margin-top:8px">场景 / 关卡数量：<span class="fill"></span></div>
+      <div style="margin-top:8px"><b>MoSCoW</b>：
+        <ul>
+          <li>必须有（MVP）：<span class="fill"></span></li>
+          <li>最好有：<span class="fill"></span></li>
+          <li>可以没有：<span class="fill"></span></li>
+        </ul>
+      </div>
+      <div style="margin-top:8px"><b>底线版本</b>：如果时间只剩一半，砍到什么程度<b>仍然能提交</b>？<span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:8px">明确<b>不做</b>的功能清单（防止范围蔓延）：<span class="fill"></span></div>
+      <div class="prompt"><b>合格标准</b>：MVP 必须小到「一个人也能做完」。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">6</span>美术与音频</h2>
+    <div class="card pbb">
+      <div>视觉风格方向：<span class="fill"></span></div>
+      <div style="margin-top:8px">素材来源：☐ 自绘　☐ 免费授权素材（<b>严禁任何 AI 生成</b>）</div>
+      <div style="margin-top:8px">音频方向：<span class="fill"></span></div>
+      <div style="margin-top:8px">美术工作量<b>最大</b>的部分是什么、打算怎么解决：<span class="fill"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">7</span>技术风险 ★</h2>
+    <div class="card pbb">
+      <p class="small muted">本节<b>不指定引擎与语言</b>，只写「哪里可能做不出来」。</p>
+      <div>最不确定的技术点（1–3 个）：<span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:8px">每个风险打算<b>先用半天做什么验证</b>：<span class="fill"></span><span class="fill"></span></div>
+      <div style="margin-top:8px">验证失败的替代方案：<span class="fill"></span></div>
+      <div class="prompt"><b>合格标准</b>：至少有一个「先验证最难点」的具体动作。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">8</span>团队与分工</h2>
+    <div class="card pbb">
+      <div>需要几人：<span class="fill"></span></div>
+      <div style="margin-top:8px">角色需求（剧本 / 程序 / 美术 / 音频 / 上架与截图 …）：<span class="fill"></span></div>
+      <div style="margin-top:8px"><b>你自己</b>能承担哪部分：<span class="fill"></span></div>
+      <div style="margin-top:8px">目前<b>缺</b>什么角色：<span class="fill"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">9</span>排期</h2>
+    <div class="card pbb">
+      <table class="tbl">
+        <tr><th>阶段</th><th>目标</th><th>产出</th></tr>
+        <tr><td>原型（先验证最难的点）</td><td></td><td></td></tr>
+        <tr><td>核心系统</td><td></td><td></td></tr>
+        <tr><td>内容填充</td><td></td><td></td></tr>
+        <tr><td>打磨 + 试玩</td><td></td><td></td></tr>
+        <tr><td>提交准备（<b>提前截稿 3 天</b>）</td><td></td><td></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">10</span>规则合规自查 ★</h2>
+    <div class="card pbb">
+      <ul class="check">
+        <li>是<b>恐怖</b>游戏</li>
+        <li>时长在 <b>1–60 分钟</b>内</li>
+        <li><b>Windows</b> 可运行 / 浏览器 HTML 可玩</li>
+        <li>投稿期内才开始的开发（<b>没有拿旧项目</b>）</li>
+        <li>素材全部<b>合法授权</b>（无盗用、无未授权同人）</li>
+        <li>全程<b>无任何 AI 生成</b>内容</li>
+        <li>非 18+ NSFW</li>
+        <li>投票期<b>免费、人人可玩</b></li>
+        <li>方案的 MVP 砍到最小仍能交</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">11</span>调味料采用情况（官方 10 项）</h2>
+    <div class="card pbb">
+      <ul class="check">
+        <li>HawkZombie 作为角色 / 客串</li>
+        <li>全员都是经典恐怖套路角色（Jock、Final Girl、Nerd 等）</li>
+        <li>围绕某个重要节日</li>
+        <li>整个游戏发生在<b>一个房间</b></li>
+        <li><b>没有任何台词</b></li>
+        <li>某个角色被<b>救赎</b></li>
+        <li>发生在<b>公共场合</b></li>
+        <li>完全从<b>反派视角</b>讲</li>
+        <li>所有信息以<b>谜语</b>传达</li>
+        <li>时长<b>不超过 10 分钟</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">12</span>风险与 Plan B</h2>
+    <div class="card pbb">
+      <div>最大风险（时间 / 技术 / 人力 / 创意）：<span class="fill"></span></div>
+      <div style="margin-top:8px"><b>Plan B</b>（降级方案）：<span class="fill"></span></div>
+      <div style="margin-top:8px">什么情况下应该<b>果断放弃</b>这个方案：<span class="fill"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">13</span>差异化</h2>
+    <div class="card pbb">
+      <div>一句话说服队友选它：<span class="fill"></span></div>
+      <div style="margin-top:8px">它和别的方案<b>最大的不同</b>是什么：<span class="fill"></span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">A</span>评审维度表（横向打分用）</h2>
+    <div class="card pbb">
+      <p class="small muted">每份方案按 5 个维度打 1–5 分（总分 25）。</p>
+      <table class="tbl">
+        <tr><th>维度</th><th>1 分</th><th>3 分</th><th>5 分</th></tr>
+        <tr><td><b>主题契合</b></td><td>与「破碎故事」无关</td><td>剧情里有反转</td><td>主题<b>长在机制上</b></td></tr>
+        <tr><td><b>可行性</b></td><td>技术风险说不清</td><td>风险可控但没验证</td><td>有明确的「先验证」动作</td></tr>
+        <tr><td><b>体量可控</b></td><td>MVP 仍像大项目</td><td>勉强能做完</td><td>一个人也能做出 MVP</td></tr>
+        <tr><td><b>差异化</b></td><td>和别的方案雷同</td><td>有点新意</td><td>一眼记得住</td></tr>
+        <tr><td><b>团队匹配</b></td><td>缺关键角色</td><td>角色勉强够</td><td>正好发挥现有成员长处</td></tr>
+      </table>
+      <div class="callout warn"><b>硬性门槛（不满足直接淘汰）</b>：非恐怖游戏 / 范围明显做不完 / 触碰 Jam 红线。</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="sec-title"><span class="num">B</span>常见坑（交之前自查）</h2>
+    <div class="card pbb">
+      <ul>
+        <li>❌ <b>主题只挂在剧情上</b>，机制上完全无关</li>
+        <li>❌ MVP 写得跟完整版一样大，等于没有底线</li>
+        <li>❌ 技术风险一笔带过，没有验证动作</li>
+        <li>❌ 没写「<b>不做什么</b>」，范围必然蔓延</li>
+        <li>❌ 忘记「<b>全程禁用 AI 生成</b>」这条红线</li>
+        <li>❌ 时长失控（超过 60 分钟容易被判未完成）</li>
+      </ul>
+    </div>
+  </section>
+
+  <p class="small muted" style="margin-top:30px; text-align:center">
+    — 本模板用于团队内部方案征集；Jam 规则以 itch.io 官方页面为准。 —
+  </p>
+</div>
+</body>
+</html>
