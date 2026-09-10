@@ -286,7 +286,7 @@
     </div>
   </section>
 
-  <div class="note ok">填完点顶部「<b>⬇ 导出 Markdown</b>」，会下载一个 <code>方案书_&lt;方案名&gt;.md</code> 文件，直接发给团队即可。内容同时已自动存在你的浏览器里。</div>
+  <div class="note ok">填完点顶部「<b>⬇ 导出 Markdown</b>」，会下载一个 <code>方案书_&lt;作者&gt;_&lt;方案名&gt;.md</code> 文件（带作者名，避免多人同名混淆），直接发给团队即可。内容同时已自动存在你的浏览器里。</div>
   <div class="note">⚠️ 三条 Jam 保命红线：<b>不用任何 AI 生成</b>、<b>不用已有项目/不扒素材</b>、<b>别搞 18+</b>；另有 Windows 可玩、1–60 分钟、投票期免费。</div>
 </div>
 
@@ -499,17 +499,26 @@
   window.__FIELD_IDS = TEXTS.slice();
 
   // ---------- 下载 ----------
+  function cleanName(s) {
+    return String(s == null ? "" : s).replace(/[\\/:*?"<>|\r\n\t]/g, "_").trim();
+  }
+  // 文件名带作者名：方案书_<作者>_<方案名>.md —— 避免多人同名文件混淆
+  function exportFilename() {
+    return "方案书_" + (cleanName(val("author")) || "未署名") + "_" +
+      (cleanName(val("title")) || "未命名方案") + ".md";
+  }
+  window.__exportFilename = exportFilename;
+
   function download() {
     var md = exportMarkdown();
-    var name = (val("title") || "未命名方案").replace(/[\\/:*?"<>|]/g, "_");
     var blob = new Blob([md], { type: "text/markdown;charset=utf-8" });
     var a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "方案书_" + name + ".md";
+    a.download = exportFilename();
     document.body.appendChild(a);
     a.click();
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
-    toast("已导出 Markdown ✓");
+    toast("已导出 " + exportFilename());
     return md;
   }
   window.__download = download;
