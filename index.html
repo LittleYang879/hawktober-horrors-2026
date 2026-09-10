@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hawktober Horrors 2026 · 队友指南</title>
+<style>
+  :root{
+    --bg:#12121a; --panel:#1b1b26; --panel2:#20202e;
+    --ink:#e8e6f2; --muted:#9b97ad; --accent:#ff5a3c; --accent2:#ffd9a0;
+    --ok:#57c785; --bad:#ff5464; --warn:#ffb238; --line:#34344a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Segoe UI","Microsoft YaHei",sans-serif; line-height:1.55;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:28px 22px 80px}
+  /* banner */
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line); border-radius:18px; padding:30px 30px 26px;
+    position:relative; overflow:hidden}
+  .hero::after{content:"🎃"; position:absolute; right:26px; top:20px; font-size:64px; opacity:.14}
+  .hero .kicker{color:var(--accent2); letter-spacing:3px; font-size:12px; text-transform:uppercase}
+  .hero h1{margin:8px 0 4px; font-size:32px; letter-spacing:.5px}
+  .hero .sub{color:var(--muted); font-size:15px; max-width:620px}
+  .hero .meta{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+  .chip{background:var(--panel2); border:1px solid var(--line); border-radius:999px;
+    padding:7px 14px; font-size:13px; color:var(--ink)}
+  .chip b{color:var(--accent2)}
+  /* section */
+  section{margin-top:30px}
+  .sec-title{display:flex; align-items:center; gap:11px; margin:0 0 14px; font-size:22px}
+  .sec-title .num{width:34px; height:34px; flex:0 0 34px; border-radius:10px;
+    background:var(--accent); color:#fff; display:grid; place-items:center; font-size:17px; font-weight:700}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px}
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .grid-3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:14px}
+  @media(max-width:720px){.grid,.grid-3{grid-template-columns:1fr}}
+  h3{margin:0 0 8px; font-size:16px}
+  .muted{color:var(--muted)}
+  .small{font-size:13px}
+  ul,ol{margin:6px 0 0; padding-left:20px}
+  li{margin:5px 0}
+  .lead{font-size:14px; color:var(--muted)}
+  a{color:#8fb7ff; text-decoration:none; border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  /* do / don't */
+  .do li::marker{color:var(--ok); font-weight:700}
+  .dont li::marker{color:var(--bad); font-weight:700}
+  .tag{display:inline-block; font-size:11px; padding:2px 8px; border-radius:6px; margin:0 4px 4px 0}
+  .tag.g{background:rgba(87,199,133,.14); color:var(--ok)}
+  .tag.r{background:rgba(255,84,100,.14); color:var(--bad)}
+  .tag.w{background:rgba(255,178,56,.14); color:var(--warn)}
+  .tag.b{background:rgba(139,183,255,.14); color:#8fb7ff}
+  .callout{border-left:4px solid var(--accent); background:rgba(255,90,60,.08);
+    padding:12px 16px; border-radius:0 10px 10px 0; margin:12px 0}
+  .callout.warn{border-left-color:var(--warn); background:rgba(255,178,56,.08)}
+  .callout.ok{border-left-color:var(--ok); background:rgba(87,199,133,.08)}
+  code{background:rgba(255,255,255,.06); padding:1px 6px; border-radius:5px; font-size:13px; color:var(--accent2)}
+  /* figure */
+  figure{margin:16px 0 6px; background:var(--panel2); border:1px solid var(--line); border-radius:12px; padding:12px}
+  figure img,figure svg{width:100%; height:auto; display:block}
+  figcaption{color:var(--muted); font-size:12px; margin-top:8px; text-align:center}
+  /* checklist */
+  .check{list-style:none; padding-left:0}
+  .check li{padding-left:28px; position:relative; margin:7px 0}
+  .check li::before{content:"☐"; position:absolute; left:0; top:0; color:var(--accent2); font-size:18px}
+  /* reference game cards */
+  .game{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; display:flex; flex-direction:column; gap:10px}
+  .game .mono{width:100%; aspect-ratio:16/9; border-radius:10px; background:
+    linear-gradient(135deg,#20202e,#12121a); display:grid; place-items:center; font-size:40px; color:var(--accent2)}
+  .game img.shot{width:100%; border-radius:9px; display:block; margin-bottom:9px; border:1px solid var(--line)}
+  .game h4{margin:0; font-size:15px}
+  .game .why{font-size:13px; color:var(--muted)}
+  .game a{font-size:13px}
+  .tbl{width:100%; border-collapse:collapse; font-size:13.5px}
+  .tbl th,.tbl td{border:1px solid var(--line); padding:8px 10px; text-align:left; vertical-align:top}
+  .tbl th{background:var(--panel2); color:var(--accent2)}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  .pbb{break-inside:avoid; page-break-inside:avoid}
+  @page{size:A4; margin:16mm 14mm}
+  @media print{ .wrap{padding:0; max-width:none} .hero{border-radius:10px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="kicker">Game Jam · Team Briefing</div>
+    <h1>Hawktober Horrors 2026</h1>
+    <div class="sub">由 HawkZombie 主办的第 9 届「恐怖游戏 Jam」。每年以万圣节为核心做恐怖游戏，今年回归了「设定主题」。这份文档是给全队看的信息汇总，以及需要团队共同决策的事项。</div>
+    <div class="meta">
+      <span class="chip">主办 ▸ <b>HawkZombie</b></span>
+      <span class="chip">已加入 <b>1,012</b> 人</span>
+      <span class="chip">已有 <b>30</b> 个作品</span>
+      <span class="chip">本届主题 ▸ <b>破碎的故事</b></span>
+    </div>
+  </div>
+
+  <!-- ============ 1. 关键信息 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">1</span>关键信息速览</h2>
+    <div class="card">
+      <table class="tbl">
+        <tr><th>项目</th><th>内容</th></tr>
+        <tr><td>主办方</td><td>HawkZombie（Twitch 主播），今年第 9 届</td></tr>
+        <tr><td>标签</td><td>#HawktoberHorrors</td></tr>
+        <tr><td>开放投稿</td><td>2026-09-01 起</td></tr>
+        <tr><td><b>截稿</b></td><td><b>2026-10-03 13:59（太平洋时间）</b> ⚠️ 需自行换算成你们所在时区</td></tr>
+        <tr><td>公布结果</td><td>2026-11-01（周日）Twitch 直播现场公布</td></tr>
+        <tr><td>类型限制</td><td><b>必须是恐怖游戏</b>（引擎 / 代码不限）</td></tr>
+        <tr><td>游玩时长</td><td>1–60 分钟</td></tr>
+        <tr><td>发行方式</td><td>Windows 可运行，或浏览器 HTML</td></tr>
+        <tr><td>主题</td><td>破碎的故事 / 不可靠叙述（Fractured story / Unreliable narrator）</td></tr>
+      </table>
+    </div>
+    <div class="callout warn"><b>时区提醒：</b>截稿写的是太平洋时间（PDT）。我们大概率不在该时区，务必提前换算成当地时间，并<u>提前 1 天</u>作为内部死线，别卡点。</div>
+  </section>
+
+  <!-- ============ 2. 时间线 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">2</span>整体时间线</h2>
+    <figure>
+      <svg viewBox="0 0 900 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <line x1="40" y1="60" x2="860" y2="60" stroke="#34344a" stroke-width="4" stroke-linecap="round"/>
+        <line x1="40" y1="60" x2="120" y2="60" stroke="#57c785" stroke-width="8" stroke-linecap="round"/>
+        <line x1="120" y1="60" x2="560" y2="60" stroke="#ffd9a0" stroke-width="8" stroke-linecap="round"/>
+        <line x1="560" y1="60" x2="760" y2="60" stroke="#ff5a3c" stroke-width="8" stroke-linecap="round"/>
+        <line x1="760" y1="60" x2="860" y2="60" stroke="#8fb7ff" stroke-width="8" stroke-linecap="round"/>
+        <g font-family="Microsoft YaHei,sans-serif" fill="#e8e6f2" text-anchor="middle">
+          <circle cx="120" cy="60" r="9" fill="#57c785"/><text x="120" y="34" font-size="15" font-weight="700">09-01 开放投稿</text><text x="120" y="96" font-size="12" fill="#9b97ad">开发正式开始</text>
+          <circle cx="560" cy="60" r="9" fill="#ffd9a0"/><text x="560" y="34" font-size="15" fill="#ffd9a0" font-weight="700">内部打磨期</text><text x="560" y="96" font-size="12" fill="#9b97ad">越早提交越好</text>
+          <circle cx="760" cy="60" r="9" fill="#ff5a3c"/><text x="760" y="34" font-size="15" fill="#ff5a3c" font-weight="700">10-03 13:59 截稿</text><text x="760" y="96" font-size="12" fill="#9b97ad">最后冲刺</text>
+          <circle cx="860" cy="60" r="9" fill="#8fb7ff"/><text x="860" y="34" font-size="15" fill="#8fb7ff" font-weight="700">11-01 结果</text><text x="860" y="96" font-size="12" fill="#9b97ad">Twitch 直播</text>
+        </g>
+      </svg>
+      <figcaption>时间线示意（太平洋时间）。关键锚点：09-01 开放 → 10-03 13:59 截稿 → 11-01 公布。</figcaption>
+    </figure>
+    <div class="grid">
+      <div class="card">
+        <h3>开放投稿后</h3>
+        <p class="small muted">规则要求：<b>所有作品必须从投稿期开始开发</b>。概念与规划可以提前，但不能把做好一半的旧作品直接拿来交。</p>
+      </div>
+      <div class="card">
+        <h3>截稿前建议</h3>
+        <p class="small muted">在截稿前 <b>3 天</b>先提交一个「可玩版本」，之后还能持续更新。若后期投稿量大，投票期可能被官方延长。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. 主题 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">3</span>本届主题：破碎的故事</h2>
+    <div class="card">
+      <p>一个故事没有「讲全」，或者被刻意隐瞒、被用某一种偏向来叙述而忽略另一种；也可能是叙述者本身不可信，或是多个视角各执一词。<b>这种「你不知道该相信什么」的不确定感，正是恐怖的核心。</b></p>
+    </div>
+    <figure>
+      <svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <g font-family="Microsoft YaHei,sans-serif">
+          <rect x="300" y="90" width="300" height="60" rx="30" fill="#ff5a3c"/>
+          <text x="450" y="127" fill="#fff" font-size="19" font-weight="700" text-anchor="middle">破碎的故事 / 不可靠叙述</text>
+          <g stroke="#34344a" stroke-width="2" fill="none">
+            <line x1="450" y1="120" x2="150" y2="50"/><line x1="450" y1="120" x2="150" y2="190"/>
+            <line x1="450" y1="120" x2="750" y2="50"/><line x1="450" y1="120" x2="750" y2="190"/>
+          </g>
+          <g fill="#e8e6f2" text-anchor="middle">
+            <rect x="100" y="24" width="130" height="44" rx="10" fill="#1b1b26" stroke="#34344a"/><text x="165" y="51" font-size="14">逆序/回忆倒放</text>
+            <rect x="100" y="168" width="130" height="44" rx="10" fill="#1b1b26" stroke="#34344a"/><text x="165" y="195" font-size="14">多视角互相矛盾</text>
+            <rect x="700" y="24" width="130" height="44" rx="10" fill="#1b1b26" stroke="#34344a"/><text x="765" y="51" font-size="14">叙述者不可信</text>
+            <rect x="700" y="168" width="130" height="44" rx="10" fill="#1b1b26" stroke="#34344a"/><text x="765" y="195" font-size="14">只给一半信息</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>「破碎故事」可以从这四个切口进入。</figcaption>
+    </figure>
+    <div class="card pbb">
+      <h3>官方给出的参考作品（可借镜）</h3>
+      <p class="small muted">Memento · Dark Souls · Mouthwashing · Rashomon · Pulp Fiction · Bioshock<br>（多为电影/游戏，用来理解「不可靠叙述」的手法和气质，并非都要做成那样的玩法。）</p>
+    </div>
+  </section>
+
+  <!-- ============ 4. 可选调味料 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">4</span>加分「调味料」（非必须）</h2>
+    <div class="card">
+      <p class="lead">这些不是硬性要求，但用上能增强游戏、或带来灵感。用几个、用多少随意——<b>命中越多，评审越容易记住你。</b></p>
+      <ul class="check">
+        <li>HawkZombie 作为角色/客串出现在游戏里</li>
+        <li>所有角色都是经典恐怖套路角色（Jock、Final Girl、Nerd 等）</li>
+        <li>游戏围绕某个重要节日展开</li>
+        <li>整个游戏发生在<b>一个房间</b>里</li>
+        <li><b>没有任何台词</b>（口头和文字都没有）</li>
+        <li>某个角色在故事中被「救赎」</li>
+        <li>发生在<b>公共场合</b>（会展中心、商场等）</li>
+        <li>整个游戏从<b>反派的视角</b>讲述</li>
+        <li>游戏中所有信息都以<b>谜语</b>形式传达</li>
+        <li>游戏时长<b>不超过 10 分钟</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 5. 可以 / 不可以 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">5</span>能做 / 不能做（重点）</h2>
+    <div class="grid">
+      <div class="card pbb">
+        <h3>✅ 可以</h3>
+        <ul class="do">
+          <li>任意引擎 / 代码库</li>
+          <li>任意素材，只要<b>持有合法使用权</b></li>
+          <li>可同时参加别的 jam（需为恐怖游戏且遵守本规则）</li>
+          <li>允许开放 <b>demo</b></li>
+          <li>允许<b>成人内容</b>（到 Mature/R）：脏话、血腥、暴力、部分裸露——<b>前提是符合 Twitch 政策</b></li>
+          <li>允许<b>组队</b>，获胜时所有成员都有 Discord 角色</li>
+          <li>投稿期前可做<b>概念与规划</b>（但概念不能直接原样当成品交）</li>
+          <li>可提交<b>多个作品</b>，但同一人/队只能拿 People's 或 Judge's 其中之一</li>
+          <li>作品版权归提交者所有</li>
+        </ul>
+      </div>
+      <div class="card pbb">
+        <h3>🚫 不可以（取消资格）</h3>
+        <ul class="dont">
+          <li><b>不得使用已有项目</b>——必须从投稿期开始开发</li>
+          <li><b>零容忍剥窃/盗用素材</b>，包括未授权的同人游戏</li>
+          <li><b>绝对禁止生成式 AI（GenAI）</b>——最终提交里不能有任何 AI 内容</li>
+          <li>必须能在 <b>Windows</b> 轻松运行（含浏览器 HTML）</li>
+          <li><b>PDF 等文档不算游戏</b></li>
+          <li>时长<b>超过 60 分钟</b>易被判「未完成/不认真」</li>
+          <li><b>18+ NSFW 游戏</b>不允许（注意与 Mature/R 的差别）</li>
+          <li>投稿期与投票期间<b>必须免费、人人可玩</b></li>
+          <li>主办方有权<b>随时取消</b>违规作品，且<b>不解释</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card pbb" style="margin-top:14px">
+      <h3>速查表（贴墙用）</h3>
+      <table class="tbl">
+        <tr><th>✅ 可以做</th><th>🚫 不可以做（红线）</th></tr>
+        <tr><td>任意引擎 / 素材（须合法授权）</td><td>使用已有项目（必须投稿期内开始做）</td></tr>
+        <tr><td>同时参加其他 Jam</td><td>盗用 / 剥窃 / 未授权同人素材</td></tr>
+        <tr><td>组队（全队都有获奖资格）</td><td>任何生成式 AI 内容</td></tr>
+        <tr><td>成人内容到 Mature / R（须符合 Twitch）</td><td>18+ NSFW 内容</td></tr>
+        <tr><td>投稿期前做概念与规划</td><td>PDF 等非游戏形式的文档</td></tr>
+        <tr><td>提交多个作品（但只能拿一个奖）</td><td>时长超 60 分钟 / 无法在 Windows 运行</td></tr>
+        <tr><td>作品版权归提交者所有</td><td>投票期收费或不可玩</td></tr>
+      </table>
+    </div>
+    <div class="callout warn"><b>三条「保命红线」请让全队背熟：</b><br>① 全程<b>不用任何 AI</b>；② <b>不用已有项目/不用扒来的素材</b>；③ <b>别搞 18+</b>。另外三件不要忘：Windows/浏览器可玩、1–60 分钟、投票期免费。</div>
+  </section>
+
+  <!-- ============ 6. 提交与组队 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">6</span>如何提交 + 线上组队（我们已线下组好）</h2>
+    <div class="grid">
+      <div class="card pbb">
+        <h3>🖥️ 提交流程（通用 itch.io）</h3>
+        <ol>
+          <li>用 itch.io 账号在 jam 页点 <code>Join this jam</code>（已加入）。</li>
+          <li>Dashboard → <code>Create a new project</code> 建游戏页，上传游戏，价格设为 <b>Free</b>。</li>
+          <li>在项目页找 <code>Submit to jam</code>，选本 jam，可附 devlog，提交。</li>
+          <li>截稿前 <b>3 天</b>先交一个可玩版，之后持续更新。</li>
+          <li>提交前自查：免费 + 可玩 + 1–60 分钟 + Windows 可运行 + 无 AI + 无扒素材。</li>
+        </ol>
+      </div>
+      <div class="card pbb">
+        <h3>👥 线上组队做法</h3>
+        <ol>
+          <li><b>每个队员都各自</b>点 <code>Join this jam</code>——这样才计入「Joined」，后续发 Discord 角色/算人数才认。</li>
+          <li><b>只建一个作品页</b>，由 1 人当主提交人（其他人别各投一个，否则同队被拆分）。</li>
+          <li>把队员挂上作品页：官方开了 jam 的 Teams 功能就用它；否则用项目页的<b>协作/成员</b>功能添加。</li>
+          <li>加入 <b>HawkZombie 官方 Discord</b>（jam 页底部有链接，官方很欢迎开发者）。</li>
+          <li>上传前确定「作品归属 + 成员名单」，避免挂错人。</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. 奖励 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">7</span>奖励</h2>
+    <div class="grid-3">
+      <div class="card pbb"><h3>🏆 大众前 5</h3><p class="small muted">People's Choice 前 5 名，各获 <b>CraftPix 一年会员</b>（每队每人一份，最多 5 人；需在 craftpix.net 注册领奖）。</p></div>
+      <div class="card pbb"><h3>👑 两项冠军</h3><p class="small muted">People's Choice 总冠军 + Judge's Choice，获 <b>The Feathered Dead Discord 专属角色</b>。</p></div>
+      <div class="card pbb"><h3>🎬 官方宣传</h3><p class="small muted">HawkZombie 选出一部最喜欢的，做成 <b>45–60 秒宣传片</b>挂在他频道。去年是 <i>The Witch House of Raven Lake</i>。</p></div>
+    </div>
+  </section>
+
+  <!-- ============ 8. 参考游戏 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">8</span>同类参考游戏（含真实截图）</h2>
+    <div class="card" style="margin-bottom:14px">
+      <p class="small muted">下列作品的<b>封面与游戏内截图已下载到本地</b> <code>assets/</code> 目录，可离线查看（文件名标注在各卡片内；每款还多存了一张 <code>_ss2.jpg</code>）。点链接可去商店页看预告片与更多截图。</p>
+    </div>
+    <div class="grid">
+      <div class="game pbb">
+        <img class="shot" src="assets/look-outside_header.jpg" alt="Look Outside 封面">
+        <img class="shot" src="assets/look-outside_ss1.jpg" alt="Look Outside 游戏内截图">
+        <h4>Look Outside</h4>
+        <div class="why">本届系列的精神标杆（2024 届最出名），「破碎 / 不可靠」的范例。<br><span class="muted">文件：look-outside_header.jpg / look-outside_ss1.jpg</span></div>
+        <a href="https://store.steampowered.com/app/3373660/" target="_blank">▶ Steam 商店（含预告片）</a><br>
+        <a href="https://itch.io/jam/hawktoberhorrors2024/rate/3055092" target="_blank">🗂 当年 jam 提交页</a>
+      </div>
+      <div class="game pbb">
+        <img class="shot" src="assets/witch-house-cover.png" alt="The Witch House of Raven Lake 封面">
+        <h4>The Witch House of Raven Lake</h4>
+        <div class="why">去年被选为官方宣传片的作品，气氛营造值得学。<br><span class="muted">文件：witch-house-cover.png</span></div>
+        <a href="https://itch.io/jam/hawktoberhorrors2025/rate/3918555" target="_blank">▶ itch.io 作品页</a><br>
+        <a href="https://itch.io/jam/hawktoberhorrors2025" target="_blank">🗂 去年 jam 主页</a>
+      </div>
+      <div class="game pbb">
+        <img class="shot" src="assets/mouthwashing_header.jpg" alt="Mouthwashing 封面">
+        <img class="shot" src="assets/mouthwashing_ss1.jpg" alt="Mouthwashing 游戏内截图">
+        <h4>Mouthwashing（付费）</h4>
+        <div class="why">主题描述里点名的神作：碎片化 + 不可靠叙述教科书。<br><span class="muted">文件：mouthwashing_header.jpg / mouthwashing_ss1.jpg</span></div>
+        <a href="https://store.steampowered.com/app/2475490/" target="_blank">▶ Steam 商店（含预告片）</a>
+      </div>
+      <div class="game pbb">
+        <img class="shot" src="assets/edith-finch_header.jpg" alt="What Remains of Edith Finch 封面">
+        <img class="shot" src="assets/edith-finch_ss1.jpg" alt="What Remains of Edith Finch 游戏内截图">
+        <h4>What Remains of Edith Finch</h4>
+        <div class="why">每段记忆一种玩法——学「多视角 / 口述记忆怎么落地」。<br><span class="muted">文件：edith-finch_header.jpg / edith-finch_ss1.jpg</span></div>
+        <a href="https://store.steampowered.com/app/501300/" target="_blank">▶ Steam 商店（含预告片）</a>
+      </div>
+      <div class="game pbb">
+        <img class="shot" src="assets/carrion_header.jpg" alt="Carrion 封面">
+        <img class="shot" src="assets/carrion_ss1.jpg" alt="Carrion 游戏内截图">
+        <h4>Carrion（你扮演怪物）</h4>
+        <div class="why">「反派视角」的标杆。<br><span class="muted">文件：carrion_header.jpg / carrion_ss1.jpg</span></div>
+        <a href="https://store.steampowered.com/app/953490/" target="_blank">▶ Steam 商店（含预告片）</a>
+      </div>
+      <div class="game pbb">
+        <div class="mono">🏆</div>
+        <h4>历届获奖参考</h4>
+        <div class="why">翻去年「故事与写作类」获奖名单，看大家怎么答「破碎故事」的题。</div>
+        <a href="https://itch.io/jam/hawktoberhorrors2025/results/story-and-writing" target="_blank">🗂 2025 故事与写作获奖页</a>
+      </div>
+    </div>
+    <div class="callout"><b>说明：</b>截图取自各作 Steam 商店页与 itch.io 作品页，已下载到本地 <code>assets/</code>，可离线查看；Dark Souls / Bioshock 属环境叙事参考，无独立截图。</div>
+  </section>
+
+  <!-- ============ 9. 素材来源 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">9</span>免费素材来源（无 AI 前提下）</h2>
+    <div class="card pbb">
+      <p class="small muted">规则禁止 AI 内容，所以所有素材要么<b>手绘</b>、要么用<b>合法授权/CC0 免费包</b>。下面是保底来源：</p>
+      <table class="tbl">
+        <tr><th>素材</th><th>来源</th><th>说明</th></tr>
+        <tr><td>2D 道具 / UI / 音效</td><td>Kenney（kenney.nl）</td><td>全 CC0，最佳保底，量大质稳</td></tr>
+        <tr><td>音效</td><td>Freesound、OpenGameArt</td><td>优先筛选 CC0 或可商用授权的</td></tr>
+        <tr><td>字体</td><td>Kenney 字体、Google Fonts（OFL）</td><td>选免费可商用授权</td></tr>
+        <tr><td>自绘素材</td><td>团队手绘</td><td>按需要少量自绘，避免依赖 AI 生成</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 10. 排期 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">10</span>初步排期（假设剩 ~3 周，可依实际天数调整）</h2>
+    <div class="card">
+      <table class="tbl">
+        <tr><th>阶段（天）</th><th>目标</th><th>产出</th></tr>
+        <tr><td>D1–D2</td><td>锁定玩法 + 剧本大纲 + 分工</td><td>故事板、角色分工表</td></tr>
+        <tr><td>D3–D4</td><td><b>技术原型</b>：先验证最难的技术点是否可行</td><td>可跑的原型 demo（先做最难的）</td></tr>
+        <tr><td>D5–D8</td><td>核心系统 + 剧本 / 内容细化</td><td>系统可跑、脚本定稿</td></tr>
+        <tr><td>D9–D12</td><td>内容填充（关卡 / 美术 / 文本）</td><td>规则内可玩完整版</td></tr>
+        <tr><td>D13–D14</td><td>音效/氛围/音乐</td><td>恐怖氛围到位</td></tr>
+        <tr><td>D15–D16</td><td>打磨 + 多人试玩</td><td>修复清单</td></tr>
+        <tr><td>D17–D19</td><td>提交准备：游戏页、截图、devlog、Web + Windows 导出</td><td>发布页面</td></tr>
+        <tr><td>D20–D21</td><td>缓冲 + 提交（<b>提前于截稿 3 天</b>）</td><td>正式提交</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ 11. 提交前自查 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">11</span>提交前自查清单（逐项打勾）</h2>
+    <div class="card pbb">
+      <ul class="check">
+        <li>是<b>恐怖</b>游戏</li>
+        <li>时长在 <b>1–60 分钟</b>内</li>
+        <li><b>Windows</b> 可运行，或浏览器 HTML 可玩</li>
+        <li>投稿期内才开始的开发（<b>没拿旧项目</b>）</li>
+        <li>所有素材<b>合法授权</b>（无剥窃/无未授权同人）</li>
+        <li>全程<b>无任何 AI 生成</b>内容</li>
+        <li>投票期<b>免费、人人可玩</b></li>
+        <li>已在 <b>10-03 13:59（当地时区）</b>前提交</li>
+        <li>游戏页挂好了<b>全队成员</b>，且<b>每个人</b>都 Join 了这个 jam</li>
+        <li>已加入 HawkZombie 的 <b>Discord</b></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ 12. 待团队定夺 ============ -->
+  <section>
+    <h2 class="sec-title"><span class="num">12</span>需要团队内部定夺的事项</h2>
+    <div class="card pbb">
+      <p class="small muted">以下事项<b>由团队内部决定</b>，本文档只列题目、不提供倾向性建议。</p>
+      <ol>
+        <li><b>玩法方向</b>：做什么类型的恐怖游戏、核心玩法是什么。</li>
+        <li><b>美术风格</b>：整体视觉方向与素材策略。</li>
+        <li><b>引擎与技术选型</b>：使用什么引擎 / 代码库。</li>
+        <li><b>分工</b>：剧本 / 程序 / 音效 / 上架与截图，各由谁负责。</li>
+        <li><b>时区</b>：各成员所在地，换算截稿时间，定「内部死线」。</li>
+        <li><b>账户与归属</b>：谁有 itch.io 账号可做主提交人（需能操作发布页）。</li>
+        <li><b>沟通渠道</b>：用哪个 Discord / 群 / 仓库？共享素材怎么放？</li>
+      </ol>
+    </div>
+  </section>
+
+  <p class="small muted" style="margin-top:30px; text-align:center">— 文档由助手整理，基于官方页面规则与已公开信息；发布日期与规则如有变动，以 itch.io 官方页面为准。—</p>
+</div>
+</body>
+</html>
