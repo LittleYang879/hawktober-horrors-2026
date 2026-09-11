@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《别信它》 / DON'T TRUST IT（暂定名） · Hawktober Horrors 2026 方案书</title>
+<style>
+  :root{--bg:#12121a;--panel:#1b1b26;--panel2:#20202e;--ink:#e8e6f2;--muted:#9b97ad;
+    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--line:#34344a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.65;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 22px 80px}
+  a{color:#8fb7ff;text-decoration:none;border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line);border-radius:16px;padding:26px 28px;position:relative;overflow:hidden}
+  .hero::after{content:"📄";position:absolute;right:24px;top:16px;font-size:58px;opacity:.13}
+  .hero .kicker{color:var(--accent2);letter-spacing:3px;font-size:12px;text-transform:uppercase}
+  .hero h1{margin:6px 0 6px;font-size:29px}
+  .hero .by{color:var(--muted);font-size:14px}
+  .navlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .navlinks a{background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13px;color:var(--ink)}
+  main{margin-top:22px}
+  h2{font-size:21px;margin:30px 0 10px;color:var(--accent2);border-left:4px solid var(--accent);padding-left:12px}
+  h3{font-size:17px;margin:22px 0 8px;color:#cfd6ff}
+  h4,h5,h6{font-size:15px;margin:16px 0 6px;color:var(--muted)}
+  p{margin:9px 0}
+  ul.md-list,ol{margin:8px 0;padding-left:22px}
+  ul.md-sub{margin:4px 0;padding-left:20px}
+  li{margin:4px 0}
+  li.cbx-item{list-style:none;margin-left:-18px}
+  blockquote{margin:12px 0;padding:12px 16px;background:rgba(255,217,160,.06);
+    border-left:4px solid var(--accent2);border-radius:0 9px 9px 0;color:#d9d5e8}
+  blockquote p{margin:4px 0}
+  hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+  code{background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;font-size:13px;color:var(--accent2)}
+  pre{background:#0e0e15;border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto}
+  pre code{background:none;padding:0}
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:var(--panel2);color:var(--accent2)}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  @page{size:A4;margin:14mm}
+  @media print{body{background:#fff;color:#000}.hero{background:#fff;border-color:#ccc}
+    .wrap{padding:0;max-width:none}h2{color:#000}a{color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Proposal · 方案书</div>
+    <h1>《别信它》 / DON'T TRUST IT（暂定名）</h1>
+    <div class="by">YDC</div>
+    <div class="navlinks">
+      <a href="../index.html">← 返回主页</a>
+      <a href="../proposal.html">📖 合格标准 / 评审说明</a>
+      <a href="../proposal-form.html">📝 我也要写一份</a>
+      <a href="dont-trust-it.md">⬇ 下载原始 Markdown</a>
+    </div>
+  </div>
+  <main><table class="tbl"><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>方案名</td><td><b>《别信它》 / DON'T TRUST IT</b>（暂定名）</td></tr><tr><td>作者</td><td><b>YDC</b></td></tr><tr><td>日期</td><td>2026-09-11</td></tr><tr><td>一句话 logline（≤50 字）</td><td>一台电话／收音机是被留在这栋房子里的鬼魂。它一直在说话——<b>你不指认它说的假话，假话就会成真</b>。</td></tr></tbody></table>
+<blockquote><b>本文档只保留最关键的玩法与关键的决定点。</b><br>剧情、玩法深度、详细参数（打字速度、间隔、CD 秒数等）<b>留待他人补充</b>。</blockquote>
+<hr>
+<h2>1. 核心概念 ★</h2>
+<p><b>电梯陈述</b></p>
+<blockquote>你来到一栋陌生的房子。一台电话或收音机自己响了——它是<b>被留在这里的鬼魂</b>。<br>它开始说话，语气平常，像在跟你聊天。它说的话<b>大部分是真的</b>。<br>但它偶尔会说假话。而你<b>不指认，假话就会成真</b>：门真的锁上，手电真的没电，你真的坐了下去。<br>你唯一的动作是：<b>在它说话的间隙里按一个键，指认刚才那句是假的</b>。<br>它也会说一些<b>荒谬但无关紧要的话</b>，专门骗你去否认它。</blockquote>
+<p><b>核心体验</b></p>
+<blockquote>想让人体验&quot;<b>我在跟一个看不见的东西较劲，而它比我更有耐心</b>&quot;。</blockquote>
+<hr>
+<h2>2. 主题契合 ★★（硬性）</h2>
+<table class="tbl"><thead><tr><th></th><th></th></tr></thead><tbody><tr><td><b>如何体现主题</b></td><td>玩家不是在<b>读</b>一个不可靠的故事，而是<b>在实时拆解一段正在被说出来的叙述</b></td></tr><tr><td><b>具体落在哪个机制上</b></td><td><b>① 话在流动，你必须当场判断</b> · <b>② 不指认 = 相信（无法弃权）</b> · <b>③ 判据不是真假，是恶意</b></td></tr><tr><td><b>玩家第几分钟开始怀疑自己掌握的信息</b></td><td>第一次<b>错按</b>之后——他发现&quot;听起来有问题的&quot;和&quot;真的有害的&quot;，不是一回事</td></tr></tbody></table>
+<hr>
+<h2>3. 核心玩法 ★★</h2>
+<h3>它说的话分三类</h3>
+<table class="tbl"><thead><tr><th>类型</th><th>例子（仅示机制，非最终剧情）</th><th>你该怎么做</th></tr></thead><tbody><tr><td><b>真的</b></td><td>大部分</td><td>不按</td></tr><tr><td><b>假 + 有害</b></td><td>&quot;门锁着&quot; · &quot;手电筒没电了&quot; · &quot;坐下吧&quot;</td><td><b>按</b></td></tr><tr><td><b>荒谬但无害</b></td><td>&quot;天花板上有一只猫&quot;</td><td><b>不按</b>（按了就错）</td></tr></tbody></table>
+<blockquote><b>核心技能：分清「它在胡说」和「它在害你」。判据不是真假，是恶意。而恶意看不见。</b></blockquote>
+<h3>核心循环</h3>
+<p><b>它说话 → 你听＋看 → 在间隙里决定按不按 → 判断结果直接作用于游戏 → 它继续（可能改口）→ 过关／失败</b></p>
+<h3>关键的决定点（已定）</h3>
+<table class="tbl"><thead><tr><th>#</th><th>决定</th><th>结论</th><th>为什么</th></tr></thead><tbody><tr><td><b>1</b></td><td>几个键</td><td><b>一个键：指认</b></td><td>一个键才配得上&quot;不给提示&quot;；每次按键都是一次主动怀疑</td></tr><tr><td><b>2</b></td><td>不按的后果</td><td><b>那句话成真，直接影响游戏</b></td><td>沉默即相信，玩家无法弃权</td></tr><tr><td><b>3</b></td><td><b>按错的后果</b></td><td><b>只有一个提示音，没有惩罚</b></td><td>不惩罚玩家的操作——否则他会不敢按</td></tr><tr><td><b>4</b></td><td><b>真正的约束</b></td><td><b>内置 CD</b></td><td>连续判断点出现时，CD 中你按不了 → <b>只能看着事件发生</b></td></tr><tr><td><b>5</b></td><td>判断的判据</td><td><b>恶意，不是真假</b></td><td>它可以说荒谬但无害的话诱你错按</td></tr><tr><td><b>6</b></td><td>反馈</td><td><b>保留对／错的反馈</b></td><td>玩家必须知道自己判断的结果</td></tr><tr><td><b>7</b></td><td>结局的产生方式</td><td><b>累积的判断结果分档，不做剧情分支树</b></td><td>10 分钟的游戏做分支树会爆工期</td></tr></tbody></table>
+<blockquote><b>★ 全场唯一的紧张来源是 CD</b>：冷却期间如果出现漏洞，你只能看着它成真。<b>这一条不需要任何额外惩罚机制就成立。</b></blockquote>
+<hr>
+<h2>4. 叙事与呈现</h2>
+<ul class="md-list"><li><b>故事梗概</b>：<i>（待他人补充）</i></li><li><b>「不可靠」的机关</b>：它的叙述<b>大部分是真的</b>——所以信任是真的，背叛也是真的。它说谎不是为了骗你，是为了<b>让你失去行动的余地</b>。</li><li><b>叙事载体</b>：<b>文本</b>。全程没有语音，它的话逐字显示在游戏画面上。</li><li><b>结局</b>：<i>（待他人补充，机制上为&quot;判断结果分档&quot;）</i></li></ul>
+<hr>
+<h2>5. 体量控制 ★★</h2>
+<ul class="md-list"><li><b>预估游玩时长</b>：<b>8–10 分钟</b></li><li><b>场景／关卡数量</b>：<i>（待定，按单场景设计）</i></li></ul>
+<p><b>必须有（MVP）</b></p>
+<ol><li>一个空间 + 角色可移动</li><li><b>它持续说话</b>（文本逐字显示，句间留出可按键的间隙）</li><li><b>一个键：指认</b></li><li>三类话（真的／假且有害／荒谬无害）</li><li><b>不按 → 成真</b>（直接改变游戏）</li><li><b>按错 → 只有提示音，无惩罚</b></li><li><b>内置 CD</b>（连续判断点时的唯一约束）</li><li>判断结果分档的收尾</li></ol>
+<p><b>底线版本</b>：只做<b>一段话 + 一次判断 + 一个后果</b>，验证&quot;说话→找漏洞&quot;这个循环能不能被理解。<b>半天可做。</b></p>
+<p><b>明确不做</b></p>
+<ul class="md-list"><li>❌ 不做剧情分支树</li><li>❌ 不做战斗 / 敌人血量 / 追逐</li><li>❌ 不做拾取 / 背包 / 收集</li><li>❌ 不做配音（规则明令禁止任何 AI 语音）</li><li>❌ 不做存档 / 多周目</li><li>❌ 不做 3D / 角色骨骼动画</li></ul>
+<hr>
+<h2>6. 美术与音频</h2>
+<ul class="md-list"><li><b>视觉风格</b>：极简、低分辨率、几何／剪影</li><li><b>素材来源</b>：☑ <b>免费授权素材</b>（<b>严禁任何 AI 生成</b>）</li><li><b>音频方向</b>：环境底噪 + 它说话时的电声质感；<b>&quot;按对了&quot;和&quot;按错了&quot;要有明确可分的音色</b></li><li><b>工作量最大的部分</b>：<i>（待定）</i></li></ul>
+<hr>
+<h2>7. 技术风险 ★</h2>
+<blockquote>本节不指定引擎与语言。</blockquote>
+<table class="tbl"><thead><tr><th>#</th><th>最不确定的点</th><th>先花半天做什么验证</th></tr></thead><tbody><tr><td><b>1</b></td><td><b>&quot;什么时候可以按键&quot;能不能被玩家感知</b>（不给提示，但必须公平）</td><td>做一个只有 3 句话的灰盒，找一个人盲玩，看他会不会问&quot;我该怎么按&quot;</td></tr><tr><td><b>2</b></td><td><b>三类话能不能被玩家区分</b>（真的／有害的假／无害的胡说）</td><td>同一灰盒里各放一句，看他第一次按的时候有没有犹豫</td></tr><tr><td><b>3</b></td><td><b>CD 是否制造紧张，而不是制造烦躁</b></td><td>把 CD 设成两个值各跑一遍，观察玩家是&quot;紧张&quot;还是&quot;骂人&quot;</td></tr></tbody></table>
+<p><b>验证失败的替代方案</b>：<i>（待定，由后续开发者补充）</i></p>
+<hr>
+<h2>8. 团队与分工</h2>
+<ul class="md-list"><li><b>需要几人</b>：3</li><li><b>角色需求</b>：程序（1，必须）／<b>文案与判断点设计</b>（1，可在引擎外完成）／音频 + 素材采购 + 授权台账（1）</li><li><b>我自己能承担</b>：<i>（由 YDC 填写）</i></li><li><b>目前缺什么角色</b>：<i>（由 YDC 填写）</i></li></ul>
+<hr>
+<h2>9. 排期</h2>
+<table class="tbl"><thead><tr><th>阶段</th><th>目标</th><th>产出</th></tr></thead><tbody><tr><td><b>原型</b>（先验证最难的点）</td><td>3 句话 + 一次判断 + CD</td><td>能跑的最小可执行包 + 盲测结论</td></tr><tr><td><b>核心系统</b></td><td>它持续说话、三类话、判断结果作用于游戏</td><td>能从头走到收尾的灰盒</td></tr><tr><td><b>内容填充</b></td><td>文案定稿、音频接入</td><td>内容完整版</td></tr><tr><td><b>打磨 + 试玩</b></td><td>多人盲测 + 节奏调整</td><td>时长中位数 ≤10 分钟</td></tr><tr><td><b>提交准备</b>（<b>提前截稿 3 天</b>）</td><td>页面 / 截图 / 封面 / 标签 / CREDITS / 上传</td><td><b>已提交，剩余时间全部作缓冲</b></td></tr></tbody></table>
+<hr>
+<h2>10. 规则合规自查 ★</h2>
+<ul class="md-list"><li class="cbx-item">☐ 是<b>恐怖</b>游戏</li><li class="cbx-item">☐ 时长在 <b>1–60 分钟</b>内（目标 8–10 分钟）</li><li class="cbx-item">☐ <b>Windows</b> 可运行</li><li class="cbx-item">☐ 投稿期内才开始的开发（<b>没有拿旧项目</b>）</li><li class="cbx-item">☐ 素材全部<b>合法授权</b>（无盗用、<b>无未授权同人</b>）</li><li class="cbx-item">☐ 全程<b>无任何 AI 生成</b>内容（美术／音频／文本／<b>代码</b>）</li><li class="cbx-item">☐ <b>不做任何 AI 语音，不克隆任何人的声音</b></li><li class="cbx-item">☐ 非 18+ NSFW</li><li class="cbx-item">☐ 投票期<b>免费、人人可玩</b></li><li class="cbx-item">☐ MVP 砍到最小仍能交</li><li class="cbx-item">☐ 使用官方标签 <b><code>#HawktoberHorrors</code></b></li><li class="cbx-item">☐ ⚠️ <b>提交前亲眼逐条读 itch 页面的 Rules 原文</b></li><li class="cbx-item">☐ ⚠️ <b>2026 明确不提供任何延期</b></li></ul>
+<hr>
+<h2>11. 调味料采用情况（官方 10 项）</h2>
+<ul class="md-list"><li class="cbx-item">☑ 整个游戏发生在<b>一个房间</b> ✅</li><li class="cbx-item">☑ 时长<b>不超过 10 分钟</b> ✅</li><li class="cbx-item">☑ 所有信息以<b>谜语／破绽</b>传达 ✅</li><li class="cbx-item">☑ <b>HawkZombie 作为角色／客串</b> ◐ <i>（可选，形式待定）</i></li><li class="cbx-item">☐ 没有任何台词 —— ◐ <b>待核实</b>：官方原文为&quot;没有任何口白与文字对话&quot;，本作是<b>单向文本广播</b>（非对话），<b>可以争取，但需读原文确认</b></li><li class="cbx-item">☐ 全员经典恐怖套路角色 / 节日 / 救赎 / 公共场合 / 反派视角 —— <i>（待剧情定）</i></li></ul>
+<hr>
+<h2>12. 风险与 Plan B</h2>
+<ul class="md-list"><li><b>最大风险：创意。</b> 本作的核心动作（在叙述的间隙中指认谎言）与现成作品 <a href="https://csaf.itch.io/taken-as-read" target="_blank">TAKEN AS READ</a> 的&quot;采信／怀疑&quot;存在<b>思路上的亲近</b>。<b>差异化必须压在：判据是&quot;恶意&quot;而非&quot;真假&quot;、CD 作为唯一约束、以及文本即它的身体。</b></li><li><b>次要风险</b>：<i>（待定）</i></li><li><b>Plan B</b>：<i>（待定）</i></li><li><b>什么情况下果断放弃</b>：原型验证发现<b>&quot;什么时候可以按键&quot;在盲测中无法被理解且改不动</b>。</li></ul>
+<hr>
+<h2>13. 差异化</h2>
+<blockquote><b>别的不可靠叙述游戏是&quot;你读到一个矛盾&quot;。本作是&quot;它正说着，而你只有一次机会当场打断它&quot;——而且你不打断，那句话就成真。</b><br><br><b>判据不是真假，是恶意。</b></blockquote>
+<hr>
+<p><i>本方案用于团队内部征集；Jam 规则以 itch.io 官方页面为准。</i></p></main>
+  <p style="margin-top:34px;text-align:center;color:var(--muted);font-size:13px">
+    — 团队内部方案征集 · Jam 规则以 itch.io 官方页面为准 —</p>
+</div>
+</body>
+</html>
