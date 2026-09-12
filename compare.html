@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>三方案对比 · Hawktober Horrors 2026</title>
+<title>三方案评分对比 · Hawktober Horrors 2026</title>
 <style>
   :root{--bg:#12121a;--panel:#1b1b26;--panel2:#20202e;--ink:#e8e6f2;--muted:#9b97ad;
-    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--warn:#ffb238;--line:#34344a;
+    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--warn:#ffb238;--bad:#ff5464;--line:#34344a;
     --c1:#ff5a3c;--c2:#57c785;--c3:#8fb7ff;}
   *{box-sizing:border-box}
   body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.6;
     -webkit-print-color-adjust:exact;print-color-adjust:exact}
-  .wrap{max-width:1040px;margin:0 auto;padding:26px 22px 80px}
+  .wrap{max-width:1080px;margin:0 auto;padding:26px 22px 80px}
   a{color:#8fb7ff;text-decoration:none;border-bottom:1px dotted #8fb7ff}
   a:hover{border-bottom-style:solid}
   .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
@@ -19,198 +19,312 @@
   .hero::after{content:"📊";position:absolute;right:24px;top:16px;font-size:58px;opacity:.13}
   .hero .kicker{color:var(--accent2);letter-spacing:3px;font-size:12px;text-transform:uppercase}
   .hero h1{margin:6px 0 6px;font-size:29px}
-  .hero .sub{color:var(--muted);font-size:14.5px;max-width:720px}
+  .hero .sub{color:var(--muted);font-size:14.5px;max-width:740px}
   .navlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
   .navlinks a{background:var(--panel2);border:1px solid var(--line);border-radius:999px;
     padding:7px 14px;font-size:13px;color:var(--ink)}
   h2{font-size:20px;margin:30px 0 12px;color:var(--accent2);border-left:4px solid var(--accent);padding-left:12px}
+  h3{font-size:15px;margin:16px 0 8px;color:#cfd6ff}
   .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
   .note{border-left:4px solid var(--warn);background:rgba(255,178,56,.08);
     padding:11px 15px;border-radius:0 9px 9px 0;margin:12px 0;font-size:13.5px;color:var(--muted)}
   .note b{color:var(--accent2)}
-  /* 表格 */
+  .note.bad{border-left-color:var(--bad);background:rgba(255,84,100,.08)}
+  .note.ok{border-left-color:var(--ok);background:rgba(87,199,133,.08)}
   .tbl{width:100%;border-collapse:collapse;font-size:13px}
   .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-  .tbl th{background:var(--panel2);color:var(--accent2);position:sticky;top:0}
-  .tbl td:first-child{color:var(--muted);white-space:nowrap;width:130px}
+  .tbl th{background:var(--panel2);color:var(--accent2)}
+  .tbl td:first-child{color:var(--muted)}
   .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
   .c1{color:var(--c1)} .c2{color:var(--c2)} .c3{color:var(--c3)}
-  /* 控制台 */
   .ctrl{width:100%;border-collapse:collapse;font-size:13.5px}
   .ctrl th,.ctrl td{border-bottom:1px solid var(--line);padding:9px 8px;text-align:center}
   .ctrl th{color:var(--accent2);font-weight:600}
   .ctrl td:first-child,.ctrl th:first-child{text-align:left}
-  input[type=range]{width:100%;max-width:130px;accent-color:var(--accent);vertical-align:middle}
+  input[type=range]{width:100%;max-width:120px;accent-color:var(--accent);vertical-align:middle}
   .val{display:inline-block;min-width:1.4em;font-weight:700;color:var(--accent2)}
   .wval{display:inline-block;min-width:1.4em;color:var(--muted)}
   button{background:var(--panel2);color:var(--ink);border:1px solid var(--line);border-radius:9px;
     padding:8px 14px;font-size:13.5px;cursor:pointer;font-family:inherit}
   button:hover{border-color:var(--accent);color:#fff}
   button.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
-  /* 图表区 */
   .charts{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
-  @media(max-width:820px){.charts{grid-template-columns:1fr}}
+  @media(max-width:860px){.charts{grid-template-columns:1fr}}
   svg{width:100%;height:auto;display:block}
   .legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:6px;font-size:13px}
   .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-  /* 排名条 */
-  .rank{margin:10px 0}
-  .rank .row{display:grid;grid-template-columns:26px 1fr 62px;gap:10px;align-items:center;margin:9px 0}
+  .rank .row{display:grid;grid-template-columns:26px 1fr 66px;gap:10px;align-items:center;margin:10px 0}
   .rank .badge{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:13px;
     background:var(--panel2);border:1px solid var(--line)}
-  .rank .bar{height:20px;background:var(--panel2);border-radius:6px;overflow:hidden}
+  .rank .bar{height:18px;background:var(--panel2);border-radius:6px;overflow:hidden}
   .rank .bar i{display:block;height:100%;transition:.25s}
-  .rank .num{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
-  .rank .name{font-size:12.5px;color:var(--muted);margin-top:-4px}
-  /* 卡片 */
+  .rank .num{text-align:right;font-weight:700;font-variant-numeric:tabular-nums;font-size:14px}
+  .rank .name{font-size:12.5px;color:var(--muted);margin:-4px 0 0 36px}
+  /* 评分依据 */
+  .dimcard{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 17px;margin-bottom:14px}
+  .dimcard h3{margin:0 0 4px;font-size:16px;color:var(--accent2)}
+  .dimcard .q{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+  .crit{font-size:12px;color:var(--muted);background:rgba(255,255,255,.03);border-radius:9px;padding:9px 12px;margin:8px 0 12px}
+  .crit div{margin:3px 0}
+  .crit b{color:var(--accent2);display:inline-block;width:1.6em}
+  .whyrow{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:9px 0;border-top:1px solid var(--line);font-size:13px}
+  .whyrow .who{font-weight:700}
+  .badge2{display:inline-block;font-size:11px;padding:1px 7px;border-radius:6px;margin-left:6px;
+    background:rgba(255,178,56,.16);color:var(--warn);vertical-align:1px}
+  .pill{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);
+    background:var(--panel2);margin:2px 6px 2px 0}
+  .pill.bad{background:rgba(255,84,100,.14);color:#ff9aa5;border-color:rgba(255,84,100,.4)}
+  .pill.ok{background:rgba(87,199,133,.14);color:#8fe0b4;border-color:rgba(87,199,133,.4)}
   .pros{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-  @media(max-width:820px){.pros{grid-template-columns:1fr}}
+  @media(max-width:860px){.pros{grid-template-columns:1fr}}
   .pcard{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 16px;border-top-width:4px}
-  .pcard h3{margin:0 0 2px;font-size:16px}
-  .pcard .by{color:var(--muted);font-size:12.5px;margin-bottom:10px}
+  .pcard h3{margin:0 0 2px;font-size:15px}
+  .pcard .by{color:var(--muted);font-size:12.5px;margin-bottom:8px}
   .pcard h4{margin:12px 0 5px;font-size:13px;color:var(--accent2)}
-  .pcard ul{margin:0;padding-left:18px;font-size:13px}
+  .pcard ul{margin:0;padding-left:18px;font-size:12.5px}
   .pcard li{margin:4px 0}
-  @page{size:A4 landscape;margin:10mm}
-  @media print{body{background:#fff;color:#000}.hero,.card,.pcard{background:#fff;border-color:#ccc}
-    .wrap{max-width:none;padding:0}h2{color:#000}a{color:#000}.tbl th{background:#eee;color:#000}}
+  @page{size:A4;margin:12mm}
+  @media print{body{background:#fff;color:#000}.hero,.card,.pcard,.dimcard{background:#fff;border-color:#ccc}
+    .wrap{max-width:none;padding:0}h2,h3{color:#000}a{color:#000}.tbl th{background:#eee;color:#000}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
   <div class="hero">
-    <div class="kicker">Comparison · 三方案对比</div>
-    <h1>📊 三份方案对比</h1>
-    <div class="sub">把三份方案放在同一把尺子上：<b>客观事实对照</b> + <b>5 维度雷达图</b> + <b>可调权重排名</b>。
-      分数是可拖动的——<b>怎么排由你们决定</b>，本页只负责把差异摊开。</div>
+    <div class="kicker">Scoring · 三方案评分对比</div>
+    <h1>📊 三份方案 · 评分对比</h1>
+    <div class="sub">按《方案评分细则》的判定条件打分：<b>5 维度 × 1–5 分 = 25 分</b>。
+      页面给出每格分数的<b>依据原文</b>，并附<b>硬性门槛</b>、<b>非计分项</b>与<b>平局处理</b>。
+      分数和权重都可拖动——<b>怎么定由你们拍板</b>。</div>
     <div class="navlinks">
       <a href="index.html">← 返回主页</a>
-      <a href="proposal.html">📖 评审维度说明</a>
+      <a href="rubric.md">📋 评分细则原文</a>
+      <a href="proposal.html">📖 旧版评审说明</a>
       <a href="proposal-form.html">📝 我也要写一份</a>
     </div>
   </div>
 
-  <div class="note"><b>评分说明：</b>下方评分为<b>基于三份文档内容的建议初值</b>（1–5 分），
-    <b>不是结论</b>。请团队边讨论边拖动调整，雷达图与排名会实时重算。权重也可调——例如把「体量可控」拉高，排名就会变。</div>
+  <div class="note"><b>关于本页分数：</b>依据来自《方案评分细则》的判定条件，但<b>分数由我独立重打</b>，与原稿有两处不同，
+    已在下方用 <span class="badge2">⚖ 与细则原稿不同</span> 标出。所有分数都是<b>可拖动的初值，不是结论</b>。</div>
 
-  <h2>① 5 维度评分与权重（可拖动）</h2>
+  <h2>① 评分与权重（可拖动）</h2>
   <div class="card">
     <table class="ctrl" id="ctrlTable"></table>
-    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap">
-      <button class="primary" id="btnReset">↺ 重置为建议值</button>
+    <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button class="primary" id="btnReset">↺ 重置为初值</button>
       <button id="btnEqual">＝ 权重全部相等</button>
-      <span style="color:var(--muted);font-size:12.5px;align-self:center">权重范围 0–5，越大代表该维度越重要</span>
+      <span style="color:var(--muted);font-size:12.5px">权重 0–5：越大代表该维度越重要（用于「加权探索」，不改变总分）</span>
     </div>
   </div>
 
-  <h2>② 雷达图（形状看差异）</h2>
+  <h2>② 总分、档位与排名</h2>
   <div class="charts">
     <div class="card">
       <svg id="radar" viewBox="0 0 560 520"></svg>
       <div class="legend" id="legend"></div>
     </div>
-    <div class="card">
-      <div style="font-size:13px;color:var(--muted);margin-bottom:10px">
-        加权得分 ＝ Σ(评分 × 权重) ÷ Σ权重　（满分 5.0）
+    <div>
+      <div class="card" style="margin-bottom:14px">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">总分 ＝ 5 维度之和（满分 25）</div>
+        <div class="rank" id="totalRank"></div>
+        <div style="font-size:12.5px;color:var(--muted);margin-top:10px">
+          档位：<span class="pill ok">20–25 可直接开工</span><span class="pill">15–19 需先补齐缺口</span>
+          <span class="pill bad">10–14 高风险</span><span class="pill bad">&lt;10 不建议</span>
+        </div>
       </div>
-      <div class="rank" id="rank"></div>
-      <div id="rankNote" class="note" style="margin-top:14px"></div>
+      <div class="card">
+        <div style="font-size:13px;color:var(--muted);margin-bottom:8px">加权探索 ＝ Σ(评分×权重) ÷ Σ权重（0–5，随权重变化）</div>
+        <div class="rank" id="rank"></div>
+        <div id="rankNote" class="note" style="margin-top:12px"></div>
+      </div>
     </div>
   </div>
 
-  <h2>③ 客观事实对照</h2>
-  <div class="card" style="overflow:auto">
-    <table class="tbl" id="factsTable"></table>
-  </div>
+  <h2>③ 评分依据（逐维度对照）</h2>
+  <div id="dims"></div>
 
-  <h2>④ 各自的最大优势 / 最大风险</h2>
+  <h2>④ 硬性门槛（先过滤）</h2>
+  <div class="card" id="gate"></div>
+
+  <h2>⑤ 非计分项（不参与总分，但必须单独报告）</h2>
+  <div class="card" style="overflow:auto"><table class="tbl" id="nonscore"></table></div>
+
+  <h2>⑥ 平局处理规则</h2>
+  <div class="card" id="tie"></div>
+
+  <h2>⑦ 客观事实对照</h2>
+  <div class="card" style="overflow:auto"><table class="tbl" id="factsTable"></table></div>
+
+  <h2>⑧ 各自的最大优势 / 最大风险</h2>
   <div class="pros" id="pros"></div>
 
   <p style="margin-top:34px;text-align:center;color:var(--muted);font-size:13px">
-    — 事实栏均取自各人方案书原文；评分栏为主观判断，仅供参考 —</p>
+    — 判定条件取自《方案评分细则》；分数为主观判定，仅供参考 —</p>
 </div>
 
 <script>
 (function () {
   "use strict";
 
-  var DIMS = ["主题契合", "可行性", "体量可控", "差异化", "团队匹配"];
-  var DIM_HINT = [
-    "主题是否长在机制上",
-    "技术风险是否有「先验证」动作",
-    "MVP 是否小到能做出来",
-    "是否一眼记得住、有无竞品",
-    "是否匹配现有成员能力"
+  var PROPS = [
+    { key:"ydc", name:"《别信它》", sub:"DON'T TRUST IT（暂定名）", author:"YDC", color:"#ff5a3c", cls:"c1",
+      link:"proposals/dont-trust-it.html" },
+    { key:"ypq", name:"《你叫什么名字》", sub:"What's Your Name", author:"YPQ", color:"#57c785", cls:"c2",
+      link:"proposals/whats-your-name.html" },
+    { key:"xjw", name:"《糖纸谎言》", sub:"", author:"XJW", color:"#8fb7ff", cls:"c3",
+      link:"proposals/candy-wrapper-lies.html" }
   ];
 
-  // 建议初值（可拖动）
-  var SUGGEST = {
-    ydc: [5, 5, 5, 3, 4],
-    ypq: [5, 4, 3, 5, 3],
-    xjw: [4, 3, 2, 3, 3]
+  var DIMS = [
+    { name:"主题契合", q:"剥离全部剧情文本后，「不可靠」还在不在机制里？",
+      crit:["剥离全部文本后，玩法与「信息不可靠」无关",
+            "主题只存在于开场设定 / 旁白 / 结局揭晓中",
+            "玩家做「信 / 不信」的选择，但只改变呈现（滤镜、文本、镜头、线索可见性），不改变世界状态",
+            "玩家的判断改变世界状态（物件、通路、生死、可探索范围），但判断单元是粗粒度的（整条线 / 整轮 / 整个视角）",
+            "玩家的判断改变世界状态，且判断单元细到「刚刚听到 / 看到的那一句」"],
+      scores:{ ydc:[5,false], ypq:[4,true], xjw:[3,false] },
+      why:{
+        ydc:"判断单元＝<b>单句</b>：每句话的间隙按「指认」，<b>不指认＝相信</b>（不可弃权）；采信直接改变世界状态（门锁上、手电没电、你真的坐下）。<b>严格落在 5 分档。</b>",
+        ypq:"判断确实<b>改变世界状态</b>（张力→死亡 / 循环；碎片→解锁新问法＝可探索范围）。但<b>判断单元是粗粒度的</b>——玩家选的是「这一句开口推多重」（整轮 / 整拍的力度），而不是在判定「刚刚那一句是真是假」。按细则字面停在 4 分档。",
+        xjw:"玩家选择信哪条线，但方案<b>自己写明「不改变客观事实，只改变视角与呈现方式」</b>——落在<b>呈现层</b>，正是 3 分档的定义。"
+      } },
+    { name:"可行性", q:"技术风险有没有被识别，并配了「先验证」的动作？",
+      crit:["无技术风险章节，或风险描述无法判断难度",
+            "列了风险，但没有任何验证动作",
+            "有验证动作，但目标无法判定成败（如「验证手感好不好」），或替代方案缺失 / 笼统",
+            "验证动作目标明确且可判定成败（如「跑通 A→B→C 全链路」），但替代方案缺失或笼统",
+            "在 4 的基础上，给出 ≥2 条具体、可落地的替代方案"],
+      scores:{ ydc:[4,false], ypq:[5,false], xjw:[3,false] },
+      why:{
+        ydc:"3 个验证动作<b>目标明确、可判定成败</b>——例如「找一个没看过说明的人盲玩 60 秒，录下他有没有自己说出『原来不按也会成真』」，这是<u>二值可判定</u>的。但「<b>验证失败的替代方案</b>」栏标着「待定」＝<b>缺失</b>，因此停在 4 分档。",
+        ypq:"验证目标<b>单一且可判定</b>：「跑通一条完整的碎片闭环（问 → 拼 → 解锁 → 再用上）」，并写明<b>跑不通就必须改机制</b>；且给出 <b>4 条具体可落地的替代方案</b>（网页音频/体积 → 桌面包；拖拽不稳 → 改为点选；三通道 → 只留表情；张力调不出 → 明示三档）。唯一认真处理 Web 端问题的方案。",
+        xjw:"有验证动作，但目标是「<b>能否传递出怀疑感</b>」——<b>无法判定成败</b>。按细则这一条即落 3 分档（替代方案虽有 2 条，但 3 分档是「或」条件）。"
+      } },
+    { name:"体量可控", q:"底线版本是不是真的能交？",
+      crit:["MVP 与完整版几乎无差别；或所谓「底线版本」仍含多个系统 / 多场景",
+            "有底线版本，但仍需 >1 人主要投入，或仍含 ≥2 个未验证系统",
+            "底线版本能在团队产能内交出，但完整 MVP 有风险",
+            "完整 MVP 可交出，且底线版本明确、显著更小",
+            "在 4 的基础上，底线版本 ≤3 天可完成，且仍满足全部硬性规则"],
+      scores:{ ydc:[4,true], ypq:[4,false], xjw:[2,false] },
+      why:{
+        ydc:"完整 MVP（8 项）都很小、可交出；底线版本也明确且显著更小。<b>但那个「半天版」是机制验证，不是可提交的成品</b>——「一段话 + 一次判断 + 一个后果」大约 20 秒，<b>低于规则 1 分钟的下限</b>。按 5 分档的前提「仍满足全部硬性规则」，只能给 4。",
+        ypq:"底线版本明确且<b>显著更小</b>；但<b>不止 3 天</b>（两轮 + 5 碎片 + 2 结局 + 3 死亡 + 3 表情 + 2 音效），够不到 5 分档。",
+        xjw:"底线版本仍然是「<b>完整街区 + 步行收集 + 文本 + 单结局</b>」，仍需 >1 人主要投入，且仍含 ≥2 个未验证系统（精神值、动态场景修改）——正是 2 分档的定义。"
+      } },
+    { name:"差异化", q:"核心动词能不能用现有作品类比？",
+      crit:["核心玩法与某款知名作品基本一致",
+            "玩法常见，靠题材或美术区分",
+            "有 1 个新意点，但主体是常见套路",
+            "有 1 个新的核心动词，但存在 1–2 个未解决的可疑点（血统亲近 / 套路叠加）",
+            "核心动词无法用现有作品类比，且方案自己给出了明确的差异化论证"],
+      scores:{ ydc:[4,false], ypq:[5,false], xjw:[3,false] },
+      why:{
+        ydc:"有新的核心动词（<b>在叙述流动中当场指认</b>）；但方案<b>自己披露了与 TAKEN AS READ 的血统亲近</b>——属未解决的可疑点，停在 4。",
+        ypq:"核心动词<b>无法用现有作品类比</b>：「玩家是<b>压力调节器</b>，不是选项挑选器」——死亡不是因为选错，而是因为<b>推得太狠</b>。且方案给出了明确的差异化论证（对照 Her Story / Obra Dinn / Mouthwashing 逐条说明差异）。",
+        xjw:"核心动词（选信哪条线）是常见做法；再叠加<b>人格解离 + 时间循环 + 多结局 + 精神值</b>四个常见套路 → 有 1 个新意点，但主体是常见套路。"
+      } },
+    { name:"团队匹配", q:"工作量是否落在现有成员的长处上？",
+      crit:["需要团队没有的关键角色（3D 美术 / 作曲 / 第二个程序员）",
+            "关键工作量落在团队已知弱项上（角色动画、大量手绘）",
+            "角色勉强够，但存在一个明确的薄弱环节，且方案自己承认",
+            "主要工作量落在现成员长处上，且有把非程序员排除在引擎之外的设计",
+            "在 4 的基础上，任一成员缺席都能照常交付"],
+      scores:{ ydc:[4,false], ypq:[3,false], xjw:[2,false] },
+      why:{
+        ydc:"素材几乎归零；<b>「文案与判断点设计」可在引擎外完成</b>（表格软件即可），正对准「进不了引擎的队友」；并明确要求队友<b>永不编辑工程文件</b>。但程序缺席项目就停，够不到 5。",
+        ypq:"角色勉强够（程序 / 美术 / 编剧＝3 人）；但方案<b>自己承认「音频是最薄弱的一环」</b>，并把「<b>背景 3 个状态变体</b>」定为<u>全片最难的美术任务</u>——正落在团队没有画师的弱项上。",
+        xjw:"美术需求最大（街区绘制 + 闪回画面）<b>正撞团队弱项</b>；角色需求写「程序 <b>1–2 名</b>」，而团队只有 1 名程序员；且未做任何「把非程序员排除在引擎外」的设计。"
+      } }
+  ];
+
+  // ---------- 门槛 ----------
+  var GATE = {
+    kill: { ydc:[], ypq:[], xjw:[] },   // 直接淘汰项（三份均为空）
+    warn: {
+      ydc: [],
+      ypq: [],
+      xjw: ["需要 >1 名程序员全职投入（角色需求写「程序 1–2 人」，团队只有 1 名）",
+            "底线版本仍含 >2 个未验证系统（精神值、动态场景修改、多结局分档）"]
+    }
   };
 
-  var PROPS = [
-    { key: "ydc", name: "《别信它》", sub: "DON'T TRUST IT（暂定名）", author: "YDC", color: "#ff5a3c", cls: "c1" },
-    { key: "ypq", name: "《你叫什么名字》", sub: "What's Your Name", author: "YPQ", color: "#57c785", cls: "c2" },
-    { key: "xjw", name: "《糖纸谎言》", sub: "", author: "XJW", color: "#8fb7ff", cls: "c3" }
+  var NONSCORE = [
+    ["合规自查是否逐项勾选",
+     "<span class='pill bad'>✗ 全未勾选</span>",
+     "<span class='pill ok'>✓ 全部勾选</span>",
+     "<span class='pill ok'>✓ 全部勾选</span>"],
+    ["第 8 节「我能承担 / 缺什么角色」",
+     "<span class='pill bad'>✗ 两栏均未填</span>",
+     "<span class='pill bad'>✗ 「我能承担」未填</span>",
+     "<span class='pill bad'>✗ 两栏均未填</span>"],
+    ["剧情是否完整（Story and Writing 是 jam 第一评分项）",
+     "<span class='pill bad'>✗ 第 4 节几乎全标「待他人补充」</span>",
+     "<span class='pill ok'>✓ 三层不可靠 + 4 个结局完整</span>",
+     "<span class='pill ok'>✓ 梗概 + 3 结局完整</span>"],
+    ["排期是否符合官方死线（含时区与「提前 3 天」）",
+     "<span class='pill bad'>✗ 只有相对阶段，无绝对日期</span>",
+     "<span class='pill ok'>✓ 写死 09-14 / 10-01 / 10-02 / 10-03</span>",
+     "<span class='pill bad'>✗ 有「提前 3 天」但无绝对日期</span>"]
   ];
 
   var FACTS = [
-    ["预估时长", "8–10 分钟", "8–12 分钟（全结局 20–30）", "12–15 分钟"],
-    ["场景 / 关卡", "单场景", "1 场景 + 3 个状态变体", "封闭老街区（6 民居 + 2 巷 + 广场）"],
-    ["核心机制", "单键「指认」+ 内置 CD；判据是「恶意」而非真假", "张力轴（推重了会死）+ 碎片拼接笔记本", "双叙事线互斥选择 + 精神值系统"],
-    ["失败条件", "文档未写明确失败条件", "张力进危险区 → 死亡；耐心耗尽 → 循环结局", "精神值归零；天亮前未找到真相"],
-    ["美术工作量", "极低（几何 / 剪影，明确不做角色动画）", "高（背景 3 个变体，作者自认全片最难）", "中高（街区场景 + 糖纸样式 + 闪回画面）"],
-    ["需要人数", "3（程序 / 文案与判断点 / 音频+素材）", "3（程序 / 美术 / 编剧）⚠️ 明确需要美术", "3–4 ⚠️（美术1 + 程序1–2 + 剧本1，与「3 人」自述矛盾）"],
-    ["团队缺口应对", "队友 100% 在引擎外工作，永不编辑工程文件", "音频最薄弱 → 压缩到「雨声+糖纸声+骤静」三件套", "未写"],
-    ["调味料命中", "3 全中 + 2 部分", "5 全中", "3 全中"],
-    ["底线版本", "一段话 + 一次判断 + 一个后果（半天可做）", "两轮 + 5 碎片 + 2 结局 + 3 死亡（7 天）", "纯步行收集 + 文本叙事 + 单结局"],
-    ["待填项", "13 处 ⚠️（剧情 / 结局 / Plan B 尚空）", "1 处", "4 处 ⚠️（含整节「差异化」）"],
-    ["作者自述最大风险", "机制血统与现成作品重叠（规则风险）", "男人台词露馅 → 反转当场失效", "叙事复杂度失衡 / 机制性单薄"]
+    ["预估时长","8–10 分钟","8–12 分钟（全结局 20–30）","12–15 分钟"],
+    ["场景 / 关卡","单场景","1 场景 + 3 个状态变体","封闭老街区（6 民居 + 2 巷 + 广场）"],
+    ["核心机制","单键「指认」+ 内置 CD；判据是「恶意」而非真假","张力轴（推重了会死）+ 碎片拼接笔记本","双叙事线互斥选择 + 精神值系统"],
+    ["失败条件","文档未写明确失败条件","张力进危险区 → 死亡；耐心耗尽 → 循环结局","精神值归零；天亮前未找到真相"],
+    ["美术工作量","极低（几何 / 剪影，明确不做角色动画）","高（背景 3 个变体，作者自认全片最难）","中高（街区场景 + 糖纸样式 + 闪回画面）"],
+    ["需要人数","3（程序 / 文案与判断点 / 音频+素材）","3（程序 / 美术 / 编剧）⚠️ 明确需要美术","3–4 ⚠️（美术1 + 程序1–2 + 剧本1，与「3 人」自述矛盾）"],
+    ["团队缺口应对","队友 100% 在引擎外工作，永不编辑工程文件","音频最薄弱 → 压缩到「雨声+糖纸声+骤静」三件套","未写"],
+    ["调味料命中","3 全中 + 2 部分","5 全中","3 全中"],
+    ["底线版本","一段话 + 一次判断 + 一个后果（半天可做）","两轮 + 5 碎片 + 2 结局 + 3 死亡（7 天）","纯步行收集 + 文本叙事 + 单结局"],
+    ["待填项","13 处 ⚠️（剧情 / 结局 / Plan B 尚空）","1 处","4 处 ⚠️（含整节「差异化」）"]
   ];
 
-  var PROS = [
-    { key: "ydc", pros: [
-        "主题完全长在机制上——三个键就是主题，不靠台词解释",
-        "技术风险验证最具体：3 个「半天做什么」写得很实",
-        "范围最小，底线版本半天可做；对无美术团队最友好",
+  var PROSCONS = [
+    { key:"ydc", pros:[
+        "主题完全长在机制上——判断单元细到单句，且「不可弃权」",
+        "技术风险验证最具体：3 个「半天做什么」都是二值可判定的",
+        "范围最小，对没有画师的团队最友好",
         "队友缺口处理最清醒（引擎外工作流 + 不碰工程文件）"],
-      cons: [
-        "机制与现成作品 TAKEN AS READ 思路接近，触到「no conceptual work as-is」红线",
-        "13 处待填：剧情、结局、Plan B 都还空着",
-        "「按错无惩罚 + CD 是唯一约束」——若 CD 太短，最优解会退化成「每句都按」"] },
-    { key: "ypq", pros: [
-        "调味料命中最多（5 项全中）",
-        "差异化最强：玩家是「压力调节器」而非「选项挑选器」，没找到竞品",
-        "原型判据最清晰：跑通「一条完整碎片闭环」＝项目成立",
-        "Plan B 与「何时放弃」写得最完整、最有约束力"],
-      cons: [
-        "美术量最大，而团队缺画师（背景 3 变体是作者自认最难的任务）",
-        "编剧是必需角色，面向玩家的文字量很大",
-        "张力轴若读不出来，死亡会被玩家当成「被冤枉」"] },
-    { key: "xjw", pros: [
+      cons:[
+        "机制与 TAKEN AS READ 血统亲近，触到「no conceptual work as-is」红线",
+        "13 处待填：<b>剧情几乎为空</b>，而 Story and Writing 是 jam 第一评分项",
+        "「按错无惩罚 + CD 是唯一约束」——若 CD 太短，最优解会退化成「每句都按」",
+        "合规自查全未勾选、第 8 节两栏未填"] },
+    { key:"ypq", pros:[
+        "核心动词无法类比：玩家是「压力调节器」，不是「选项挑选器」",
+        "可行性唯一满分：验证目标可判定 + 4 条可落地替代方案",
+        "调味料命中最多（5 项全中）；剧情与结局完整",
+        "排期写到绝对日期，含「提前 3 天」缓冲"],
+      cons:[
+        "全片最难的美术任务压在团队弱项上（无画师）",
+        "「8–10 个死亡结局」有范围蔓延味道",
+        "第 8 节「我能承担」未填"] },
+    { key:"xjw", pros:[
         "叙事野心最大：三层不可靠 + 人格解离",
         "结局设计有回味（解离结局回到病房）",
         "写了明确的底线版本"],
-      cons: [
-        "体量最大（街区 + 精神值 + 8 糖纸 + 3 结局 + 隐藏糖纸），排期却和其他两份一样",
-        "第 13 节「差异化」整节缺失——这是评审权重很高的一栏",
-        "「需要 3 人」与角色需求（1 美术 + 1–2 程序 + 1 编剧）自相矛盾",
-        "技术风险的验证方案写得最粗（只说「做最小原型」，没写怎么算通过）"] }
+      cons:[
+        "<b>触发范围警告</b>（需 >1 名程序员 / 底线版本仍含多个未验证系统）",
+        "第 13 节「差异化」整节缺失——评审权重很高的一栏",
+        "验证目标「能否传递怀疑感」不可判定成败",
+        "「需要 3 人」与角色需求自相矛盾；剧情虽完整但套路叠加"] }
   ];
 
-  var scores = {}, weights = [3, 3, 3, 3, 3];
+  var scores = {}, weights = [3,3,3,3,3];
+  var SUGGEST = {};
+  DIMS.forEach(function (d, i) { Object.keys(d.scores).forEach(k => { (SUGGEST[k] = SUGGEST[k] || [])[i] = d.scores[k][0]; }); });
   var init = () => { PROPS.forEach(p => scores[p.key] = SUGGEST[p.key].slice()); };
   init();
 
   // ---------- 控制表 ----------
   function renderCtrl() {
-    var h = "<tr><th>维度</th><th style='width:150px'>权重</th>" +
+    var h = "<tr><th>维度</th><th style='width:140px'>权重</th>" +
       PROPS.map(p => "<th><span class='" + p.cls + "'>" + p.name + "</span><br><span style='font-weight:400;color:var(--muted);font-size:12px'>" + p.author + "</span></th>").join("") + "</tr>";
     DIMS.forEach(function (d, i) {
-      h += "<tr><td>" + d + "<br><span style='color:var(--muted);font-size:11.5px'>" + DIM_HINT[i] + "</span></td>";
+      h += "<tr><td>" + d.name + "</td>";
       h += "<td><input type='range' min='0' max='5' step='1' value='" + weights[i] + "' data-w='" + i + "'><span class='wval' id='w" + i + "'>" + weights[i] + "</span></td>";
       PROPS.forEach(function (p) {
         h += "<td><input type='range' min='1' max='5' step='1' value='" + scores[p.key][i] + "' data-p='" + p.key + "' data-i='" + i + "'><span class='val' id='v-" + p.key + "-" + i + "'>" + scores[p.key][i] + "</span></td>";
@@ -223,81 +337,151 @@
   // ---------- 雷达图 ----------
   function renderRadar() {
     var cx = 280, cy = 262, R = 172, N = 5;
-    var ang = i => -Math.PI / 2 + i * 2 * Math.PI / N;
-    var pt = (i, v) => [cx + Math.cos(ang(i)) * R * (v / 5), cy + Math.sin(ang(i)) * R * (v / 5)];
+    var ang = i => -Math.PI/2 + i*2*Math.PI/N;
+    var pt = (i,v) => [cx + Math.cos(ang(i))*R*(v/5), cy + Math.sin(ang(i))*R*(v/5)];
     var s = "";
     for (var g = 1; g <= 5; g++) {
-      var pts = DIMS.map((_, i) => pt(i, g).map(n => n.toFixed(1)).join(",")).join(" ");
-      s += "<polygon points='" + pts + "' fill='none' stroke='#34344a' stroke-width='" + (g === 5 ? 1.6 : 0.8) + "'/>";
+      var pts = DIMS.map((_,i) => pt(i,g).map(n=>n.toFixed(1)).join(",")).join(" ");
+      s += "<polygon points='" + pts + "' fill='none' stroke='#34344a' stroke-width='" + (g===5?1.6:0.8) + "'/>";
     }
-    DIMS.forEach(function (d, i) {
-      var e = pt(i, 5);
-      s += "<line x1='" + cx + "' y1='" + cy + "' x2='" + e[0].toFixed(1) + "' y2='" + e[1].toFixed(1) + "' stroke='#34344a' stroke-width='0.8'/>";
-      var l = pt(i, 5.34), a = ang(i), cs = Math.cos(a);
+    DIMS.forEach(function (d,i) {
+      var e = pt(i,5);
+      s += "<line x1='"+cx+"' y1='"+cy+"' x2='"+e[0].toFixed(1)+"' y2='"+e[1].toFixed(1)+"' stroke='#34344a' stroke-width='0.8'/>";
+      var l = pt(i,5.34), a = ang(i), cs = Math.cos(a);
       var anchor = Math.abs(cs) < 0.2 ? "middle" : (cs > 0 ? "start" : "end");
-      s += "<text x='" + l[0].toFixed(1) + "' y='" + (l[1] + 4).toFixed(1) + "' fill='#9b97ad' font-size='13' text-anchor='" + anchor + "'>" + d + "</text>";
+      s += "<text x='"+l[0].toFixed(1)+"' y='"+(l[1]+4).toFixed(1)+"' fill='#9b97ad' font-size='13' text-anchor='"+anchor+"'>"+d.name+"</text>";
     });
-    [1, 3, 5].forEach(function (v) {
-      var p = pt(0, v);
-      s += "<text x='" + (cx + 5) + "' y='" + (p[1] + 4).toFixed(1) + "' fill='#4b4b60' font-size='10'>" + v + "</text>";
-    });
+    [1,3,5].forEach(function (v) { var p = pt(0,v);
+      s += "<text x='"+(cx+5)+"' y='"+(p[1]+4).toFixed(1)+"' fill='#4b4b60' font-size='10'>"+v+"</text>"; });
     PROPS.forEach(function (pr) {
-      var pts = DIMS.map((_, i) => pt(i, scores[pr.key][i]).map(n => n.toFixed(1)).join(",")).join(" ");
-      s += "<polygon points='" + pts + "' fill='" + pr.color + "' fill-opacity='0.16' stroke='" + pr.color + "' stroke-width='2.2' stroke-linejoin='round'/>";
-      DIMS.forEach(function (_, i) {
-        var p = pt(i, scores[pr.key][i]);
-        s += "<circle cx='" + p[0].toFixed(1) + "' cy='" + p[1].toFixed(1) + "' r='3.6' fill='" + pr.color + "'/>";
-      });
+      var pts = DIMS.map((_,i) => pt(i, scores[pr.key][i]).map(n=>n.toFixed(1)).join(",")).join(" ");
+      s += "<polygon points='"+pts+"' fill='"+pr.color+"' fill-opacity='0.16' stroke='"+pr.color+"' stroke-width='2.2' stroke-linejoin='round'/>";
+      DIMS.forEach(function (_,i) { var p = pt(i, scores[pr.key][i]);
+        s += "<circle cx='"+p[0].toFixed(1)+"' cy='"+p[1].toFixed(1)+"' r='3.6' fill='"+pr.color+"'/>"; });
     });
     document.getElementById("radar").innerHTML = s;
     document.getElementById("legend").innerHTML = PROPS.map(p =>
-      "<span><i style='background:" + p.color + "'></i>" + p.name + "（" + p.author + "）</span>").join("");
+      "<span><i style='background:"+p.color+"'></i>"+p.name+"（"+p.author+"）</span>").join("");
   }
 
-  // ---------- 加权排名 ----------
-  function renderRank() {
-    var sumW = weights.reduce((a, b) => a + b, 0);
-    var rows = PROPS.map(function (p) {
-      var w = sumW > 0 ? p.scoresSum = scores[p.key].reduce((a, v, i) => a + v * weights[i], 0) / sumW : 0;
-      return { p: p, score: w };
-    }).sort((a, b) => b.score - a.score);
+  function tierOf(total) {
+    if (total >= 20) return { t:"可直接开工", c:"#57c785" };
+    if (total >= 15) return { t:"需先补齐缺口再开工", c:"#ffd9a0" };
+    if (total >= 10) return { t:"高风险", c:"#ffb238" };
+    return { t:"不建议", c:"#ff5464" };
+  }
 
-    document.getElementById("rank").innerHTML = rows.map(function (r, idx) {
-      var pct = (r.score / 5 * 100).toFixed(1);
-      return "<div><div class='row'><span class='badge'>" + (idx + 1) + "</span>" +
-        "<span class='bar'><i style='width:" + pct + "%;background:" + r.p.color + "'></i></span>" +
-        "<span class='num' style='color:" + r.p.color + "'>" + r.score.toFixed(2) + "</span></div>" +
-        "<div class='name' style='margin-left:36px'>" + r.p.name + "　" + r.p.author + "</div></div>";
+  function renderRanks() {
+    // 总分（不随权重变化）
+    var totals = PROPS.map(p => ({ p:p, total: scores[p.key].reduce((a,b)=>a+b,0) }))
+      .sort((a,b) => b.total - a.total);
+    document.getElementById("totalRank").innerHTML = totals.map(function (r, i) {
+      var pct = (r.total/25*100).toFixed(1), ti = tierOf(r.total);
+      return "<div><div class='row'><span class='badge'>"+(i+1)+"</span>" +
+        "<span class='bar'><i style='width:"+pct+"%;background:"+r.p.color+"'></i></span>" +
+        "<span class='num' style='color:"+r.p.color+"'>"+r.total+"<span style='color:var(--muted);font-size:11px'>/25</span></span></div>" +
+        "<div class='name'>"+r.p.name+"　"+r.p.author+"　<span style='color:"+ti.c+"'>"+ti.t+"</span></div></div>";
     }).join("");
 
-    var top = rows[0];
-    var gap = rows[0].score - rows[rows.length - 1].score;
-    document.getElementById("rankNote").innerHTML = sumW === 0
-      ? "权重全为 0，无法计算。请至少给一个维度设置权重。"
-      : "当前权重下 <b>" + top.p.name + "（" + top.p.author + "）</b> 得分最高（" + top.score.toFixed(2) +
-        " / 5.0），与最低分相差 <b>" + gap.toFixed(2) + "</b> 分。" +
-        (gap < 0.4 ? " 分差很小 —— 说明在当前权重下三者接近，<b>结论对权重很敏感</b>，建议先把权重谈拢。" : "");
+    // 加权探索
+    var sumW = weights.reduce((a,b)=>a+b,0);
+    var rows = PROPS.map(function (p) {
+      return { p:p, sc: sumW>0 ? scores[p.key].reduce((a,v,i)=>a+v*weights[i],0)/sumW : 0 };
+    }).sort((a,b) => b.sc - a.sc);
+    document.getElementById("rank").innerHTML = rows.map(function (r,i) {
+      var pct = (r.sc/5*100).toFixed(1);
+      return "<div><div class='row'><span class='badge'>"+(i+1)+"</span>" +
+        "<span class='bar'><i style='width:"+pct+"%;background:"+r.p.color+"'></i></span>" +
+        "<span class='num' style='color:"+r.p.color+"'>"+r.sc.toFixed(2)+"</span></div>" +
+        "<div class='name'>"+r.p.name+"　"+r.p.author+"</div></div>";
+    }).join("");
+
+    var note = "";
+    if (sumW === 0) note = "权重全为 0，无法计算。请至少给一个维度设置权重。";
+    else {
+      var top = rows[0], gap = rows[0].sc - rows[rows.length-1].sc;
+      note = "当前权重下 <b>"+top.p.name+"（"+top.p.author+"）</b> 最高（"+top.sc.toFixed(2)+" / 5.0），与最低相差 <b>"+gap.toFixed(2)+"</b> 分。";
+      if (gap < 0.4) note += " 分差很小 —— <b>结论对权重很敏感</b>，建议先把权重谈拢。";
+    }
+    // 总分平局提示
+    var tied = totals.filter(t => t.total === totals[0].total);
+    if (tied.length > 1) {
+      note += "<br><br>⚠️ <b>总分平局：</b>" + tied.map(t=>t.p.name+"（"+t.p.author+"）").join(" 与 ") +
+        " 同为 <b>" + totals[0].total + " 分</b> —— 请走第 ⑥ 节的<b>平局处理规则</b>，不要按分数定。";
+    }
+    document.getElementById("rankNote").innerHTML = note;
   }
 
-  // ---------- 事实表 / 卡片 ----------
+  // ---------- 依据 / 门槛 / 非计分 / 平局 / 事实 / 卡片 ----------
+  function renderDims() {
+    document.getElementById("dims").innerHTML = DIMS.map(function (d) {
+      var crit = d.crit.map((c,i) => "<div><b>"+(i+1)+"</b>"+c+"</div>").join("");
+      var rows = PROPS.map(function (p) {
+        var sc = d.scores[p.key][0], diff = d.scores[p.key][1];
+        return "<div class='whyrow'><div class='who' style='color:"+p.color+"'>"+p.name+"<br>"+
+          "<span style='font-size:20px'>"+sc+"</span><span style='color:var(--muted);font-size:12px'> / 5</span>"+
+          (diff ? "<span class='badge2'>⚖ 与细则原稿不同</span>" : "")+"</div>"+
+          "<div>"+d.why[p.key]+"</div></div>";
+      }).join("");
+      return "<div class='dimcard'><h3>"+d.name+"</h3><div class='q'>"+d.q+"</div>"+
+        "<div class='crit'>"+crit+"</div>"+rows+"</div>";
+    }).join("");
+  }
+
+  function renderGate() {
+    var h = "<h3>直接淘汰项</h3><div class='note ok'>三份方案 <b>均未命中</b>任何直接淘汰条件（非恐怖游戏 / AI 内容 / 盗用素材 / 18+ / 时长越界 / 无法在 Windows 运行 / 投票期收费）。</div>";
+    h += "<h3>范围警告（命中即需标注）</h3>";
+    h += "<table class='tbl'><tr><th>方案</th><th>命中情况</th></tr>";
+    PROPS.forEach(function (p) {
+      var w = GATE.warn[p.key];
+      h += "<tr><td><span class='" + p.cls + "'>" + p.name + "</span>　" + p.author + "</td><td>" +
+        (w.length ? "<span class='pill bad'>⚠️ 触发 " + w.length + " 条</span><ul style='margin:6px 0 0;padding-left:18px'>" +
+          w.map(x=>"<li>"+x+"</li>").join("") + "</ul>" : "<span class='pill ok'>✓ 未触发</span>") + "</td></tr>";
+    });
+    h += "</table>";
+    document.getElementById("gate").innerHTML = h;
+  }
+
+  function renderNonscore() {
+    var h = "<tr><th>非计分项</th>" + PROPS.map(p => "<th><span class='" + p.cls + "'>" + p.name + "</span>　<span style='font-weight:400'>" + p.author + "</span></th>").join("") + "</tr>";
+    NONSCORE.forEach(function (r) {
+      h += "<tr><td>" + r[0] + "</td>" + r.slice(1).map(c => "<td>" + c + "</td>").join("") + "</tr>";
+    });
+    document.getElementById("nonscore").innerHTML = h;
+  }
+
+  function renderTie() {
+    document.getElementById("tie").innerHTML =
+      "<div style='font-size:13.5px'><b>当总分相同时，不按分数定，按这一问定：</b></div>" +
+      "<blockquote style='margin:12px 0;padding:12px 16px;background:rgba(255,217,160,.06);border-left:4px solid var(--accent2);border-radius:0 9px 9px 0;font-size:14px'>" +
+      "最关键、且<b>最不可替代</b>的工作量，是否落在团队<b>已知的弱项</b>上？<br>" +
+      "· <b>落上了</b> → 选总分相同、但该工作量更少的那一份<br>" +
+      "· <b>没落上</b> → 选设计质量更高的那一份</blockquote>" +
+      "<div style='font-size:13.5px'><b>本案适用：</b><br>" +
+      "《你叫什么名字》把「<b>全片最难的美术任务（背景 3 状态变体）</b>」压在美术最弱的成员身上；" +
+      "《别信它》几乎<b>不产生美术工作量</b>。</div>" +
+      "<div style='margin-top:12px;font-size:13.5px'>" +
+      "<span class='pill' style='background:rgba(87,199,133,.14);color:#8fe0b4'>团队<b>愿意</b>承担该美术风险 → 《你叫什么名字》</span>" +
+      "（作品质量更高：动词更原创、叙事更完整、技术文档更扎实）<br>" +
+      "<span class='pill' style='background:rgba(255,90,60,.14);color:#ffb0a0'>团队<b>不愿</b>承担 → 《别信它》</span>" +
+      "（交付确定性更高，但<b>必须先补剧情</b>）</div>";
+  }
+
   function renderFacts() {
     var h = "<tr><th>对比项</th>" + PROPS.map(p => "<th><span class='" + p.cls + "'>" + p.name + "</span>　<span style='font-weight:400'>" + p.author + "</span></th>").join("") + "</tr>";
-    FACTS.forEach(function (r) {
-      h += "<tr><td>" + r[0] + "</td>" + r.slice(1).map((c, i) => "<td>" + c + "</td>").join("") + "</tr>";
-    });
+    FACTS.forEach(function (r) { h += "<tr><td>" + r[0] + "</td>" + r.slice(1).map(c => "<td>" + c + "</td>").join("") + "</tr>"; });
     document.getElementById("factsTable").innerHTML = h;
-
-    document.getElementById("pros").innerHTML = PROPS.map(function (p) {
-      var d = PROS.find(x => x.key === p.key);
+    document.getElementById("pros").innerHTML = PROSCONS.map(function (d) {
+      var p = PROPS.find(x => x.key === d.key);
       return "<div class='pcard' style='border-top-color:" + p.color + "'>" +
-        "<h3>" + p.name + "</h3><div class='by'>" + p.sub + (p.sub ? "　·　" : "") + p.author + "</div>" +
-        "<h4>✅ 最大优势</h4><ul>" + d.pros.map(x => "<li>" + x + "</li>").join("") + "</ul>" +
-        "<h4>⚠️ 最大风险</h4><ul>" + d.cons.map(x => "<li>" + x + "</li>").join("") + "</ul></div>";
+        "<h3><a href='" + p.link + "' style='color:inherit;border:none'>" + p.name + "</a></h3>" +
+        "<div class='by'>" + p.sub + (p.sub ? "　·　" : "") + p.author + "</div>" +
+        "<h4>✅ 最大优势</h4><ul>" + d.pros.map(x=>"<li>"+x+"</li>").join("") + "</ul>" +
+        "<h4>⚠️ 最大风险</h4><ul>" + d.cons.map(x=>"<li>"+x+"</li>").join("") + "</ul></div>";
     }).join("");
   }
 
-  // ---------- 事件 ----------
-  function renderAll() { renderRadar(); renderRank(); }
+  function renderAll() { renderRadar(); renderRanks(); }
 
   document.getElementById("ctrlTable").addEventListener("input", function (e) {
     var t = e.target;
@@ -311,15 +495,18 @@
     renderAll();
   });
   document.getElementById("btnReset").addEventListener("click", function () {
-    init(); weights = [3, 3, 3, 3, 3]; renderCtrl(); renderAll();
+    init(); weights = [3,3,3,3,3]; renderCtrl(); renderAll();
   });
   document.getElementById("btnEqual").addEventListener("click", function () {
-    weights = [3, 3, 3, 3, 3]; renderCtrl(); renderAll();
+    weights = [3,3,3,3,3]; renderCtrl(); renderAll();
   });
 
-  renderCtrl(); renderFacts(); renderAll();
+  renderCtrl(); renderDimCardsInit(); renderAll();
+
+  function renderDimCardsInit() { renderDims(); renderGate(); renderNonscore(); renderTie(); renderFacts(); }
   window.__ready = true;
-  window.__getState = function () { return { dims: DIMS, weights: weights, scores: scores }; };
+  window.__state = function () { return { dims: DIMS.map(d=>d.name), weights: weights, scores: scores,
+    totals: PROPS.map(p => ({ key:p.key, total: scores[p.key].reduce((a,b)=>a+b,0) })) }; };
 })();
 </script>
 </body>
