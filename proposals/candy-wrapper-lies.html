@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>糖纸谎言 · Hawktober Horrors 2026 方案书</title>
+<style>
+  :root{--bg:#12121a;--panel:#1b1b26;--panel2:#20202e;--ink:#e8e6f2;--muted:#9b97ad;
+    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--line:#34344a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.65;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:900px;margin:0 auto;padding:26px 22px 80px}
+  a{color:#8fb7ff;text-decoration:none;border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line);border-radius:16px;padding:26px 28px;position:relative;overflow:hidden}
+  .hero::after{content:"📄";position:absolute;right:24px;top:16px;font-size:58px;opacity:.13}
+  .hero .kicker{color:var(--accent2);letter-spacing:3px;font-size:12px;text-transform:uppercase}
+  .hero h1{margin:6px 0 6px;font-size:29px}
+  .hero .by{color:var(--muted);font-size:14px}
+  .navlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .navlinks a{background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13px;color:var(--ink)}
+  main{margin-top:22px}
+  h2{font-size:21px;margin:30px 0 10px;color:var(--accent2);border-left:4px solid var(--accent);padding-left:12px}
+  h3{font-size:17px;margin:22px 0 8px;color:#cfd6ff}
+  h4,h5,h6{font-size:15px;margin:16px 0 6px;color:var(--muted)}
+  p{margin:9px 0}
+  ul.md-list,ol{margin:8px 0;padding-left:22px}
+  ul.md-sub{margin:4px 0;padding-left:20px}
+  li{margin:4px 0}
+  li.cbx-item{list-style:none;margin-left:-18px}
+  blockquote{margin:12px 0;padding:12px 16px;background:rgba(255,217,160,.06);
+    border-left:4px solid var(--accent2);border-radius:0 9px 9px 0;color:#d9d5e8}
+  blockquote p{margin:4px 0}
+  hr{border:0;border-top:1px solid var(--line);margin:22px 0}
+  code{background:rgba(255,255,255,.07);padding:1px 6px;border-radius:5px;font-size:13px;color:var(--accent2)}
+  pre{background:#0e0e15;border:1px solid var(--line);border-radius:10px;padding:12px;overflow:auto}
+  pre code{background:none;padding:0}
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;margin:12px 0}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:var(--panel2);color:var(--accent2)}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  @page{size:A4;margin:14mm}
+  @media print{body{background:#fff;color:#000}.hero{background:#fff;border-color:#ccc}
+    .wrap{padding:0;max-width:none}h2{color:#000}a{color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="hero">
+    <div class="kicker">Proposal · 方案书</div>
+    <h1>糖纸谎言</h1>
+    <div class="by">XJW</div>
+    <div class="navlinks">
+      <a href="../index.html">← 返回主页</a>
+      <a href="../proposal.html">📖 合格标准 / 评审说明</a>
+      <a href="../proposal-form.html">📝 我也要写一份</a>
+      <a href="candy-wrapper-lies.md">⬇ 下载原始 Markdown</a>
+    </div>
+  </div>
+  <main><table class="tbl"><thead><tr><th>项目</th><th>内容</th></tr></thead><tbody><tr><td>方案名</td><td>糖纸谎言</td></tr><tr><td>作者</td><td>XJW</td></tr><tr><td>日期</td><td>2026-09-12</td></tr><tr><td>一句话 logline</td><td>万圣夜失忆的少年捡起草丛里的诡异糖纸，却发现每一张糖纸的凶案记录都与自己的记忆相悖，你不知道该相信线索，还是相信自己。</td></tr></tbody></table>
+<hr>
+<h2>1. 核心概念</h2>
+<h3>电梯陈述</h3>
+<p>玩家扮演万圣夜失忆的少年，在封闭的老街区中收集散落的糖纸碎片，在「糖纸记录的真相」和「大脑闪回的记忆」之间反复摇摆，最终直面 “不可靠的自我叙事” 带来的深层恐惧。</p>
+<h3>核心体验</h3>
+<p>核心体验是认知失衡的恐惧：全程没有密集跳脸惊吓，恐怖感完全来自叙事矛盾与记忆崩塌带来的不确定感 —— 你越想拼凑出完整真相，越发现所有信息都带有偏向性，最终连自己的记忆都不敢相信。</p>
+<hr>
+<h2>2. 主题契合（破碎的故事 / 不可靠叙述）</h2>
+<h3>如何体现主题</h3>
+<p>整个游戏不存在上帝视角，没有任何绝对正确的信息源：</p>
+<ol><li>糖纸文字是带有挑衅性的片面记录，刻意隐去关键信息；</li><li>玩家的闪回记忆是大脑自我保护篡改后的结果，充满美化与回避；</li><li>街区邻居的证词各有私心，要么隐瞒真相，要么添油加醋。</li></ol>
+<p>三条叙事线互相矛盾又各有证据，故事始终是破碎的，玩家永远无法得到 100% 的完整真相。</p>
+<h3>落在哪个机制上</h3>
+<p>落在双叙事线互斥选择机制上：游戏并行存在 “糖纸叙事（你是被嫁祸的目击者）” 和 “记忆叙事（你是行凶者）” 两条线，每收集一张糖纸就会触发一段矛盾闪回，玩家必须选择相信其中一方，选择会强化对应叙事的线索呈现，但永远无法补全另一条线的空白。</p>
+<ul class="md-list"><li><b>玩家开始怀疑信息的时机</b>：收集到第三张糖纸时，首次出现明显的叙事冲突 —— 糖纸上写 “你躲在南瓜灯后看见了凶手”，但闪回画面里，站在南瓜灯后的人是你，手里攥着美工刀。</li></ul>
+<hr>
+<h2>3. 核心玩法</h2>
+<ul class="md-list"><li><b>目标 / 失败条件</b>：目标是拼凑万圣夜事件的全貌，找到自己失忆的真相；失败条件为精神值归零（认知彻底崩溃，陷入无限循环的万圣夜噩梦），或是天亮前未找到核心真相（永远被困在当夜的时间循环里）。</li><li><b>核心循环</b>：探索街区收集糖纸 → 触发矛盾闪回 → 选择相信的叙事方向 → 解锁对应区域 / 线索碎片 → 接近真相的同时精神值产生波动。</li><li><b>操作方式</b>：第三人称俯视角步行探索，鼠标交互拾取 / 查看物品，按键选择叙事立场，无战斗。</li><li><b>参照物</b>：南瓜灯的数量、邮箱上的名字、墙上的涂鸦会随叙事选择发生细微变化，作为玩家判断叙事偏移的隐性参照物，但没有任何参照物是绝对正确的。</li></ul>
+<h3>单局节奏</h3>
+<p>0-3分钟：平静探索街区，建立 “普通万圣夜” 的基础认知；<br>3-6分钟：糖纸与记忆的矛盾频发，怀疑感逐步升级，精神值开始波动；<br>6-9 分钟：多条线索碎片剧烈碰撞，真相边界模糊，精神压力拉满；<br>9-12分钟：迎来最终抉择，进入对应结局。</p>
+<hr>
+<h2>4. 叙事与呈现</h2>
+<h3>故事梗概</h3>
+<p>主角林恩在万圣夜和好友约好去老街区讨糖，醒来时却躺在自家门口，外套沾着不明血迹，手里攥着半张印着南瓜图案的诡异糖纸，好友彻底失联。<br>他沿着空无一人的街区寻找，每捡到一张糖纸，脑海里就会闪过一段模糊的记忆。糖纸上的字迹像在讲述一场连环凶案，处处指向自己；可记忆里的自己时而胆小逃跑，时而站在现场中心。街区里仅剩的几户邻居要么闭口不谈，要么说法各异。<br>最终玩家会发现：所有糖纸都是林恩解离出的人格写下的 —— 万圣夜他因童年创伤触发人格解离，伤害了好友，又以 “无辜讨糖少年” 的人格编造了全套谎言自我欺骗。所有 “不可靠” 的叙事，本质上都是他内心不同人格的拉扯。</p>
+<h3>「不可靠」机关设计</h3>
+<p>核心机关是叙事偏转：玩家的选择不会改变 “客观事实”，只会改变叙事的视角和呈现方式。选择相信糖纸，后续场景会偏向 “你是被嫁祸的”；选择相信记忆，场景会偏向 “你就是凶手”。但无论怎么选，最终结局都会揭示两种叙事都是残缺的，没有绝对真相。</p>
+<ul class="md-list"><li><b>叙事载体</b>：糖纸（文字 + 涂鸦）、碎裂的窗玻璃（闪回影像）、邻居的低语对话（各执一词）、南瓜灯里的录音（失真的声音片段）。</li><li><b>结局设计</b>：共 3 个结局，无 “官方真结局” 标签。</li></ul>
+<ol><li>认罪结局：接受自己是行凶者，精神值归零，天亮后警笛声在街区响起；</li><li>逃避结局：烧掉所有糖纸，继续相信自己是无辜的，画面一黑后重新回到游戏开头，永远困在万圣夜循环；</li><li>解离结局：承认人格解离的真相，接受不完整的自己 —— 好友其实只是重伤未死，你在医院病房醒来，枕边放着一张一模一样的南瓜糖纸。</li></ol>
+<hr>
+<h2>5. 体量控制</h2>
+<ul class="md-list"><li><b>预估游玩时长（分钟）</b>：12-15</li><li><b>场景 / 关卡数量</b>：1 个封闭老街区（6 栋民居 + 2 条小巷 + 中心广场），无明确关卡划分，按线索收集进度推进</li><li><b>必须有（MVP）</b>：街区步行探索、8 张核心糖纸、矛盾闪回机制、精神值系统、3 个基础结局</li><li><b>最好有</b>：邻居 NPC 交互对话、环境随叙事动态变化、南瓜灯小谜题、2 张隐藏糖纸</li><li><b>可以没有</b>：追逐战、战斗系统、复杂道具合成、全程配音</li></ul>
+<h3>底线版本</h3>
+<p>纯步行收集 + 文本叙事 + 单结局，砍掉分支选择和精神值系统，确保 15 分钟可通关，核心故事完整。</p>
+<ul class="md-list"><li><b>不做清单</b>：密集 Jump Scare、血腥露骨画面、QTE 操作、复杂解谜、多人模式</li></ul>
+<hr>
+<h2>6. 美术与音频</h2>
+<ul class="md-list"><li><b>视觉风格</b>：- 复古胶片质感的低饱和像素风，夜晚万圣街景，暖黄南瓜灯光与冷蓝阴影形成强烈对比；闪回画面采用高噪点、边缘扭曲的效果，不同叙事视角对应不同色调（糖纸视角偏红，记忆视角偏蓝）。</li><li><b>素材来源</b>：自绘、免费授权素材</li><li><b>音频方向</b>：以环境音为主（风声、远处孩童的笑声、门轴吱呀声），无持续背景 BGM；闪回时加入失真杂音，叙事选择时左右声道偏移，营造精神分裂感。</li><li><b>美术最大工作量</b>：街区场景绘制、糖纸样式设计、闪回画面制作。</li></ul>
+<hr>
+<h2>7. 技术风险（不指定引擎与语言）</h2>
+<h3>不确定的技术点</h3>
+<p>叙事分支对场景物件的动态修改、闪回画面的无缝切入切出、精神值对画面滤镜的实时影响。</p>
+<h3>先做什么验证</h3>
+<p>先做「1 张糖纸 + 1 段闪回 + 1 次选择」的最小原型，验证叙事偏转的视觉表现是否流畅，能否传递出 “怀疑感”。</p>
+<h3>替代方案</h3>
+<p>如果动态修改场景复杂度太高，就用固定场景 + 不同画面滤镜区分叙事视角；闪回画面改用静态图片 + 文本呈现，降低开发成本。</p>
+<hr>
+<h2>8. 团队与分工</h2>
+<ul class="md-list"><li><b>需要几人</b>：3</li><li><b>角色需求</b>：美术1人，程序1-2人，剧本1人</li><li><b>我能承担</b>：（待填）</li><li><b>缺什么角色</b>：（待填）</li></ul>
+<hr>
+<h2>9. 排期</h2>
+<table class="tbl"><thead><tr><th>阶段</th><th>目标</th><th>产出</th></tr></thead><tbody><tr><td>原型（先验证最难的点）</td><td>验证叙事偏转核心机制与画面表现</td><td>可运行最小原型：1 张糖纸 + 1 段闪回 + 选择分支</td></tr><tr><td>核心系统</td><td>完成探索、收集、精神值、结局系统</td><td>完整核心玩法框架，全部糖纸逻辑与分支</td></tr><tr><td>内容填充</td><td>完成场景制作、全部糖纸文本、闪回内容、结局文案</td><td>可玩完整流程版本</td></tr><tr><td>打磨 + 试玩</td><td>优化画面表现、音频节奏、精神值曲线</td><td>测试版本 + 2 轮试玩反馈迭代</td></tr><tr><td>提交准备（提前 3 天）</td><td>打包、写说明、合规检查</td><td>最终提交版本</td></tr></tbody></table>
+<hr>
+<h2>10. 规则合规自查</h2>
+<ul class="md-list"><li class="cbx-item">☑ 是恐怖游戏</li><li class="cbx-item">☑ 时长在 1–60 分钟内</li><li class="cbx-item">☑ Windows 可运行 / 浏览器 HTML 可玩</li><li class="cbx-item">☑ 投稿期内才开始的开发（没有拿旧项目）</li><li class="cbx-item">☑ 素材全部合法授权（无盗用、无未授权同人）</li><li class="cbx-item">☑ 全程无任何 AI 生成内容</li><li class="cbx-item">☑ 非 18+ NSFW</li><li class="cbx-item">☑ 投票期免费、人人可玩</li><li class="cbx-item">☑ 方案的 MVP 砍到最小仍能交</li></ul>
+<hr>
+<h2>11. 调味料采用情况</h2>
+<ul class="md-list"><li class="cbx-item">☐ HawkZombie 作为角色 / 客串</li><li class="cbx-item">☐ 全员都是经典恐怖套路角色（Jock、Final Girl、Nerd 等）</li><li class="cbx-item">☑ 围绕某个重要节日</li><li class="cbx-item">☐ 整个游戏发生在一个房间</li><li class="cbx-item">☐ 没有任何台词</li><li class="cbx-item">☑ 某个角色被救赎</li><li class="cbx-item">☑ 发生在公共场合</li><li class="cbx-item">☐ 完全从反派视角讲</li><li class="cbx-item">☐ 所有信息以谜语传达</li><li class="cbx-item">☐ 时长不超过 10 分钟</li></ul>
+<hr>
+<h2>12. 风险与 Plan B</h2>
+<ul class="md-list"><li><b>最大风险</b>：叙事复杂度把控失衡，玩家要么看不懂逻辑，要么过早猜到真相，失去 “不确定感” 的恐怖核心；或是机制太单薄，游戏性不足。</li></ul>
+<h3>Plan B</h3>
+<p>砍掉多分支叙事选择，改为 “糖纸是真相、记忆是伪装” 的单线叙事，强化街区氛围与细节铺垫，把重点放在 “慢慢发现自己就是凶手” 的心理恐怖上，确保故事完整通顺。</p>
+<h3>何时放弃</h3>
+<p>如果原型阶段验证后，叙事偏转机制完全达不到预期效果，且单线替代方案也缺乏亮点，就放弃该选题，换纯氛围类恐怖小游戏。</p>
+<hr>
+<h2>13. 差异化</h2>
+<ul class="md-list"><li><b>一句话说服队友</b>：（待填）</li></ul>
+<h3>最大不同</h3>
+<p>（待填）</p></main>
+  <p style="margin-top:34px;text-align:center;color:var(--muted);font-size:13px">
+    — 团队内部方案征集 · Jam 规则以 itch.io 官方页面为准 —</p>
+</div>
+</body>
+</html>
