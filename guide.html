@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>整体说明书 · 阶段地图 · Hawktober Horrors 2026</title>
+<style>
+  :root{--bg:#12121a;--panel:#1b1b26;--panel2:#20202e;--ink:#e8e6f2;--muted:#9b97ad;
+    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--warn:#ffb238;--bad:#ff5464;--line:#34344a;
+    --c-ydc:#ff5a3c;--c-xjw:#ffd9a0;--c-ypq:#57c785;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.65;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:1040px;margin:0 auto;padding:26px 22px 80px}
+  a{color:#8fb7ff;text-decoration:none;border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line);border-radius:16px;padding:26px 28px;position:relative;overflow:hidden}
+  .hero::after{content:"🗺";position:absolute;right:24px;top:16px;font-size:58px;opacity:.13}
+  .hero .kicker{color:var(--accent2);letter-spacing:3px;font-size:12px;text-transform:uppercase}
+  .hero h1{margin:6px 0 4px;font-size:29px}
+  .hero .sub{color:var(--muted);font-size:14.5px;max-width:740px}
+  .navlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .navlinks a{background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13px;color:var(--ink)}
+  h2{font-size:20px;margin:30px 0 12px;color:var(--accent2);border-left:4px solid var(--accent);padding-left:12px}
+  h3{font-size:15px;margin:16px 0 8px;color:#cfd6ff}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+  .note{border-left:4px solid var(--warn);background:rgba(255,178,56,.08);
+    padding:11px 15px;border-radius:0 9px 9px 0;margin:12px 0;font-size:13.5px;color:var(--muted)}
+  .note b{color:var(--accent2)}
+  .note.bad{border-left-color:var(--bad);background:rgba(255,84,100,.09)}
+  .note.ok{border-left-color:var(--ok);background:rgba(87,199,133,.09)}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:var(--panel2);color:var(--accent2)}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  .tbl td.ph{white-space:nowrap;color:var(--muted);font-size:12.5px}
+  .pill{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);
+    background:var(--panel2);margin:2px 6px 2px 0}
+  .pill.now{background:rgba(255,90,60,.18);color:#ffb0a0;border-color:var(--accent)}
+  .pill.ok{background:rgba(87,199,133,.14);color:#8fe0b4;border-color:rgba(87,199,133,.4)}
+  .who{font-weight:700}
+  .w-ydc{color:var(--c-ydc)} .w-xjw{color:var(--c-xjw)} .w-ypq{color:var(--c-ypq)}
+  ul{padding-left:20px} li{margin:5px 0}
+  .gate{border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:11px 0;background:var(--panel)}
+  .gate.g-now{border-color:var(--accent);box-shadow:0 0 0 1px rgba(255,90,60,.3)}
+  .gate h3{margin:0 0 4px;color:var(--accent2)}
+  .gate .when{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+  .chk{list-style:none;padding-left:0}
+  .chk li{padding-left:26px;position:relative}
+  .chk li::before{content:"☐";position:absolute;left:0;top:0;color:var(--accent2)}
+  @page{size:A4;margin:12mm}
+  @media print{body{background:#fff;color:#000}.hero,.card,.gate{background:#fff;border-color:#ccc}
+    .wrap{max-width:none;padding:0}h2,h3{color:#000}a{color:#000}.tbl th{background:#eee;color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kicker">Team Guide · 整体说明书</div>
+    <h1>🗺 《别信它》整体说明书</h1>
+    <div class="sub">Hawktober Horrors 2026　·　Godot 4.7　·　3 人小队<br>
+      这份说明书的用途只有一件：<b>让三个人随时知道"我们现在在哪、下一步谁交什么、什么时候算过关"</b>。
+      每周对着第 ③ 节的<b>阶段门</b>打一次勾，就知道进度。</div>
+    <div class="navlinks">
+      <a href="plan-dont-trust-it.html">📋 制作计划（分工与时间表 · XJW/YPQ 详细计划）</a>
+      <a href="proposals/dont-trust-it.html">📄 方案书原文</a>
+      <a href="index.html">← 主页</a>
+    </div>
+  </div>
+
+  <div class="note"><b>使用方式：</b>①先看下面的时间轴知道大节奏 → ②每周对着「阶段门」逐条打勾，
+    看差哪一项 → ③差的那一项就是这周唯一要解决的事 → ④站会只回答三个问题（见第 ⑥ 节）。</div>
+
+  <h2>① 一页看懂：阶段地图</h2>
+  <div class="card">
+    <svg viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei,sans-serif">
+      <!-- 时间轴 -->
+      <rect x="30"  y="70" width="126" height="26" rx="6" fill="#ff5a3c"/>
+      <rect x="160" y="70" width="168" height="26" rx="6" fill="#ffb238"/>
+      <rect x="332" y="70" width="252" height="26" rx="6" fill="#57c785"/>
+      <rect x="588" y="70" width="126" height="26" rx="6" fill="#8fb7ff"/>
+      <rect x="718" y="70" width="84"  height="26" rx="6" fill="#c58fff"/>
+      <rect x="806" y="70" width="64"  height="26" rx="6" fill="#4b4b60"/>
+      <!-- 段标签 -->
+      <g fill="#e8e6f2" font-size="13" text-anchor="middle" font-weight="700">
+        <text x="93"  y="58">S1 起步</text>
+        <text x="244" y="58">S2 原型</text>
+        <text x="458" y="58">S3 内容</text>
+        <text x="651" y="58">S4 打磨</text>
+        <text x="760" y="58">S5 收尾</text>
+        <text x="838" y="58" font-size="12">缓冲</text>
+      </g>
+      <!-- 日期 -->
+      <g fill="#9b97ad" font-size="11" text-anchor="middle">
+        <text x="93"  y="112">9/13–9/15</text>
+        <text x="244" y="112">9/16–9/19</text>
+        <text x="458" y="112">9/20–9/25</text>
+        <text x="651" y="112">9/26–9/28</text>
+        <text x="760" y="112">9/29–9/30</text>
+        <text x="838" y="112">10/1–10/2</text>
+      </g>
+      <!-- 段内目标 -->
+      <g fill="#12121a" font-size="11" text-anchor="middle" font-weight="700">
+        <text x="93"  y="88">解阻塞</text>
+        <text x="244" y="88">跑通闭环</text>
+        <text x="458" y="88">填满内容</text>
+        <text x="651" y="88">盲测调参</text>
+        <text x="760" y="88">上架合规</text>
+      </g>
+      <!-- 现在在这里 -->
+      <polygon points="30,132 42,132 36,142" fill="#ff5a3c"/>
+      <text x="50" y="143" fill="#ff5a3c" font-size="12" font-weight="700">现在在这里（S1 第 1 天）</text>
+      <!-- 截稿 -->
+      <line x1="870" y1="60" x2="870" y2="106" stroke="#ff5464" stroke-width="2" stroke-dasharray="4 3"/>
+      <text x="870" y="126" fill="#ff5464" font-size="11.5" text-anchor="end" font-weight="700">10/3 13:59 截稿（时区待确认）</text>
+      <text x="870" y="143" fill="#9b97ad" font-size="11" text-anchor="end">内部死线：9/30 提交可玩版</text>
+    </svg>
+  </div>
+
+  <h2>② 三泳道：每个阶段谁做什么</h2>
+  <div class="card" style="overflow:auto">
+    <table class="tbl">
+      <tr>
+        <th style="width:120px">阶段</th>
+        <th class="w-ydc">YDC · 程序</th>
+        <th class="w-xjw">XJW · 策划</th>
+        <th class="w-ypq">YPQ · 美术/音频</th>
+      </tr>
+      <tr>
+        <td class="ph"><b>S1 起步</b><br>9/13–9/15<br><span class="pill now">现在</span></td>
+        <td>Godot 工程骨架、音频播放、判定点（cue）数据结构、CD 与判定表读取、累积结果分档、<b>灰色占位符</b>先行（不等美术）</td>
+        <td><b>机制判定表 v1（4–6 条）</b>、剧情梗概、结局分档规则</td>
+        <td><b>素材规格书</b>（尺寸/命名）、缺口清单 + 免费素材来源</td>
+      </tr>
+      <tr>
+        <td class="ph"><b>S2 原型</b><br>9/16–9/19</td>
+        <td>跑通最小闭环：说话 → 找漏洞 → 后果；接上节奏参数</td>
+        <td>台词节奏表；<b>盲测</b>「什么时候能按键」是否可感知</td>
+        <td>场景底板；验证「占位 → 真图」替换流程</td>
+      </tr>
+      <tr>
+        <td class="ph"><b>S3 内容</b><br>9/20–9/25</td>
+        <td>集成 12 条陈述、四种效果全通、结局分档、音频接入</td>
+        <td>判定表补全（≥12 条）、音频 cue 表、结局文本</td>
+        <td>家具剪影、收音机四态、<b>UI 三件套</b>、音效</td>
+      </tr>
+      <tr>
+        <td class="ph"><b>S4 打磨</b><br>9/26–9/28</td>
+        <td>按问题清单调参数、修 bug</td>
+        <td>试玩脚本；组织 3 人盲测；产出问题清单</td>
+        <td>按反馈调 <b>UI 可读性</b>、补缺失素材、音量校准</td>
+      </tr>
+      <tr>
+        <td class="ph"><b>S5 收尾</b><br>9/29–9/30</td>
+        <td>打包导出、上传 itch 草稿页、贴 CREDITS</td>
+        <td>逐条验收；写 itch 页面文字说明</td>
+        <td>封面与截图、<b>CREDITS 授权台账</b>逐条核对</td>
+      </tr>
+      <tr>
+        <td class="ph"><b>缓冲</b><br>10/1–10/2</td>
+        <td colspan="3" style="text-align:center;color:var(--muted)">只修 bug，<b>不加任何新内容</b>。内容冻结。</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>③ 阶段门（Gate）：每阶段结束的过关条件</h2>
+  <div class="note"><b>怎么用：</b>对着清单逐条打勾。<b>只要有一条没勾上，就停在这一阶段，不要往后推进</b>——
+    带着缺口往后走，缺口只会在 S5 爆炸。</div>
+
+  <div class="gate g-now">
+    <h3>G1 · S1 结束（9/15）— 解阻塞</h3>
+    <div class="when">这一关过不去，后面全卡住</div>
+    <ul class="chk">
+      <li>XJW 交了<b>机制判定表 v1</b>（4–6 条，四种效果类型各 ≥1 条）</li>
+      <li>XJW 交了<b>剧情梗概 + 结局分档规则</b></li>
+      <li>YPQ 交了<b>素材规格书</b>（含命名规则）</li>
+      <li>YPQ 交了<b>缺口清单</b>（含免费素材来源与授权）</li>
+      <li>YDC 确认：「我可以开始接线了」；工程骨架能跑起来</li>
+    </ul>
+  </div>
+
+  <div class="gate">
+    <h3>G2 · S2 结束（9/19）— 循环成立</h3>
+    <div class="when">这一关回答的是"这个游戏到底成不成立"</div>
+    <ul class="chk">
+      <li>最小闭环跑通：<b>说话 → 找漏洞 → 按指认 → 世界改变</b></li>
+      <li>「不影响世界」的负面情况已排除：按错只有提示音，没有惩罚</li>
+      <li>「不按 = 成真」在盲测中<b>能被玩家自己发现</b>（或已记录为不成立）</li>
+      <li>「什么时候可以按键」<b>可感知</b>，或已记录为不成立并启用替代方案</li>
+      <li>灰色占位 → 真图的替换流程验证通过</li>
+    </ul>
+  </div>
+
+  <div class="gate">
+    <h3>G3 · S3 结束（9/25）— 内容完整</h3>
+    <ul class="chk">
+      <li>12 条陈述在游戏里<b>全部走通</b>，无一需要新增逻辑</li>
+      <li>三类话齐全：真的 / 假且有害 / 荒谬无害</li>
+      <li>结局按<b>累积判断结果分档</b>，3–4 档都能触发</li>
+      <li>判定表引用到的物件<b>全部有素材</b>，无遗漏</li>
+      <li>收音机四态可读；UI 三件套到位</li>
+      <li>音效全部接入，且授权可查</li>
+    </ul>
+  </div>
+
+  <div class="gate">
+    <h3>G4 · S4 结束（9/28）— 可玩且可读</h3>
+    <ul class="chk">
+      <li>3 名<b>没玩过的人</b>各跑完一遍</li>
+      <li>其中至少 2 人能<b>自己说出</b>核心规则（不按=相信 / 判据是恶意不是真假）</li>
+      <li>CD 让人<b>紧张</b>而不是让人烦躁</li>
+      <li>问题清单已产出并交给 YDC，且已修完必须修的项</li>
+      <li>时长落在 1–60 分钟内（目标 8–10 分钟）</li>
+    </ul>
+  </div>
+
+  <div class="gate">
+    <h3>G5 · S5 结束（9/30）— 内部死线</h3>
+    <div class="when">过了这一关，后面只剩缓冲</div>
+    <ul class="chk">
+      <li>可玩版<b>已上传到 itch 草稿页</b>，链接可访问、可下载</li>
+      <li>Windows 能跑 / 浏览器能玩</li>
+      <li>CREDITS 台账逐条核对完毕</li>
+      <li>确认<b>无任何 AI 生成内容</b>（美术 / 音频 / 文本 / 代码）</li>
+      <li>确认非 18+、投票期免费、时长合规</li>
+      <li>封面与截图已就位</li>
+    </ul>
+  </div>
+
+  <h2>④ 依赖关系：谁卡谁</h2>
+  <div class="card">
+    <svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei,sans-serif">
+      <!-- 三列 -->
+      <rect x="20"  y="20" width="230" height="40" rx="9" fill="#3a2f1a" stroke="#ffd9a0"/>
+      <text x="135" y="45" fill="#ffd9a0" font-size="14" font-weight="700" text-anchor="middle">XJW · 策划</text>
+      <rect x="335" y="20" width="230" height="40" rx="9" fill="#1a2f22" stroke="#57c785"/>
+      <text x="450" y="45" fill="#57c785" font-size="14" font-weight="700" text-anchor="middle">YPQ · 美术 / 音频</text>
+      <rect x="650" y="20" width="230" height="40" rx="9" fill="#33191a" stroke="#ff5a3c"/>
+      <text x="765" y="45" fill="#ff5a3c" font-size="14" font-weight="700" text-anchor="middle">YDC · 程序</text>
+      <!-- 源 -->
+      <rect x="35" y="100" width="200" height="34" rx="8" fill="#20202e" stroke="#34344a"/>
+      <text x="135" y="122" fill="#e8e6f2" font-size="12.5" text-anchor="middle">机制判定表 / 剧情 / 节奏</text>
+      <rect x="350" y="100" width="200" height="34" rx="8" fill="#20202e" stroke="#34344a"/>
+      <text x="450" y="122" fill="#e8e6f2" font-size="12.5" text-anchor="middle">素材规格书 / 场景 / UI</text>
+      <rect x="35" y="160" width="200" height="34" rx="8" fill="#20202e" stroke="#34344a"/>
+      <text x="135" y="182" fill="#e8e6f2" font-size="12.5" text-anchor="middle">音频 cue 表</text>
+      <rect x="350" y="160" width="200" height="34" rx="8" fill="#20202e" stroke="#34344a"/>
+      <text x="450" y="182" fill="#e8e6f2" font-size="12.5" text-anchor="middle">音效 / CREDITS</text>
+      <!-- 目标 -->
+      <rect x="665" y="100" width="200" height="34" rx="8" fill="#33191a" stroke="#ff5a3c"/>
+      <text x="765" y="122" fill="#ffb0a0" font-size="12.5" text-anchor="middle">数据结构 / 效果 / CD / 结局分档</text>
+      <rect x="665" y="160" width="200" height="34" rx="8" fill="#33191a" stroke="#ff5a3c"/>
+      <text x="765" y="182" fill="#ffb0a0" font-size="12.5" text-anchor="middle">素材管线 / 音效接入</text>
+      <!-- 箭头 -->
+      <defs><marker id="a" markerWidth="9" markerHeight="9" refX="8" refY="3" orient="auto">
+        <path d="M0,0 L0,6 L9,3 z" fill="#8fb7ff"/></marker></defs>
+      <line x1="235" y1="117" x2="660" y2="117" stroke="#8fb7ff" stroke-width="2" marker-end="url(#a)"/>
+      <line x1="550" y1="117" x2="660" y2="117" stroke="#8fb7ff" stroke-width="2" marker-end="url(#a)"/>
+      <line x1="235" y1="177" x2="345" y2="177" stroke="#8fb7ff" stroke-width="2" marker-end="url(#a)"/>
+      <line x1="550" y1="177" x2="660" y2="177" stroke="#8fb7ff" stroke-width="2" marker-end="url(#a)"/>
+      <text x="450" y="228" fill="#ffb238" font-size="12.5" text-anchor="middle" font-weight="700">
+        ⚠️ 两条最硬的依赖：XJW 的判定表 → 程序的全部实现；YPQ 的规格书 → 程序的素材管线</text>
+    </svg>
+  </div>
+
+  <h2>⑤ 当前进度</h2>
+  <div class="card">
+    <p><span class="pill now">现在：S1 起步（第 1 天）</span></p>
+    <table class="tbl" style="margin-top:12px">
+      <tr><th>在等谁</th><th>等什么</th><th>卡住了谁</th><th>什么时候要有</th></tr>
+      <tr><td class="w-xjw">XJW</td><td><b>机制判定表 v1</b>（4–6 条）</td><td>YDC 的全部实现工作</td><td>9/15</td></tr>
+      <tr><td class="w-xjw">XJW</td><td>剧情梗概 + 结局分档规则（<b>目前空白</b>）</td><td>YDC 的结局分档实现、全队的叙事完整性</td><td>9/15</td></tr>
+      <tr><td class="w-ypq">YPQ</td><td><b>素材规格书</b>（命名规则）</td><td>YDC 的素材加载管线</td><td>9/15</td></tr>
+      <tr><td class="w-ypq">YPQ</td><td>缺口清单 + 免费素材来源</td><td>全队（决定素材从哪来）</td><td>9/15</td></tr>
+    </table>
+    <div class="note ok" style="margin-bottom:0"><b>YDC 现在可以先自主推进、不等任何人的部分：</b>
+      Godot 4.7 工程骨架 · 音频播放与判定点（cue）数据结构 · CD 与判定表读取 · 累积结果分档 · <b>灰色占位符先行</b>。
+      换句话说：<b>程序员不该在 S1 空等</b>——把数据结构先搭好，判定表一到就能直接灌进去。</div>
+  </div>
+
+  <h2>⑥ 每天站会：只回答三个问题</h2>
+  <div class="card">
+    <ul>
+      <li><b>昨天交了啥？</b>（具体到文件名 / 交付物编号）</li>
+      <li><b>今天交啥？</b>（当天必须落地的一小步）</li>
+      <li><b>卡在哪？</b>（<b>被卡超过半天就必须说</b>——关键路径上的人卡住等于全队卡住）</li>
+    </ul>
+    <div class="note" style="margin-bottom:0"><b>沟通规约：</b>交付物放进共享目录 + 群里说一句「D1 已交，见 xxx」即可，
+      <b>不需要开会评审</b>。有争议时由该交付物的<b>归属人</b>决定（判定表归 XJW、素材归 YPQ、实现方式归 YDC）。</div>
+  </div>
+
+  <h2>⑦ 风险与降级路径</h2>
+  <div class="card" style="overflow:auto">
+    <table class="tbl">
+      <tr><th>风险</th><th>触发信号</th><th>降级动作</th></tr>
+      <tr>
+        <td><b>判定表迟迟不交</b>（最高风险）</td>
+        <td>9/15 还没有 4–6 条</td>
+        <td>先只交 4 条打通管线；剧情完全挪到 S3，不占关键路径</td>
+      </tr>
+      <tr>
+        <td><b>"什么时候能按键"教不会</b></td>
+        <td>盲测里没人自己发现规则</td>
+        <td>启用方案里的替代方案：加可见倒计时环 → 加强制演示 → 仍不行则放弃"沉默即采信"</td>
+      </tr>
+      <tr>
+        <td><b>「按错无惩罚 + CD」策略被解掉</b></td>
+        <td>盲测者发现"乱按也没事"</td>
+        <td>在原型阶段就改约束（不是留到打磨期）——否则核心动词不存在</td>
+      </tr>
+      <tr>
+        <td><b>美术/音频做不出来</b></td>
+        <td>9/24 素材仍大面积缺失</td>
+        <td>退到三件套：几何色块 + 剪影 + 电流底噪 / 采信"咔" / 骤静</td>
+      </tr>
+      <tr>
+        <td><b>内容量做不完</b></td>
+        <td>9/25 判定表不足 12 条</td>
+        <td>砍到 8 条，但<b>三类话必须齐全</b>；结局先做 2 档</td>
+      </tr>
+      <tr>
+        <td><b>超时</b></td>
+        <td>9/28 仍不能完整通关</td>
+        <td>停止加内容，把剩余时间全部用于让现有内容<b>稳定可通关</b>；9/30 交可玩版</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="note bad"><b>两条不可退让的底线（任何降级都不能碰）：</b>
+    ①<b>全程无任何 AI 生成内容</b>（美术/音频/文本/代码）②<b>投稿期内才开始开发</b>（不拿旧项目、不用未授权素材）。
+    另外三条别忘：非 18+、投票期免费可玩、时长 1–60 分钟。</div>
+
+  <h2>⑧ 里程碑速查</h2>
+  <div class="card">
+    <table class="tbl">
+      <tr><th>日期</th><th>是什么</th><th>要做完什么</th></tr>
+      <tr><td class="ph"><b>9/15</b></td><td>G1 解阻塞</td><td>判定表 v1 + 剧情梗概 + 素材规格书 + 缺口清单</td></tr>
+      <tr><td class="ph"><b>9/19</b></td><td>G2 循环成立</td><td>最小闭环跑通 + 「能否感知按键时机」有结论</td></tr>
+      <tr><td class="ph"><b>9/25</b></td><td>G3 内容完整</td><td>12 条走通 + 结局分档 + 素材无遗漏 + UI 可读</td></tr>
+      <tr><td class="ph"><b>9/28</b></td><td>G4 可玩可读</td><td>3 人盲测通过 + 问题清单修完</td></tr>
+      <tr><td class="ph"><b>9/30</b></td><td><b>G5 内部死线</b></td><td><b>可玩版已提交 itch</b> + 合规逐条核完</td></tr>
+      <tr><td class="ph">10/1–10/2</td><td>缓冲</td><td>只修 bug，内容冻结</td></tr>
+      <tr><td class="ph"><b>10/3 13:59</b></td><td><b>官方截稿</b></td><td>—　⚠️ <b>时区待确认，务必看页面上倒计时</b></td></tr>
+    </table>
+  </div>
+
+  <p style="margin-top:34px;text-align:center;color:var(--muted);font-size:13px">
+    — 说明书只规定流程与验收标准；内容由各归属人决定 —</p>
+</div>
+</body>
+</html>
