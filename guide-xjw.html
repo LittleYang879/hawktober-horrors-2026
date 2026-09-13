@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XJW · 判定点表填写手册 · 《别信它》</title>
+<style>
+  :root{--bg:#12121a;--panel:#1b1b26;--panel2:#20202e;--ink:#e8e6f2;--muted:#9b97ad;
+    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--warn:#ffb238;--bad:#ff5464;--line:#34344a;--xjw:#8fb7ff;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;
+    line-height:1.68;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:980px;margin:0 auto;padding:26px 22px 90px}
+  a{color:#8fb7ff;text-decoration:none;border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line);border-radius:16px;padding:26px 28px;position:relative;overflow:hidden}
+  .hero::after{content:"✍️";position:absolute;right:24px;top:14px;font-size:58px;opacity:.13}
+  .hero .kicker{color:var(--accent2);letter-spacing:3px;font-size:12px;text-transform:uppercase}
+  .hero h1{margin:6px 0 6px;font-size:27px}
+  .hero .sub{color:var(--muted);font-size:14.5px;max-width:740px}
+  .navlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .navlinks a{background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13px;color:var(--ink)}
+  h2{font-size:19.5px;margin:32px 0 12px;color:var(--accent2);border-left:4px solid var(--accent);padding-left:12px}
+  h3{font-size:15.5px;margin:20px 0 8px;color:#cfd6ff}
+  h4{font-size:14px;margin:14px 0 6px;color:var(--accent2)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+  .note{border-left:4px solid var(--warn);background:rgba(255,178,56,.08);
+    padding:11px 15px;border-radius:0 9px 9px 0;margin:12px 0;font-size:13.5px;color:var(--muted)}
+  .note b{color:var(--accent2)}
+  .note.bad{border-left-color:var(--bad);background:rgba(255,84,100,.09)}
+  .note.ok{border-left-color:var(--ok);background:rgba(87,199,133,.09)}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:var(--panel2);color:var(--accent2);font-weight:600}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  .tbl td.d{white-space:nowrap;color:var(--accent2);font-variant-numeric:tabular-nums}
+  .tbl.mono td:nth-child(1){font-family:Consolas,monospace}
+  ul,ol{padding-left:20px;margin:6px 0} li{margin:5px 0}
+  .chk{list-style:none;padding-left:0}
+  .chk li{padding-left:26px;position:relative}
+  .chk li::before{content:"☐";position:absolute;left:0;top:0;color:var(--accent2);font-size:16px}
+  code{background:rgba(255,255,255,.06);padding:1px 6px;border-radius:5px;font-size:12.5px;color:var(--accent2)}
+  .pill{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);
+    background:var(--panel2);margin:2px 6px 2px 0;white-space:nowrap}
+  .pill.xjw{background:rgba(143,183,255,.14);color:#a9c9ff;border-color:rgba(143,183,255,.4)}
+  .pill.ok{background:rgba(87,199,133,.14);color:#8fe0b4;border-color:rgba(87,199,133,.4)}
+  .pill.bad{background:rgba(255,84,100,.14);color:#ff9aa5;border-color:rgba(255,84,100,.4)}
+  .pill.warn{background:rgba(255,178,56,.16);color:var(--warn);border-color:rgba(255,178,56,.4)}
+  .kv{display:grid;grid-template-columns:130px 1fr;gap:6px 12px;font-size:13.5px}
+  .kv .k{color:var(--muted)}
+  .big{font-size:15px}
+  .muted{color:var(--muted)}
+  .small{font-size:12.5px}
+  table.dl td{padding:10px 12px}
+  @page{size:A4;margin:13mm}
+  @media print{body{background:#fff;color:#000}.hero,.card,.note{background:#fff;border-color:#ccc}
+    .wrap{max-width:none;padding:0}h2{color:#000}a{color:#000}.tbl th{background:#eee;color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kicker">XJW · 判定点表填写手册</div>
+    <h1>✍️ 《别信它》判定点表 · 填写手册</h1>
+    <div class="sub">这是<b>你的交付物说明书</b>：这个游戏的可玩内容就是<b>你填的这张表</b>。
+      你只需要在表格软件里填 CSV——<b>不需要打开 Godot，也不需要碰工程里的任何文件</b>。</div>
+    <div class="navlinks">
+      <a href="cast-min.csv">⬇ cast-min.csv（最小版·空表）</a>
+      <a href="cast-full.csv">⬇ cast-full.csv（完整表·空表）</a>
+      <a href="plan-dont-trust-it.html#xjw">📋 你的完整计划（分阶段）</a>
+      <a href="guide.html">🗺 整体说明书</a>
+      <a href="proposals/dont-trust-it.html">📄 方案书原文</a>
+      <a href="index.html">← 主页</a>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="kv">
+      <div class="k">你负责</div><div>剧情 / 台词 / <b>判定点表</b> / 节奏参数 / 结局分档文案</div>
+      <div class="k">你的现场</div><div>表格软件（Excel / WPS / LibreOffice）+ 文本编辑器。<b>引擎工程不是你的现场</b></div>
+      <div class="k">先交什么</div><div><code>cast-min.csv</code>（9 行）→ 跑通原型；<code>cast-full.csv</code>（约 180–240 行）→ 完整内容</div>
+      <div class="k">死线</div><div>最小版 <b>9/15 前</b>（G1 阶段门）· 完整表 <b>9/25 冻结</b></div>
+    </div>
+  </div>
+
+  <h2>① 这份表是什么</h2>
+  <div class="card">
+    <p class="big">程序把你的表变成游戏，美术给它声音，但"<b>它说什么、哪句是害你的、按下去会发生什么</b>"全部由你决定。</p>
+    <table class="tbl">
+      <tr><th>文件</th><th>用途</th><th>量</th><th>什么时候交</th></tr>
+      <tr><td><code>cast-min.csv</code></td><td>跑通"说话 → 找漏洞 → 按下 → 世界改变"这个最小闭环</td><td class="d"><b>9 行</b>（2 轮对话）</td><td class="d">9/15 前</td></tr>
+      <tr><td><code>cast-full.csv</code></td><td>真正能提交的完整内容</td><td class="d"><b>约 180–240 行</b></td><td class="d">9/25 前定稿</td></tr>
+    </table>
+    <div class="note">
+      <b>两份表都是空的</b>：`cast-min` 只有表头 + 9 行预置好的 编号/场景/顺序（你填后面 7 列）；
+      `cast-full` 只有表头。<b>所有范例都在本页第 7 节</b>，随便抄随便改，不用在表格里猜"这行要不要留"。
+    </div>
+    <div class="note bad" style="margin-bottom:0">
+      <b>为什么先用 9 行：</b>8 行和 240 行差 30 倍。先用 9 行验证机制，机制一旦要改，全量的活会白做。
+      <b>不要一上来就写全量。</b>
+    </div>
+  </div>
+
+  <h2>② 十列，逐列说明</h2>
+  <div class="card">
+    <table class="tbl">
+      <tr><th>列</th><th>填什么</th><th>合法值 / 格式</th><th>可留空？</th></tr>
+      <tr><td><code>编号</code></td><td>这句话的唯一 ID</td><td><code>S01-L007</code>：<code>S</code> + 场景两位 + <code>-L</code> + 句序三位</td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>场景</code></td><td>属于哪一段</td><td><code>S01</code> / <code>S02</code> / <code>S03</code>（对应三幕）</td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>顺序</code></td><td>段内播放次序</td><td>整数，段内从 1 开始、不重复、<b>不留空号</b></td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>台词</code></td><td>它说的那句话原文</td><td>文本，以标点结尾；字数见 <code>字数上限</code></td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>分类</code></td><td>三类话中的哪一类</td><td><b>只能填三个词</b>：<code>真</code> / <code>假害</code> / <code>胡说</code></td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>判定点</code></td><td>这句后面留不留"可以按键"的窗口</td><td><code>是</code> / <code>否</code></td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>字数上限</code></td><td>这一段的台词长度上限</td><td>整数。程序按它校验，超了报错</td><td class="d"><span class="pill">留空＝40</span></td></tr>
+      <tr><td><code>后果-不按</code></td><td>不按（＝相信）之后世界里发生什么</td><td><b>只能填第 3 节清单里的词</b></td><td class="d"><span class="pill">有后果才填</span></td></tr>
+      <tr><td><code>跳吓</code></td><td>这一句是否触发惊吓音效</td><td><code>是</code> / <code>否</code></td><td class="d"><span class="pill">留空＝否</span></td></tr>
+      <tr><td><code>备注</code></td><td>给程序 / 美术的说明</td><td>自由文本</td><td class="d"><span class="pill ok">随便</span></td></tr>
+    </table>
+
+    <h4>三条最容易填错的规则</h4>
+    <ol>
+      <li><b><code>分类</code> 与"按不按"必须对得上</b>：
+        <code>真</code> → 不按（按了是错按）· <code>假害</code> → <b>按</b>（不按那句话就成真）· <code>胡说</code> → 不按（按了是错按）。
+        <span class="muted">如果你写了 <code>假害</code> 却空着 <code>后果-不按</code>，这句话就没有代价，导入器会报警。</span></li>
+      <li><b><code>后果-不按</code> 不能自由发挥</b>：必须是第 3 节清单里的词。写"玩家开始怀疑它"这种，程序不知道怎么演，整个流程会卡在"这句要怎么实现"。
+        <b>要新的后果就来找 YDC 加，不要自己造词。</b></li>
+      <li><b><code>顺序</code> 不能跳号</b>：段内必须是 1、2、3…。删一句话就把后面全部往前挪，不要留下 <code>1,2,4,5</code>。</li>
+    </ol>
+  </div>
+
+  <h2>③ <code>后果-不按</code> 合法清单（封闭枚举）</h2>
+  <div class="card">
+    <table class="tbl mono">
+      <tr><th>填这个词</th><th>游戏里会发生什么</th></tr>
+      <tr><td>门锁上</td><td>这一段的出口不可用</td></tr>
+      <tr><td>灯灭</td><td>房间灯熄灭</td></tr>
+      <tr><td>场景变暗</td><td>画面整体暗一档</td></tr>
+      <tr><td>强制坐下</td><td>玩家被迫坐下，短暂不能移动</td></tr>
+      <tr><td>移动受限</td><td>一段时间内不能移动</td></tr>
+      <tr><td>环境音消失</td><td>底噪淡出（安静本身即不安）</td></tr>
+      <tr><td>跳吓</td><td>触发惊吓音效（<b>必须同时在 <code>跳吓</code> 列填 <code>是</code></b>）</td></tr>
+      <tr><td>结算-1</td><td>累积判断分减一（结局分档用）</td></tr>
+    </table>
+    <div class="note ok" style="margin-bottom:0">要加新的，来找 YDC——他已经实现的会被加进这张表。<b>这句话没有可见后果就留空。</b></div>
+  </div>
+
+  <h2>④ 时长怎么估（决定你要写多少行）</h2>
+  <div class="card">
+    <p>程序侧的换算规则（现在的设定，定稿前可调）：</p>
+    <ul>
+      <li>打字速度：<b>约 6 字/秒</b>（中文）</li>
+      <li>每句占用 ≈ <code>字数 ÷ 6</code> ＋ 判定点的等待留白</li>
+      <li><b>判定点（<code>判定点=是</code>）额外占约 4 秒</b>：句子打完 → 等玩家按 → 结算</li>
+    </ul>
+    <table class="tbl">
+      <tr><th>情况</th><th>占用时间</th></tr>
+      <tr><td>12 字，非判定点</td><td class="d">2.0 秒</td></tr>
+      <tr><td>12 字，判定点</td><td class="d">约 6 秒</td></tr>
+      <tr><td>40 字（上限），判定点</td><td class="d">约 10.7 秒 ⚠️ 太长，尽量别到上限</td></tr>
+    </table>
+    <div class="note">
+      <b>按这个算，8–10 分钟的一局大约需要 180–240 行，其中判定点 20–30 个。</b>
+      <span class="muted">（另外："12 条陈述"是原型阶段的量，不是提交版本的量——两者差 15 倍，别混。）</span>
+    </div>
+    <h4>三类话的配比</h4>
+    <table class="tbl">
+      <tr><th>分类</th><th>占比</th><th>为什么</th></tr>
+      <tr><td><code>真</code></td><td class="d"><b>60–70%</b></td><td>它的叙述大部分是真的，信任才成立。假话一多，玩家会每题都怀疑，游戏退化成猜硬币</td></tr>
+      <tr><td><code>假害</code></td><td class="d">15–20%</td><td>提供"必须按"的样本</td></tr>
+      <tr><td><code>胡说</code></td><td class="d">15–20%</td><td><b>最重要的一类</b>：骗你错按，让"判据不是真假"成立</td></tr>
+    </table>
+    <p class="small muted">跳吓音预算：<b>真 2 次 + 假 1 次 = 3 次</b>，全表合计不要超。</p>
+  </div>
+
+  <h2>⑤ 写作时要盯住的一件事</h2>
+  <div class="card">
+    <p class="big"><b>核心技能是"分清它在胡说和它在害你"——判据不是真假，是恶意。</b></p>
+    <ul>
+      <li><code>胡说</code> 要<b>荒谬到一听就不对，但完全无害</b>——它是在骗你去否认它。</li>
+      <li><code>假害</code> 要<b>听起来平淡、甚至像善意提醒</b>（"门锁着"、"坐下吧"），但它是真的会害你。</li>
+      <li>最狠的一句是<b>真话但会让你吃亏</b>（范例里的"我不会骗你"）——玩家按了就错。</li>
+    </ul>
+    <div class="note">
+      <b>写作自检：</b>把三句话连续念出来，一个没读过方案的人听完，会不会以为"听起来有问题的就该按"？
+      如果会，说明 <code>胡说</code> 还不够安全、或者 <code>假害</code> 还不够危险——<b>重写，不要调参数</b>。
+    </div>
+  </div>
+
+  <h2>⑥ 交叉校验（导入器会逐条查，不过就拒绝导入）</h2>
+  <div class="card">
+    <table class="tbl">
+      <tr><th>检查</th><th>不过会怎样</th></tr>
+      <tr><td><code>编号</code> 格式符合 <code>S\d{2}-L\d{3}</code> 且全局唯一</td><td>资源互相覆盖</td></tr>
+      <tr><td>段内 <code>顺序</code> 无重复、无空号</td><td>播放次序不确定</td></tr>
+      <tr><td><code>分类</code> ∈ {真, 假害, 胡说}</td><td>枚举越界，程序崩</td></tr>
+      <tr><td><code>判定点=是</code> 且 <code>分类=假害</code> → 必须有 <code>后果-不按</code></td><td>不按没有代价，核心机制不成立</td></tr>
+      <tr><td>相邻判定点之间的间隔足够 CD（程序会算给你看）</td><td>退化成"每句都按"，判断这个动词就不存在了</td></tr>
+      <tr><td><code>后果-不按</code> ∈ 第 3 节清单</td><td>程序无法实现</td></tr>
+      <tr><td>台词字数 ≤ <code>字数上限</code></td><td>打字来不及打完，节奏崩</td></tr>
+      <tr><td>全表 <code>跳吓=是</code> 不超过 3 条</td><td>跳吓预算超支</td></tr>
+    </table>
+    <div class="note ok" style="margin-bottom:0">
+      导入器**任何一条不过就不生成**，报错会指出是哪一行哪一列。这是保护你——错值在导入时暴露，比在试玩时暴露便宜得多。
+    </div>
+  </div>
+
+  <h2>⑦ 填好的样子（范例，只作参考）</h2>
+  <div class="card">
+    <div class="note"><b>不要照抄剧情</b>——你要写自己的 9 句。这里只示范"每列该长什么样"。</div>
+    <table class="tbl">
+      <tr><th>编号</th><th>场景</th><th>顺序</th><th>台词</th><th>分类</th><th>判定点</th><th>字数上限</th><th>后果-不按</th><th>跳吓</th><th>备注</th></tr>
+      <tr><td>S01-L001</td><td>S01</td><td>1</td><td>你来了。这房子空了三年，我是唯一还留在这里的东西。</td><td>真</td><td>否</td><td>40</td><td></td><td>否</td><td>开场，建立"它在闲聊"的基线</td></tr>
+      <tr><td>S01-L002</td><td>S01</td><td>2</td><td>天花板上有一只猫。</td><td>胡说</td><td>是</td><td>40</td><td></td><td>否</td><td>荒谬但无害，按了就错</td></tr>
+      <tr><td>S01-L003</td><td>S01</td><td>3</td><td>你脚下的地板是坏的，别往左边站。</td><td>假害</td><td>是</td><td>40</td><td>强制坐下</td><td>否</td><td>第一处必须按的判断点</td></tr>
+      <tr><td>S01-L004</td><td>S01</td><td>4</td><td>我数过了，你现在站着，挺好。</td><td>真</td><td>是</td><td>40</td><td></td><td>否</td><td>真话也做成判断点，制造犹豫</td></tr>
+      <tr><td>S02-L001</td><td>S02</td><td>1</td><td>门锁着。</td><td>假害</td><td>是</td><td>40</td><td>门锁上</td><td>否</td><td>不按＝门真锁上</td></tr>
+      <tr><td>S02-L002</td><td>S02</td><td>2</td><td>别站在门口。</td><td>真</td><td>是</td><td>40</td><td></td><td>否</td><td>命令句伪装的真话，勾引错按</td></tr>
+      <tr><td>S02-L003</td><td>S02</td><td>3</td><td>灯泡在响，你没注意到而已。</td><td>胡说</td><td>是</td><td>40</td><td></td><td>否</td><td>打散"诡异＝有害"的错误规律</td></tr>
+      <tr><td>S02-L004</td><td>S02</td><td>4</td><td>灯灭了。</td><td>假害</td><td>是</td><td>40</td><td>灯灭</td><td>是</td><td>真跳吓同步此处</td></tr>
+      <tr><td>S02-L005</td><td>S02</td><td>5</td><td>就是这样。你什么都做不了。</td><td>真</td><td>否</td><td>40</td><td></td><td>否</td><td>第二幕收尾，语气转摊牌</td></tr>
+    </table>
+    <div class="note ok" style="margin-bottom:0">
+      这份范例的配比：<b>真 4 / 胡说 2 / 假害 3</b>，判定点 7 个，跳吓 1 次——正好是"能验证机制"的最小形态。
+    </div>
+  </div>
+
+  <h2>⑧ 你交表的方式</h2>
+  <div class="card">
+    <ol>
+      <li>在这两个 CSV 上直接改（Excel / WPS / LibreOffice 都行）。</li>
+      <li><b>另存为 CSV 时选 <code>UTF-8</code> 编码</b>（不要选 GBK/ANSI，中文会变乱码）。</li>
+      <li>放进共享目录，在群里说一句「cast-min 已交」即可，<b>不需要开会评审</b>。</li>
+      <li>有争议时由你定（判定表归你、素材归 YPQ、实现方式归 YDC）。</li>
+    </ol>
+    <div class="note bad" style="margin-bottom:0">
+      <b>唯一的硬约束：永远不要编辑工程文件。</b>不要改 <code>.gd</code> / <code>.tscn</code> / <code>.tres</code>，
+      不要把素材复制进工程目录。所有内容通过"表格 → 程序导入"这条路进游戏——这不是不信任，是避免两个人的改动互相覆盖。
+    </div>
+  </div>
+
+  <h2>⑨ 冻结点</h2>
+  <div class="card">
+    <p><b>9/25 之后，<code>编号</code> / <code>分类</code> / <code>后果</code> 不再允许改动</b>（改台词文字、调参数、删句可以）。</p>
+    <p class="muted small">原因：脚本、素材、工程引用都会跟着编号走，冻结之后改编号会让排查成本爆炸。</p>
+    <div class="note" style="margin-bottom:0">
+      <b>要改就走这一条：</b>在群里说明「改什么 + 为什么现在必须改 + 会影响谁」→ 受影响的两个人点头 → 才改。
+      <b>不允许"我先改了你再适配"。</b>
+    </div>
+  </div>
+
+  <p class="muted small" style="margin-top:26px">
+    依据：《别信它》方案书（YDC，2026-09-11）· 制作计划（plan-dont-trust-it.html）· 整体说明书（guide.html）。
+    本页只说明"怎么填、什么算填错"；剧情内容由 XJW 决定。
+  </p>
+
+</div>
+</body>
+</html>
