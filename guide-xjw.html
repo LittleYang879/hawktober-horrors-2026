@@ -81,7 +81,7 @@
     <div class="kv">
       <div class="k">你负责</div><div>剧情 / 台词 / <b>判定点表</b> / 节奏参数 / 结局分档文案</div>
       <div class="k">你的现场</div><div>表格软件（Excel / WPS / LibreOffice）+ 文本编辑器。<b>引擎工程不是你的现场</b></div>
-      <div class="k">先交什么</div><div><code>cast-min.csv</code>（9 行）→ 跑通原型；<code>cast-full.csv</code>（约 180–240 行）→ 完整内容</div>
+      <div class="k">先交什么</div><div><code>cast-min.csv</code>（9 行）→ 跑通原型；<code>cast-full.csv</code> → 完整内容（<b>总行数由你定</b>）</div>
       <div class="k">死线</div><div>最小版 <b>9/15 前</b>（G1 阶段门）· 完整表 <b>9/25 冻结</b></div>
     </div>
   </div>
@@ -92,15 +92,15 @@
     <table class="tbl">
       <tr><th>文件</th><th>用途</th><th>量</th><th>什么时候交</th></tr>
       <tr><td><code>cast-min.csv</code></td><td>跑通"说话 → 找漏洞 → 按下 → 世界改变"这个最小闭环</td><td class="d"><b>9 行</b>（2 轮对话）</td><td class="d">9/15 前</td></tr>
-      <tr><td><code>cast-full.csv</code></td><td>真正能提交的完整内容</td><td class="d"><b>约 180–240 行</b></td><td class="d">9/25 前定稿</td></tr>
+      <tr><td><code>cast-full.csv</code></td><td>真正能提交的完整内容</td><td class="d"><b>由你定</b><span class="muted">（≤10 分钟）</span></td><td class="d">9/25 前定稿</td></tr>
     </table>
     <div class="note">
       <b>两份表都是空的</b>：`cast-min` 只有表头 + 9 行预置好的 编号/场景/顺序（你填后面 7 列）；
       `cast-full` 只有表头。<b>所有范例都在本页第 7 节</b>，随便抄随便改，不用在表格里猜"这行要不要留"。
     </div>
     <div class="note bad" style="margin-bottom:0">
-      <b>为什么先用 9 行：</b>8 行和 240 行差 30 倍。先用 9 行验证机制，机制一旦要改，全量的活会白做。
-      <b>不要一上来就写全量。</b>
+      <b>为什么先用 9 行：</b>先用 9 行验证机制，机制一旦要改，后面写的活会白做。
+      <b>不要一上来就写全量。</b>后面要写多少行<b>由你决定</b>（先验证、再铺量）。
     </div>
   </div>
 
@@ -149,6 +149,10 @@
 
   <h2>④ 时长怎么估（决定你要写多少行）</h2>
   <div class="card">
+    <div class="note ok">
+      <b>台词总量与判定点总量由你决定</b>，没有规定数字——只有一条<b>硬上限</b>：一局不能超过 <b>10 分钟</b>（官方规则是 1–60 分钟，本作目标 8–10 分钟）。
+      下面给你换算工具，你自己估、自己定；定完之后请把"整局目标时长 + 预计行数"告诉 YDC，他按它调打字速度与节奏。
+    </div>
     <p>程序侧的换算规则（现在的设定，定稿前可调）：</p>
     <ul>
       <li>打字速度：<b>约 6 字/秒</b>（中文）</li>
@@ -159,20 +163,24 @@
       <tr><th>情况</th><th>占用时间</th></tr>
       <tr><td>12 字，非判定点</td><td class="d">2.0 秒</td></tr>
       <tr><td>12 字，判定点</td><td class="d">约 6 秒</td></tr>
-      <tr><td>40 字（上限），判定点</td><td class="d">约 10.7 秒 ⚠️ 太长，尽量别到上限</td></tr>
+      <tr><td>40 字（默认上限），判定点</td><td class="d">约 10.7 秒 ⚠️ 太长，尽量别到上限</td></tr>
+    </table>
+    <h4>自己估的两个参考点</h4>
+    <table class="tbl">
+      <tr><th>你的目标</th><th>大致规模（按 12 字/句 估）</th></tr>
+      <tr><td>只验证机制、能跑通就行</td><td class="d">约 10–20 句，判定点 5–8 个 <span class="muted">（原型阶段够用）</span></td></tr>
+      <tr><td>做成 8–10 分钟的成品</td><td class="d">需要自己按上面的公式反推，量级会到三位数</td></tr>
     </table>
     <div class="note">
-      <b>按这个算，8–10 分钟的一局大约需要 180–240 行，其中判定点 20–30 个。</b>
-      <span class="muted">（另外："12 条陈述"是原型阶段的量，不是提交版本的量——两者差 15 倍，别混。）</span>
+      <b>三类话的配比（这条建议保留）：</b>
+      <table class="tbl" style="margin-top:6px">
+        <tr><th>分类</th><th>占比</th><th>为什么</th></tr>
+        <tr><td><code>真</code></td><td class="d"><b>60–70%</b></td><td>它的叙述大部分是真的，信任才成立。假话一多，玩家会每题都怀疑，游戏退化成猜硬币</td></tr>
+        <tr><td><code>假害</code></td><td class="d">15–20%</td><td>提供"必须按"的样本</td></tr>
+        <tr><td><code>胡说</code></td><td class="d">15–20%</td><td><b>最重要的一类</b>：骗你错按，让"判据不是真假"成立</td></tr>
+      </table>
+      <p class="small" style="margin:8px 0 0">跳吓音预算：<b>真 2 次 + 假 1 次 = 3 次</b>，全表合计不要超（这是资源上限，不是内容建议）。</p>
     </div>
-    <h4>三类话的配比</h4>
-    <table class="tbl">
-      <tr><th>分类</th><th>占比</th><th>为什么</th></tr>
-      <tr><td><code>真</code></td><td class="d"><b>60–70%</b></td><td>它的叙述大部分是真的，信任才成立。假话一多，玩家会每题都怀疑，游戏退化成猜硬币</td></tr>
-      <tr><td><code>假害</code></td><td class="d">15–20%</td><td>提供"必须按"的样本</td></tr>
-      <tr><td><code>胡说</code></td><td class="d">15–20%</td><td><b>最重要的一类</b>：骗你错按，让"判据不是真假"成立</td></tr>
-    </table>
-    <p class="small muted">跳吓音预算：<b>真 2 次 + 假 1 次 = 3 次</b>，全表合计不要超。</p>
   </div>
 
   <h2>⑤ 写作时要盯住的一件事</h2>
