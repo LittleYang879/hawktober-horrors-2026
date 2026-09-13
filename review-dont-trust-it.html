@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>《别信它》评审意见 · Hawktober Horrors 2026</title>
+<style>
+  :root{--bg:#12121a;--panel:#1b1b26;--panel2:#20202e;--ink:#e8e6f2;--muted:#9b97ad;
+    --accent:#ff5a3c;--accent2:#ffd9a0;--ok:#57c785;--warn:#ffb238;--bad:#ff5464;--line:#34344a;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:"Segoe UI","Microsoft YaHei",sans-serif;line-height:1.65;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:940px;margin:0 auto;padding:26px 22px 80px}
+  a{color:#8fb7ff;text-decoration:none;border-bottom:1px dotted #8fb7ff}
+  a:hover{border-bottom-style:solid}
+  .hero{background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%);
+    border:1px solid var(--line);border-radius:16px;padding:26px 28px;position:relative;overflow:hidden}
+  .hero::after{content:"🔍";position:absolute;right:24px;top:16px;font-size:58px;opacity:.13}
+  .hero .kicker{color:var(--accent2);letter-spacing:3px;font-size:12px;text-transform:uppercase}
+  .hero h1{margin:6px 0 4px;font-size:28px}
+  .hero .sub{color:var(--muted);font-size:14.5px;max-width:700px}
+  .navlinks{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .navlinks a{background:var(--panel2);border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;font-size:13px;color:var(--ink)}
+  h2{font-size:20px;margin:30px 0 12px;color:var(--accent2);border-left:4px solid var(--accent);padding-left:12px}
+  h3{font-size:15.5px;margin:18px 0 8px;color:#cfd6ff}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:16px 18px}
+  .note{border-left:4px solid var(--warn);background:rgba(255,178,56,.08);
+    padding:11px 15px;border-radius:0 9px 9px 0;margin:12px 0;font-size:13.5px;color:var(--muted)}
+  .note b{color:var(--accent2)}
+  .note.bad{border-left-color:var(--bad);background:rgba(255,84,100,.09)}
+  .note.ok{border-left-color:var(--ok);background:rgba(87,199,133,.09)}
+  .tbl{width:100%;border-collapse:collapse;font-size:13px}
+  .tbl th,.tbl td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  .tbl th{background:var(--panel2);color:var(--accent2)}
+  .tbl tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+  .score{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+  @media(max-width:760px){.score{grid-template-columns:repeat(2,1fr)}}
+  .sc{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:12px;text-align:center}
+  .sc .n{font-size:24px;font-weight:700;color:var(--accent)}
+  .sc .d{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .total{background:var(--panel);border:1px solid var(--accent);border-radius:13px;padding:16px 18px;
+    display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:14px}
+  .total .big{font-size:38px;font-weight:800;color:var(--accent);line-height:1}
+  .total .t{font-size:13.5px;color:var(--muted)}
+  .pill{display:inline-block;font-size:11.5px;padding:2px 9px;border-radius:99px;border:1px solid var(--line);
+    background:var(--panel2);margin:2px 6px 2px 0}
+  .pill.bad{background:rgba(255,84,100,.14);color:#ff9aa5;border-color:rgba(255,84,100,.4)}
+  .pill.ok{background:rgba(87,199,133,.14);color:#8fe0b4;border-color:rgba(87,199,133,.4)}
+  .pill.warn{background:rgba(255,178,56,.16);color:var(--warn);border-color:rgba(255,178,56,.4)}
+  ul{padding-left:20px} li{margin:5px 0}
+  .chk{list-style:none;padding-left:0}
+  .chk li{padding-left:26px;position:relative}
+  .chk li::before{content:"☐";position:absolute;left:0;top:0;color:var(--accent2)}
+  @page{size:A4;margin:14mm}
+  @media print{body{background:#fff;color:#000}.hero,.card,.sc,.total{background:#fff;border-color:#ccc}
+    .wrap{max-width:none;padding:0}h2{color:#000}a{color:#000}.tbl th{background:#eee;color:#000}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="hero">
+    <div class="kicker">Review · 评审意见</div>
+    <h1>🔍 《别信它》/ DON'T TRUST IT</h1>
+    <div class="sub">作者 <b>YDC</b>　·　依据《方案评分细则》的判定条件逐维度复核，并列出<b>开工前必须补齐的缺口</b>。
+      结论：这份方案的<b>设计质量最高、交付确定性最强</b>，但有一处结构性短板会在并排评审时被放大。</div>
+    <div class="navlinks">
+      <a href="proposals/dont-trust-it.html">📄 方案书原文</a>
+      <a href="compare.html">📊 三方案对比</a>
+      <a href="rubric.md">📋 评分细则</a>
+      <a href="index.html">← 主页</a>
+    </div>
+  </div>
+
+  <div class="total">
+    <div class="big">21<span style="font-size:18px;color:var(--muted)">/25</span></div>
+    <div>
+      <div style="font-weight:700;color:var(--ok)">可直接开工档（20–25）</div>
+      <div class="t">与《你叫什么名字》并列第一；按细则的平局规则，<b>是否选它取决于团队愿不愿意承担美术风险</b>。</div>
+    </div>
+  </div>
+  <div class="score">
+    <div class="sc"><div class="n">5</div><div class="d">主题契合</div></div>
+    <div class="sc"><div class="n">4</div><div class="d">可行性</div></div>
+    <div class="sc"><div class="n">4</div><div class="d">体量可控</div></div>
+    <div class="sc"><div class="n">4</div><div class="d">差异化</div></div>
+    <div class="sc"><div class="n">4</div><div class="d">团队匹配</div></div>
+  </div>
+
+  <h2>① 为什么它值得做</h2>
+  <div class="card">
+    <ul>
+      <li><b>主题契合拿满 5 分</b>——这是细则里最难的一档。判断单元细到<b>单句</b>，而且「不指认＝相信」把「弃权」这个退路也堵死了：玩家不是读到一个矛盾，而是<b>亲手按出一个矛盾</b>。</li>
+      <li><b>验证动作写得最实</b>——三个风险各配一个「半天做什么」，而且目标都是<b>二值可判定</b>的（例：盲玩 60 秒，看他有没有自己说出「原来不按也会成真」）。这是三份里唯一把"怎么算验证通过"写清楚的。</li>
+      <li><b>体量最小、交付确定性最强</b>——素材几乎归零，8 项 MVP 都很轻。</li>
+      <li><b>团队缺口处理最清醒</b>——「文案与判断点设计」被设计成<b>能在表格软件里完成</b>，并明确要求队友<b>永不编辑工程文件</b>。这一条对「另外两位没碰过引擎」的现状是决定性的。</li>
+      <li><b>平局规则下它站在有利一侧</b>——「最不可替代的工作量是否落在团队弱项上」：它几乎<b>不产生美术工作量</b>，答案是"没落上"。</li>
+    </ul>
+  </div>
+
+  <h2>② 开工前必须补齐的缺口</h2>
+
+  <div class="note bad"><b>🔴 最高优先：剧情是空的。</b>
+    第 4 节「故事梗概」与「结局」都标着<b>「待他人补充」</b>。而 jam 的五个评分维度里<b>第一项就是 Story and Writing</b>——
+    这是真实短板，不是格式问题。并排评审时，另外两份的剧情都是完整的，这一栏会直接拉开差距。</div>
+
+  <div class="note"><b>🟡 合规自查全部未勾选。</b>
+    细则把它列为非计分项，理由是：<b>未勾选 ≠ 不合规，但并排评审时会被误读</b>。另外两份都是全勾的。改动成本为零，建议直接补上。</div>
+
+  <div class="note"><b>🟡 第 8 节「我能承担 / 缺什么角色」两栏未填。</b>
+    细则特别点名这一项：<b>横向评审时它比技术细节更能说明可行性</b>。</div>
+
+  <div class="note"><b>🟡 排期只有相对阶段，没有绝对日期。</b>
+    另外两份里 YPQ 那份写死了 09-14 / 10-01 / 10-02 / 10-03。建议把你的阶段对应到具体日期——截稿是 <b>10-03 13:59（太平洋时间）</b>，需要换算时区并留出「提前 3 天」的缓冲。</div>
+
+  <div class="note ok"><b>🟢 补上「验证失败的替代方案」可直接把可行性从 4 拉到 5。</b>
+    按细则：4 分 = 验证目标可判定但替代方案缺失；5 分 = 再有 ≥2 条具体可落地的替代方案。
+    你现在恰好卡在这一步上——这是<b>投入产出比最高的一处修改</b>。</div>
+
+  <h2>③ 一处设计风险（必须在原型阶段回答）</h2>
+  <div class="card">
+    <p>你的关键决定点 ③④ 是：<b>按错只有一个提示音、没有惩罚</b>；<b>真正的约束是内置 CD</b>。</p>
+    <p>这两条合在一起会引出一个<b>必须在盲测中回答的问题</b>：</p>
+    <div class="note" style="margin:10px 0">
+      <b>如果 CD 相对陈述间隔太短，最优策略会不会退化成「每句都按」？</b><br>
+      因为按错没有成本，玩家理性上就没有理由不按——那样「判断」就不存在了，游戏从"指认谎言"退化成"连点"。
+    </div>
+    <p>你在第 7 节的技术风险 #3 已经点到了近处（「CD 是制造紧张还是制造烦躁」），但那问的是<b>手感</b>；
+    这里问的是<b>策略是否被解掉</b>——是更根本的一问。</p>
+    <p style="color:var(--muted);font-size:13px">建议的验证方式（不改动你的玩法，只是把它变成可判定的）：
+    在灰盒里<b>不提示规则</b>，观察盲测者会不会自己发现"乱按也没事"。
+    如果发现了 → 这一版的约束不成立，需要在原型阶段就换掉；如果没发现 → 说明节奏设计成立。</p>
+  </div>
+
+  <h2>④ 血统风险的处置</h2>
+  <div class="card">
+    <p>你在第 12 节<b>主动披露</b>了与 <a href="https://csaf.itch.io/taken-as-read" target="_blank">TAKEN AS READ</a> 的机制亲近——这是全篇最成熟的一笔。</p>
+    <p>规则原文是「<b>no conceptual work can be used <i>as-is</i></b>」，这是<b>红线</b>而不只是观感问题。我的判断：你给的三条差异化（判据是「恶意」而非真假 / CD 作为唯一约束 / 文本即它的身体）<b>足以摆脱 as-is</b>。</p>
+    <p>建议再补两手（成本很低）：</p>
+    <ul>
+      <li>在方案里写清<b>「借用了什么、没借用什么」的边界</b>——现在只有一句"必须保证原创"，太笼统。</li>
+      <li>留一份<b>可出示的对照说明</b>，万一被质疑能当场拿出来。</li>
+    </ul>
+  </div>
+
+  <h2>⑤ 待补清单（13 处，逐条）</h2>
+  <div class="card" style="overflow:auto">
+    <table class="tbl">
+      <tr><th>#</th><th>位置</th><th>内容</th><th>优先级</th><th>影响</th></tr>
+      <tr><td>1</td><td>第 4 节</td><td>故事梗概</td><td><span class="pill bad">高</span></td><td>jam 第一评分项 Story and Writing</td></tr>
+      <tr><td>2</td><td>第 4 节</td><td>结局设计</td><td><span class="pill bad">高</span></td><td>同上</td></tr>
+      <tr><td>3</td><td>第 7 节</td><td>验证失败的替代方案</td><td><span class="pill warn">中高</span></td><td><b>补上即可把可行性 4 → 5</b></td></tr>
+      <tr><td>4</td><td>第 8 节</td><td>我能承担</td><td><span class="pill warn">中高</span></td><td>细则点名的非计分项</td></tr>
+      <tr><td>5</td><td>第 8 节</td><td>缺什么角色</td><td><span class="pill warn">中高</span></td><td>同上</td></tr>
+      <tr><td>6</td><td>第 10 节</td><td>合规自查勾选</td><td><span class="pill warn">中</span></td><td>零成本，避免被误读</td></tr>
+      <tr><td>7</td><td>第 9 节</td><td>排期的绝对日期</td><td><span class="pill warn">中</span></td><td>死线换算与「提前 3 天」</td></tr>
+      <tr><td>8</td><td>第 12 节</td><td>次要风险</td><td><span class="pill warn">中</span></td><td>评审会问</td></tr>
+      <tr><td>9</td><td>第 12 节</td><td>Plan B</td><td><span class="pill warn">中</span></td><td>降级方案缺失</td></tr>
+      <tr><td>10</td><td>第 5 节</td><td>场景 / 关卡数量</td><td><span class="pill">低</span></td><td>已写明"按单场景设计"</td></tr>
+      <tr><td>11</td><td>第 6 节</td><td>美术最大工作量</td><td><span class="pill">低</span></td><td>素材已近归零，影响小</td></tr>
+      <tr><td>12</td><td>第 11 节</td><td>HawkZombie 客串形式</td><td><span class="pill">低</span></td><td>调味料加分项</td></tr>
+      <tr><td>13</td><td>第 11 节</td><td>「无台词」待核实 / 其余调味料待剧情定</td><td><span class="pill">低</span></td><td>取决于剧情</td></tr>
+    </table>
+  </div>
+
+  <h2>⑥ 补完后的预判</h2>
+  <div class="card">
+    <p>如果 <b>#1 #2（剧情）</b>与 <b>#3（替代方案）</b>补上，按细则评分会变成：</p>
+    <table class="tbl" style="margin:10px 0">
+      <tr><th>维度</th><th>现在</th><th>补完后</th><th>依据</th></tr>
+      <tr><td>主题契合</td><td>5</td><td>5</td><td>判断单元细到单句（已达顶档）</td></tr>
+      <tr><td>可行性</td><td>4</td><td><b>5</b></td><td>补 ≥2 条替代方案即达 5 分档</td></tr>
+      <tr><td>体量可控</td><td>4</td><td>4</td><td>「半天版」仍是机制验证而非可提交成品</td></tr>
+      <tr><td>差异化</td><td>4</td><td>4</td><td>血统亲近是已披露的未解疑点</td></tr>
+      <tr><td>团队匹配</td><td>4</td><td>4</td><td>程序缺席即停，够不到"任一成员缺席都能交付"</td></tr>
+      <tr><td><b>总分</b></td><td><b>21</b></td><td><b>22</b></td><td>与细则原稿的 22 分一致</td></tr>
+    </table>
+    <p style="color:var(--muted);font-size:13px">注意：这个 22 分不是靠"写得好看"拿到的，而是<b>补掉一个实测缺口</b>拿到的——评审时它是能被验证的。</p>
+  </div>
+
+  <h2>⑦ 开工前自查</h2>
+  <div class="card">
+    <ul class="chk">
+      <li>补写故事梗概与结局（第 4 节）</li>
+      <li>补写「验证失败的替代方案」≥2 条（第 7 节）</li>
+      <li>填写「我能承担 / 缺什么角色」（第 8 节）</li>
+      <li>勾选合规自查全部项（第 10 节）</li>
+      <li>排期补绝对日期，并核对 <b>10-03 13:59（太平洋时间）</b>换算</li>
+      <li>补写 Plan B 与次要风险（第 12 节）</li>
+      <li>补写「借用 / 原创边界说明」，备查</li>
+      <li>原型阶段加一条验证：盲测者会不会自己发现「乱按也没事」</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:34px;text-align:center;color:var(--muted);font-size:13px">
+    — 评审依据《方案评分细则》判定条件；分数为主观判定，可在对比页拖动修改 —</p>
+</div>
+</body>
+</html>
