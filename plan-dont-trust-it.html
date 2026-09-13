@@ -90,7 +90,7 @@
     <div class="kicker">Production Plan · 制作计划</div>
     <h1>🎃 《别信它》/ DON'T TRUST IT · 分工与时间表</h1>
     <div class="sub">方案已定稿。本页给出<b>三个人从起步到收尾各做什么、什么时候交、什么算做完</b>。
-      分工：<span class="pill ydc">YDC · 程序</span><span class="pill ypq">YPQ · 美术 + 音频/素材</span><span class="pill xjw">XJW · 策划 / 文案与判定点</span></div>
+      分工：<span class="pill ydc">YDC · 程序</span><span class="pill ypq">YPQ · 美术 + 音效/素材</span><span class="pill xjw">XJW · 策划 / 文案与判定点</span></div>
     <div class="navlinks">
       <a href="#base">🧱 共用底座（先读）</a>
       <a href="#xjw">✍️ XJW 的完整计划</a>
@@ -106,8 +106,9 @@
     <div class="kv">
       <div class="k">项目</div><div>《别信它》/ DON'T TRUST IT · Hawktober Horrors 2026（Godot 4.7 / 2D / Windows）</div>
       <div class="k">成品定义</div><div>可玩时长 <b>8–10 分钟</b>；一个空间 + 一台会说话的旧电话/收音机；玩家只有一个动作：指认。</div>
-      <div class="k">团队</div><div>YDC（程序，<b>唯一接触引擎工程文件的人</b>）· XJW（策划：剧情 / 台词 / 判定点 / 参数）· YPQ（美术：视觉素材 + 音频 + 授权台账）</div>
-      <div class="k">时间</div><div>内部截稿 <b>2026-09-30</b>；官方截止 <b>2026-10-03 13:59</b>（换算北京时间）·<b>不提供任何延期</b></div>
+      <div class="k">团队</div><div>YDC（程序，<b>唯一接触引擎工程文件的人</b>）· XJW（策划：剧情 / 台词 / 判定点 / 参数）· YPQ（美术：视觉素材 + 音效 + 授权台账）</div>
+      <div class="k">叙事载体</div><div><b>纯文本逐字显示，全程无语音、无配音</b>（9/13 定）。它的话只以文字出现在画面上——文字就是它的身体。</div>
+      <div class="k">时间</div><div>内部截稿 <b>2026-09-29</b>（提交可玩版）；官方截止 <b>2026-10-03 13:59</b>（换算北京时间）·<b>不提供任何延期</b>·10/1–10/2 留作只修 bug 的缓冲</div>
       <div class="k">本页性质</div><div>只写<b>事实、规则、判定条件与依据</b>。玩法本身已由 YDC 的方案书锁定，本页不重新设计玩法。</div>
     </div>
   </div>
@@ -133,23 +134,23 @@
     <h3>分工与依赖：谁挡住谁</h3>
     <table class="tbl">
       <tr><th>交付物</th><th>负责人</th><th>谁在等它</th><th>最晚什么时候给</th><th>没有它会怎样</th></tr>
-      <tr><td><b>判定点表</b>（每句台词 + 分类 + 后果 + 时长参数）</td><td><span class="pill xjw">XJW</span></td>
-          <td>YDC（接线）、YPQ（配音频）</td><td class="d">9/20 首版 / 9/25 定稿</td>
+      <tr><td><b>判定点表</b>（每句台词 + 分类 + 后果 + 节奏参数）</td><td><span class="pill xjw">XJW</span></td>
+          <td>YDC（接线）、YPQ（配音效）</td><td class="d">9/15 v1 / 9/25 定稿</td>
           <td>游戏没有内容，只剩一个空循环</td></tr>
       <tr><td><b>CD 时长 + 节奏参数</b>（CD、句间留白、打字速度）</td><td><span class="pill xjw">XJW</span> 提名 / <span class="pill ydc">YDC</span> 确认</td>
-          <td>YDC（唯一约束就是它）</td><td class="d">9/17 前定第一版</td>
+          <td>YDC（唯一约束就是它）</td><td class="d">9/15 第一版</td>
           <td>核心动词可能不成立（见下方风险）</td></tr>
-      <tr><td><b>音效（含每句台词的语音）</b></td><td><span class="pill ypq">YPQ</span></td>
-          <td>YDC（时长是判定点数据的一部分）</td><td class="d">9/22 首批 / 9/26 全量</td>
-          <td>打字速度只能估，节奏会和声音对不上</td></tr>
+      <tr><td><b>音效（纯音效，无任何语音）</b></td><td><span class="pill ypq">YPQ</span></td>
+          <td>YDC（氛围与反馈的载体）</td><td class="d">9/19 首批 / 9/24 全量</td>
+          <td>游戏不吓人，且"按对/按错"没有可分的反馈</td></tr>
       <tr><td><b>房间 / 道具 / UI 素材</b></td><td><span class="pill ypq">YPQ</span></td>
           <td>YDC（下划线，不进关键路径）</td><td class="d">9/24 前</td>
           <td>不影响开发，灰盒照跑</td></tr>
       <tr><td><b>CREDITS.md 授权台账</b></td><td><span class="pill ypq">YPQ</span></td>
-          <td>YDC（提交前逐条核对）</td><td class="d">9/28</td>
+          <td>YDC（提交前逐条核对）</td><td class="d">9/27</td>
           <td><b>可能直接违规</b>——jam 明文要求素材合法授权</td></tr>
       <tr><td><b>可玩构建包（.exe）+ itch 页面</b></td><td><span class="pill ydc">YDC</span></td>
-          <td>–</td><td class="d">9/30 提交</td><td>–</td></tr>
+          <td>–</td><td class="d"><b>9/29 提交</b>（内部死线）</td><td>–</td></tr>
     </table>
     <div class="note">
       <b>并行原则（很重要）：</b>没有任何人需要等另一个人才能开始干活。
@@ -160,19 +161,20 @@
 
   <div class="card">
     <h3>本周必须先定的四件事（否则后面全是返工）</h3>
+    <p class="small muted">已于 9/13 定掉两件，剩两件要在 9/15（G1 阶段门）之前落地。</p>
     <table class="tbl">
       <tr><th>#</th><th>事项</th><th>谁定</th><th>可判定标准（达到这条就算定了）</th><th>期限</th></tr>
       <tr><td>1</td><td>判定点表用什么格式</td><td><span class="pill ydc">YDC</span> 出格式 → <span class="pill xjw">XJW</span> 确认好用</td>
-          <td>XJW 能用 Excel / 表格软件填完，且不需要问程序员任何一格是什么意思（列定义见下）</td><td class="d">9/17</td></tr>
+          <td>XJW 能用 Excel / 表格软件填完，且不需要问程序员任何一格是什么意思（列定义见下）</td><td class="d">9/15</td></tr>
       <tr><td>2</td><td><b>CD 时长与句间留白</b></td><td><span class="pill xjw">XJW</span> 提名 → 盲测定</td>
-          <td>在盲测里出现"我没来得及按"的抱怨，且没有出现"我干脆每句都按"——两个条件同时成立</td><td class="d">9/17 初值 / 9/27 定值</td></tr>
-      <tr><td>3</td><td>台词是否配语音</td><td><span class="pill ypq">YPQ</span> 可行性 + <span class="pill xjw">XJW</span> 决定</td>
-          <td>音频文件实际到手、能测出时长，且授权允许商用。不给"应该能拿到"这种答案</td><td class="d">9/18</td></tr>
+          <td>在盲测里出现"我没来得及按"的抱怨，且没有出现"我干脆每句都按"——两个条件同时成立</td><td class="d">9/15 初值 / 9/27 定值</td></tr>
+      <tr><td>3</td><td><s>台词是否配语音</s></td><td><span class="pill ok">9/13 已定：不配语音</span></td>
+          <td><b>叙事载体就是纯文本逐字显示，无任何配音。</b>官方"没有任何口白与文字对话"这条调味料的冲突随之自动消解——本作不是对话，是单向文本广播；无语音＝不触碰该条。YPQ 的音频范围缩到纯音效，程序侧也就<b>不再需要音频时长作节奏数据</b>：节奏全部由句长 + 打字速度 + 留白推算</td><td class="d">已定</td></tr>
       <tr><td>4</td><td>台词长度上限</td><td><span class="pill xjw">XJW</span></td>
-          <td>给定打字速度后，单句能在 3–5 秒内打完（超了就得拆句或提速）</td><td class="d">9/18</td></tr>
+          <td>给定打字速度后，单句能在 3–5 秒内打完（超了就得拆句或提速）</td><td class="d">9/15</td></tr>
     </table>
     <div class="note bad">
-      <b>四件事做不完的后果按严重度排序：</b>第 2 件最危险。
+      <b>剩下两件做不完的后果：</b>第 2 件最危险。
       "按错没有惩罚 + CD 是唯一约束"合起来会引出一个必须在盲测里回答的问题——
       <b>如果 CD 相对陈述间隔太短，最优策略会退化成"每句都按"，判断这个核心动词就不存在了。</b>
       这不是手感问题，是玩法是否成立的问题。
@@ -185,7 +187,7 @@
     <table class="tbl">
       <tr><th>对象</th><th>格式</th><th>例子</th><th>谁产出</th></tr>
       <tr><td>台词 / 判定点</td><td><code>S&lt;场景两位&gt;-L&lt;句序三位&gt;</code></td><td><code>S01-L007</code></td><td><span class="pill xjw">XJW</span></td></tr>
-      <tr><td>音频</td><td><code>SFX_&lt;类别&gt;_&lt;用途&gt;[_&lt;序号&gt;]</code></td><td><code>SFX_line_S01-L007.wav</code> · <code>SFX_click_yes.wav</code> · <code>SFX_scare_02.wav</code></td><td><span class="pill ypq">YPQ</span>（目录 <code>audio/</code>）</td></tr>
+      <tr><td>音效</td><td><code>SFX_&lt;类别&gt;_&lt;用途&gt;[_&lt;序号&gt;]</code></td><td><code>SFX_click_yes.wav</code> · <code>SFX_typing.wav</code> · <code>SFX_line_S01-L007_end.wav</code> · <code>SFX_scare_02.wav</code></td><td><span class="pill ypq">YPQ</span>（目录 <code>audio/</code>）<br><span class="small muted">无任何语音文件</span></td></tr>
       <tr><td>场景图</td><td><code>BG_S&lt;场景两位&gt;_&lt;名&gt;</code></td><td><code>BG_S01_room.png</code></td><td><span class="pill ypq">YPQ</span>（目录 <code>bg/</code>）</td></tr>
       <tr><td>道具</td><td><code>OBJ_S&lt;场景两位&gt;_&lt;名&gt;_&lt;状态&gt;</code></td><td><code>OBJ_S01_phone_idle.png</code> · <code>OBJ_S01_phone_broken.png</code></td><td><span class="pill ypq">YPQ</span>（目录 <code>props/</code>）</td></tr>
       <tr><td>角色 / UI</td><td><code>CHAR_&lt;名&gt;</code> · <code>UI_&lt;元素&gt;</code></td><td><code>CHAR_player.png</code> · <code>UI_cd_bar.png</code></td><td><span class="pill ypq">YPQ</span>（目录 <code>char/</code>、<code>ui/</code>）</td></tr>
@@ -198,14 +200,16 @@
   </div>
 
   <div class="card">
-    <h3>里程碑时间线（内部 9/30 截稿，官方 10/3）</h3>
+    <h3>里程碑时间线（内部截稿 9/29，官方 10/3 13:59）</h3>
+    <div class="note" style="margin-top:0"><b>内部死线已定为 9/29</b>（比官方提前 4 天，10/1–10/2 留作只修 bug 的缓冲）。
+      下面六个区间与《整体说明书》的阶段门 G1–G5 一一对应。</div>
     <div class="tl">
-      <div class="item"><div class="when">9/13 – 9/17</div><div class="what"><b>筹备</b>：判定点表格式定案、CD 初值、语音可行性、台词长度上限</div><div class="who">YDC 出格式 · XJW 定参数 · YPQ 查音频可行性</div></div>
-      <div class="item"><div class="when">9/18 – 9/21</div><div class="what"><b>原型（最关键）</b>：3 句话 + 一次判断 + CD 的灰盒，找外人盲玩</div><div class="who">YDC 做灰盒 · XJW 写灰盒文案 · YPQ 给占位音效</div></div>
-      <div class="item"><div class="when">9/22 – 9/25</div><div class="what"><b>内容填充</b>：台词全量写作 → <b>9/25 文案冻结</b>；核心系统跑通</div><div class="who">XJW 主笔 · YDC 接线 · YPQ 音频到位</div></div>
-      <div class="item"><div class="when">9/26 – 9/28</div><div class="what"><b>整合</b>：真实素材替换占位、CREDITS 台账完成、时长中位数回到 8–10 分钟</div><div class="who">三人</div></div>
-      <div class="item"><div class="when">9/29 – 9/30</div><div class="what"><b>试玩 + 提交</b>：多人盲测、封面截图、itch 页面、上传（<b>提前 3 天截稿</b>）</div><div class="who">YDC 提交 · YPQ 出图 · XJW 写页面文案</div></div>
-      <div class="item"><div class="when">10/1 – 10/3 13:59</div><div class="what"><b>缓冲期</b>：只修致命问题，不加任何新内容</div><div class="who">全体</div></div>
+      <div class="item"><div class="when">9/13 – 9/15 · S1 起步</div><div class="what"><b>解阻塞</b>：判定点表格式定案、CD 初值、台词长度上限；XJW 交判定表 v1 + 剧情梗概 + 结局分档规则；YPQ 交素材规格书 + 缺口清单；YDC 工程骨架能跑</div><div class="who">对应阶段门 <b>G1</b></div></div>
+      <div class="item"><div class="when">9/16 – 9/19 · S2 原型</div><div class="what"><b>最关键</b>：跑通"说话 → 找漏洞 → 按指认 → 世界改变"最小闭环，回答"什么时候可以按键是否可感知"</div><div class="who">对应阶段门 <b>G2</b></div></div>
+      <div class="item"><div class="when">9/20 – 9/25 · S3 内容</div><div class="what"><b>内容填满</b>：陈述全部走通、三类话齐全、结局按累积结果分档 → <b>9/25 文案与判定点冻结</b></div><div class="who">对应阶段门 <b>G3</b></div></div>
+      <div class="item"><div class="when">9/26 – 9/28 · S4 打磨</div><div class="what"><b>盲测</b>：3 名没玩过的人各跑一遍，至少 2 人能自己说出核心规则；真实素材替换占位、CREDITS 台账完成</div><div class="who">对应阶段门 <b>G4</b></div></div>
+      <div class="item"><div class="when">9/29 · S5 收尾</div><div class="what"><b>提交</b>：可玩版上传 itch 草稿页 + 合规逐条核完 + 封面截图</div><div class="who">对应阶段门 <b>G5</b> · <b>内部死线</b></div></div>
+      <div class="item"><div class="when">9/30 – 10/3 13:59</div><div class="what"><b>缓冲期</b>：只修致命问题，不加任何新内容</div><div class="who">全体</div></div>
     </div>
   </div>
 
@@ -226,10 +230,10 @@
     <h3>你要交的五样东西（最终清单）</h3>
     <table class="tbl">
       <tr><th>#</th><th>交付物</th><th>形式</th><th>交给谁</th><th>截止</th></tr>
-      <tr><td>1</td><td><b>判定点表</b>（全台词 + 分类 + 后果）</td><td>表格（Excel / CSV）</td><td>YDC 接线 · YPQ 配音频</td><td class="d">9/25 定稿</td></tr>
-      <tr><td>2</td><td><b>节奏与参数表</b>（CD / 句间留白 / 打字速度）</td><td>同表最后一个 sheet</td><td>YDC</td><td class="d">9/17 初值</td></tr>
+      <tr><td>1</td><td><b>判定点表</b>（全台词 + 分类 + 后果 + 节奏参数）</td><td>表格（Excel / CSV）</td><td>YDC 接线 · YPQ 配音效</td><td class="d">9/25 定稿</td></tr>
+      <tr><td>2</td><td><b>节奏与参数表</b>（CD / 句间留白 / 打字速度）</td><td>同表最后一个 sheet</td><td>YDC</td><td class="d">9/15 初值</td></tr>
       <tr><td>3</td><td><b>结局分档</b>（每档的触发阈值 + 收尾文案）</td><td>表格 + 文本</td><td>YDC</td><td class="d">9/25</td></tr>
-      <tr><td>4</td><td><b>故事梗概 + 开场设定</b>（为什么你在这栋房子里、它是什么）</td><td>纯文本 ≤600 字</td><td>YDC / YPQ / itch 页面</td><td class="d">9/21</td></tr>
+      <tr><td>4</td><td><b>故事梗概 + 开场设定</b>（为什么你在这栋房子里、它是什么）</td><td>纯文本 ≤600 字</td><td>YDC / YPQ / itch 页面</td><td class="d">9/15</td></tr>
       <tr><td>5</td><td><b>盲测记录</b>（每次试玩：谁玩、卡在哪、原话）</td><td>纯文本，一次一条</td><td>全组</td><td class="d">每次试玩后当天</td></tr>
     </table>
     <div class="note ok" style="margin-bottom:0">
@@ -239,7 +243,7 @@
   </div>
 
   <details class="phase" open>
-    <summary><span class="date">9/13 – 9/16</span><span class="name">阶段 0 · 筹备：把容器造好</span><span class="pill xjw">XJW</span></summary>
+    <summary><span class="date">9/13 – 9/15</span><span class="name">阶段 0 · 筹备：把容器造好</span><span class="pill xjw">XJW</span></summary>
     <div class="body">
       <h4>这一阶段你要产出的东西</h4>
       <ul>
@@ -248,19 +252,18 @@
         <li><b>整局结构草图</b>：8–10 分钟怎么分配？建议 3 幕（建立信任 → 开始试探 → 摊牌），每幕给一个"它想达到的目的"。</li>
         <li><b>CD 与留白的初值提案</b>，并写清你提这个值的理由。YDC 会在原型里跑两个值做对比。</li>
       </ul>
-      <h4>判定点表 · 列定义（YDC 会在 9/17 前给你最终可填版本）</h4>
+      <h4>判定点表 · 列定义（YDC 会在 9/15 前给你最终可填版本）</h4>
       <table class="tbl">
         <tr><th>列</th><th>填什么</th><th>合法值 / 格式</th></tr>
         <tr><td><code>编号</code></td><td>这句的唯一 ID</td><td><code>S01-L007</code>（场景两位 + 句序三位）</td></tr>
         <tr><td><code>场景</code></td><td>属于哪一段</td><td><code>S01</code> / <code>S02</code> / <code>S03</code></td></tr>
         <tr><td><code>顺序</code></td><td>播放次序</td><td>整数，段内不重复、不留空号</td></tr>
-        <tr><td><code>台词</code></td><td>它说的那句话原文</td><td>文本，长度上限见阶段 0 的第 4 件事</td></tr>
+        <tr><td><code>台词</code></td><td>它说的那句话原文</td><td>文本，长度上限见阶段 0 的第 4 件事。这句<b>只以文字出现</b>，没有配音</td></tr>
         <tr><td><code>分类</code></td><td>三类话</td><td><b>只能填这三个值</b>：<code>真</code> / <code>假害</code> / <code>胡说</code></td></tr>
         <tr><td><code>判定点</code></td><td>这句话后面留不留可按键的间隙</td><td><code>是</code> / <code>否</code></td></tr>
         <tr><td><code>后果-不按</code></td><td>不按（= 相信）会实际发生什么</td><td>必须是一条能在画面上看见的状态变化，见下方规则</td></tr>
         <tr><td><code>后果-错按</code></td><td>错按（= 不该按时按了）的反馈</td><td>固定为"提示音 + 反馈"，<b>不填惩罚</b></td></tr>
-        <tr><td><code>音频</code></td><td>这句话有没有语音文件</td><td><code>有</code> / <code>无</code>（持续到"语音可行性"有结论）</td></tr>
-        <tr><td><code>时长-秒</code></td><td>该句音频实际长度</td><td>数字。YPQ 交付后回填，你自己估的写 <code>估</code></td></tr>
+        <tr><td><code>留白-秒</code></td><td>句子与下一个判断点之间的间隔</td><td>数字。不配语音，所以节奏只有这三个来源：<b>句长 + 打字速度 + 留白</b></td></tr>
         <tr><td><code>跳吓</code></td><td>是否触发惊吓音效</td><td><code>是</code> / <code>否</code>（真 2 次 + 假 1 次是预算）</td></tr>
         <tr><td><code>备注</code></td><td>给程序/美术的说明</td><td>自由文本</td></tr>
       </table>
@@ -279,7 +282,7 @@
   </details>
 
   <details class="phase">
-    <summary><span class="date">9/18 – 9/21</span><span class="name">阶段 1 · 原型文案：先写能验证规则的那 3 句</span><span class="pill xjw">XJW</span></summary>
+    <summary><span class="date">9/16 – 9/19</span><span class="name">阶段 1 · 原型文案：先写能验证规则的那 3 句</span><span class="pill xjw">XJW</span></summary>
     <div class="body">
       <p class="small muted">原型的目的只有一个：验证"玩家能不能自己搞明白什么时候可以按"。所以这 3 句不是随便挑的，必须是三种类型的<b>最标准样本</b>。</p>
       <h4>这 3 句的构成（硬性）</h4>
@@ -303,7 +306,7 @@
   </details>
 
   <details class="phase">
-    <summary><span class="date">9/22 – 9/25</span><span class="name">阶段 2 · 内容写作：8–10 分钟的全量台词</span><span class="pill xjw">XJW</span><span class="pill warn">9/25 冻结</span></summary>
+    <summary><span class="date">9/20 – 9/25</span><span class="name">阶段 2 · 内容写作：8–10 分钟的全量台词</span><span class="pill xjw">XJW</span><span class="pill warn">9/25 冻结</span></summary>
     <div class="body">
       <h4>工作量参考（按 8–10 分钟）</h4>
       <p>以"每句 3–5 秒 + 句间留白 1–2 秒"估算，全程大约需要 <b>80–120 句</b>台词，其中<b>判定点约 20–30 个</b>。
@@ -355,7 +358,7 @@
   </details>
 
   <details class="phase">
-    <summary><span class="date">9/29 – 9/30</span><span class="name">阶段 4 · 试玩、收尾与提交材料</span><span class="pill xjw">XJW</span></summary>
+    <summary><span class="date">9/29</span><span class="name">阶段 4 · 试玩、收尾与提交材料</span><span class="pill xjw">XJW</span></summary>
     <div class="body">
       <ul>
         <li><b>组织 3 人以上的盲玩</b>（不能是本组人），每人玩完记一条：他有没有理解"不按就会成真"、有没有在 CD 上骂人。</li>
@@ -378,29 +381,30 @@
       <tr><th>不要做</th><th>为什么</th><th>应该怎么做</th></tr>
       <tr><td>把台词写在聊天记录或 Word 里</td><td>程序没法用它接线，等于没交</td><td>统一填进判定点表，一处存放</td></tr>
       <tr><td>写"这会让玩家感到恐惧"这类后果</td><td>程序无从实现，只能来问你，来回一次就是半天</td><td>写成可被看见的状态变化</td></tr>
-      <tr><td>在 9/25 之后悄悄改编号或删句</td><td>音频文件、工程引用会整片错位，排查成本极高</td><td>冻结后走"新版本"流程，通知全组</td></tr>
+      <tr><td>在 9/25 之后悄悄改编号或删句</td><td>工程里的引用会整片错位，排查成本极高</td><td>冻结后走"新版本"流程，通知全组</td></tr>
       <tr><td>把"真的"和"胡说"写得太像</td><td>玩家只能靠猜，核心技能不成立</td><td>真的 = 平淡且有用；胡说 = 荒谬到好笑且完全无害</td></tr>
       <tr><td>为了让游戏更长而加句</td><td>时长硬上限是 10 分钟，官方不给延期</td><td>砍句不加句；时长超了就砍</td></tr>
     </table>
   </div>
 
   <a class="anchor" id="ypq"></a>
-  <h2>③ YPQ · 美术的完整计划 <span class="tag">视觉素材 + 音频 + 授权台账</span></h2>
+  <h2>③ YPQ · 美术的完整计划 <span class="tag">视觉素材 + 音效 + 授权台账</span></h2>
 
   <div class="card">
     <h3>一句话定义你的岗位</h3>
-    <p class="big">这个游戏是<b>靠声音和文字吓人的游戏</b>，所以<b>音频不是配角，是本作工作量最大的一块</b>。
+    <p class="big">这个游戏是<b>靠声音和文字吓人的游戏</b>，所以<b>音效不是配角，是本作工作量最大的一块</b>。
       视觉这边则相反——方案从设计上就把美术压到了最低（无动画、无手绘、低分辨率）。</p>
     <div class="note ok">
       <b>对你的好消息（都是已经锁定的省力决策）：</b>
       ① 玩家角色是<b>静态剪影、零动画</b>（不做行走帧）；② 视觉可以<b>几何色块 + 免费素材</b>；
-      ③ 房间只有<b>一个空间</b>；④ 氛围可以交给 shader（颗粒/暗角）+ 灯光抖动，不靠手绘。
+      ③ 房间只有<b>一个空间</b>；④ 氛围可以交给 shader（颗粒/暗角）+ 灯光抖动，不靠手绘；
+      ⑤ <b>9/13 已定：不配语音</b>——你的音频范围缩到<b>纯音效</b>，"每句台词语音"这一整块不存在了。
     </div>
     <div class="note bad">
       <b>两条会直接判违规的红线：</b>
-      ① <b>严禁任何 AI 生成素材</b>（美术/音频/文本/代码全都在规则里，jam 明文禁止）；
+      ① <b>严禁任何 AI 生成素材</b>（美术/音效/文本/代码全都在规则里，jam 明文禁止）；
       ② <b>itch 上标着 CC0 的素材也可能是 AI 生成的</b>——必须同时核对 <code>Asset license</code> 和 <code>AI Disclosure</code> 两个字段。
-      另外：<b>不做任何 AI 语音、不克隆任何人的声音。</b>
+      另外：<b>不做任何 AI 语音、不克隆任何人的声音</b>——本作已经确定完全无语音，这一条天然满足。
     </div>
   </div>
 
@@ -408,25 +412,28 @@
     <h3>你要交的五样东西（最终清单）</h3>
     <table class="tbl">
       <tr><th>#</th><th>交付物</th><th>形式</th><th>交给谁</th><th>截止</th></tr>
-      <tr><td>1</td><td><b>音频</b>：每句台词语音（+ 环境底噪 / 点缀音 / 反馈音 / 跳吓音 / 交互音）</td><td>WAV 文件，按 ID 命名</td><td>YDC 导入工程</td><td class="d">9/22 首批 / 9/26 全量</td></tr>
+      <tr><td>1</td><td><b>音效</b>：环境底噪 / 点缀音 / 打字机音 / 句末音 / 按对·按错音 / 划掉音 / 跳吓音 / 交互音<br><span class="small muted">无任何语音</span></td><td>WAV 文件，按 ID 命名</td><td>YDC 导入工程</td><td class="d"><b>9/19 首批 / 9/24 全量</b></td></tr>
       <tr><td>2</td><td><b>视觉素材</b>：房间 tileset / 家具 / 电话道具 / UI / 字体 / shader</td><td>PNG、TTF、.gdshader</td><td>YDC</td><td class="d">9/24</td></tr>
-      <tr><td>3</td><td><b>CREDITS.md 授权台账</b>（逐条：资产名/作者/URL/许可/用在哪）</td><td>Markdown 表格</td><td>YDC（提交前核对）</td><td class="d">9/28</td></tr>
-      <tr><td>4</td><td><b>提交用图</b>：封面 + 3–5 张截图 + itch 页头图</td><td>PNG</td><td>YDC 上传</td><td class="d">9/30</td></tr>
-      <tr><td>5</td><td><b>资产清单表</b>（含时长列，与判定点表用同一套 ID 对号）</td><td>表格</td><td>XJW 填台词 · YDC 接线</td><td class="d">持续更新</td></tr>
+      <tr><td>3</td><td><b>CREDITS.md 授权台账</b>（逐条：资产名/作者/URL/许可/用在哪）</td><td>Markdown 表格</td><td>YDC（提交前核对）</td><td class="d">9/27</td></tr>
+      <tr><td>4</td><td><b>提交用图</b>：封面 + 3–5 张截图 + itch 页头图</td><td>PNG</td><td>YDC 上传</td><td class="d"><b>9/29</b></td></tr>
+      <tr><td>5</td><td><b>资产清单表</b>（与判定点表用同一套 ID 对号）</td><td>表格</td><td>XJW 填台词 · YDC 接线</td><td class="d">持续更新</td></tr>
     </table>
+    <div class="note ok" style="margin-bottom:0">
+      <b>为什么首批音效 9/19 就要交：</b>它们虽然不再是"节奏数据"，但"按对/按错是否一听就分得清""声音消失能不能被察觉"这两件事
+      必须在 <b>S2 原型阶段</b>（9/16–9/19）就有真声音可试——灰盒用假图可以，但用假声音判断不了恐怖不恐怖。
+    </div>
   </div>
 
   <details class="phase" open>
-    <summary><span class="date">9/13 – 9/17</span><span class="name">阶段 0 · 筹备：先定风格与规格，再做采购</span><span class="pill ypq">YPQ</span></summary>
+    <summary><span class="date">9/13 – 9/15</span><span class="name">阶段 0 · 筹备：先定风格与规格，再做采购</span><span class="pill ypq">YPQ</span></summary>
     <div class="body">
       <h4>先产出三份"规范"，不然采购会反复推翻重来</h4>
       <ol>
         <li><b>美术圣经（半页就够）</b>：目标分辨率（建议 320×180 或 384×216，整数倍缩放）、色板（4–6 色）、
           风格关键词（极简 / 低分辨率 / 几何剪影）、"什么时候画面允许变亮"的规则。</li>
         <li><b>资产清单表</b>：列 = <code>资产ID</code> / <code>类别</code> / <code>用途</code> / <code>来源</code> / <code>作者</code> /
-          <code>许可证</code> / <code>AI披露</code> / <code>可商用</code> / <code>需署名</code> / <code>原始链接</code> / <code>存放路径</code> / <code>时长-秒</code>。
-          <span class="muted">（后两列给程序用；<code>时长-秒</code> 是判定点数据的一部分。）</span></li>
-        <li><b>音效表</b>：把方案书里的音频清单变成可勾选的采购任务（见下）。</li>
+          <code>许可证</code> / <code>AI披露</code> / <code>可商用</code> / <code>需署名</code> / <code>原始链接</code> / <code>存放路径</code>。</li>
+        <li><b>音效表</b>：把方案书里的音效清单变成可勾选的采购任务（见下）。</li>
       </ol>
       <h4>音效表（方案里已核实的清单，共约 15–20 件）</h4>
       <table class="tbl">
@@ -455,56 +462,55 @@
         <li>分辨率与色板写下来了，XJW 和 YDC 都看过</li>
         <li>资产清单表建好，采购一件填一行</li>
         <li>落定"角色不做动画"这一条（写进规范，防止后期有人想加）</li>
+        <li><b>素材规格书 + 缺口清单已交付</b>（<b>G1 阶段门的过关条件，9/15 前</b>）</li>
         <li><b>确认 Freesound 账号能不能登录、能不能下载</b>——这是全组最可能卡住的环节</li>
       </ul>
     </div>
   </details>
 
   <details class="phase">
-    <summary><span class="date">9/18 – 9/21</span><span class="name">阶段 1 · 采购 + 原型占位（音频先动）</span><span class="pill ypq">YPQ</span></summary>
+    <summary><span class="date">9/16 – 9/19</span><span class="name">阶段 1 · 采购 + 原型占位（音效先动）</span><span class="pill ypq">YPQ</span></summary>
     <div class="body">
       <div class="note">
-        <b>为什么音频排第一：</b>Freesound <b>必须登录才能下载</b>，站内试听只是低码率预览，
+        <b>为什么音效排第一：</b>Freesound <b>必须登录才能下载</b>，站内试听只是低码率预览，
         批量抓取被 ToS 明文禁止，站点还会间歇 503。<b>必须提前归档，不能临场现搜。</b>
       </div>
       <h4>本阶段任务（按顺序）</h4>
       <ol>
-        <li><b>音频先行</b>：环境底噪 + 点缀音 + 反馈音（按对/按错）+ 打字机音 + 句末音，下载到本地并归档。</li>
-        <li><b>判定"每句台词配不配语音"</b>（9/18 前给结论）。这是本周四件必决事项之一，不能给"应该能拿到"这种答案——
-          要给的是<b>实际到手的文件 + 实测时长 + 授权确认</b>。</li>
+        <li><b>音效先行</b>：环境底噪 + 点缀音 + 按对/按错音 + 打字机音 + 句末音，下载到本地并归档。</li>
         <li><b>房间 tileset 定稿</b>：先定一套，别比价到 9/25。风格定下来之后 UI 和道具才有的配。</li>
         <li><b>UI 套件</b>：文本区（建议裸文本、不加边框）、CD 指示器、对错反馈、标题/结束画面。</li>
         <li><b>给 YDC 占位素材</b>：灰盒阶段用纯色 32×32 方块就够，命名按规范（这样替换时零改动）。</li>
       </ol>
-      <h4>音频先动的理由（给不清楚背景的人）</h4>
+      <h4>音效先动的理由（给不清楚背景的人）</h4>
       <ul>
         <li>它是唯一"依赖外部站点 + 需要登录 + 会临时不可用"的环节，风险最高。</li>
-        <li>它是<b>程序的关键路径</b>：每句台词的音频时长，直接决定打字速度、判定点留白和 CD 是否成立。</li>
         <li>它最花时间：15–20 个文件，每个都要试听、核对许可、改名、转码。</li>
+        <li><b>恐怖感有一大半来自声音</b>：灰盒用假图可以，但用假声音判断不了这个游戏吓不吓人。</li>
       </ul>
       <h4>验收标准</h4>
       <ul class="chk">
         <li>环境底噪与按对/按错音已到手并通过试听（两者音色能明确区分）</li>
-        <li>语音可行性有明确结论（有文件 / 没有），已通知 XJW</li>
         <li>占位素材已按 ID 命名交付给 YDC</li>
+        <li>首批音效已进工程、能在 S2 原型里听见</li>
       </ul>
     </div>
   </details>
 
   <details class="phase">
-    <summary><span class="date">9/22 – 9/26</span><span class="name">阶段 2 · 全量素材制作与交付</span><span class="pill ypq">YPQ</span><span class="pill warn">9/26 全量到位</span></summary>
+    <summary><span class="date">9/20 – 9/24</span><span class="name">阶段 2 · 全量素材制作与交付</span><span class="pill ypq">YPQ</span><span class="pill warn">9/24 全量到位</span></summary>
     <div class="body">
       <h4>交付节奏</h4>
       <ul>
-        <li><b>9/22 首批</b>：环境音 + 反馈音 + 前 30 句台词音频 → YDC 开始接线（比全量提前 4 天，让程序先跑起来）</li>
-        <li><b>9/26 全量</b>：剩下全部台词音频 + 道具 + 场景 + UI + 字体 + shader</li>
+        <li><b>9/19 首批</b>：环境音 + 反馈音 + 打字机音 → 供 S2 原型试听（比全量提前 5 天，让程序先跑起来）</li>
+        <li><b>9/24 全量</b>：剩下的点缀音/跳吓音/交互音 + 道具 + 场景 + UI + 字体 + shader</li>
       </ul>
       <h4>交付前必须自己过的三关</h4>
       <table class="tbl">
         <tr><th>关</th><th>怎么过</th></tr>
-        <tr><td>命名关</td><td>每个文件名与判定点表里的 ID 对得上（<code>SFX_line_S01-L007.wav</code> ↔ <code>S01-L007</code>）</td></tr>
+        <tr><td>命名关</td><td>每个文件名与规范对得上（<code>SFX_click_yes.wav</code>、<code>SFX_line_S01-L007_end.wav</code>）</td></tr>
         <tr><td>许可关</td><td>每一条在台账里有 <code>许可证</code> + <code>AI披露</code> 两列，且都不是空的</td></tr>
-        <tr><td>可听/可看关</td><td>音频<b>实际点击试听</b>过；图片在目标分辨率下<b>肉眼看过</b>，不是只看缩略图列表</td></tr>
+        <tr><td>可听/可看关</td><td>音效<b>实际点击试听</b>过；图片在目标分辨率下<b>肉眼看过</b>，不是只看缩略图列表</td></tr>
       </table>
       <div class="note bad">
         <b>字体是本作唯一的真实素材缺口。</b>如果游戏是中文：免费可商用的"恐怖感"中文字体几乎没有（市面上的书法/恐怖中文字体基本都是商业授权）。
@@ -513,7 +519,7 @@
       </div>
       <h4>验收标准</h4>
       <ul class="chk">
-        <li>全部音频已交付，命名无误，时长列已回填</li>
+        <li>全部音效已交付，命名无误</li>
         <li>字体文件附 <code>*.LICENSE.txt</code></li>
         <li>无一件素材的来源是"忘了从哪下的"</li>
       </ul>
@@ -538,7 +544,7 @@
   </details>
 
   <details class="phase">
-    <summary><span class="date">9/29 – 9/30</span><span class="name">阶段 4 · 提交材料与授权台账收口</span><span class="pill ypq">YPQ</span></summary>
+    <summary><span class="date">9/29</span><span class="name">阶段 4 · 提交材料与授权台账收口</span><span class="pill ypq">YPQ</span></summary>
     <div class="body">
       <ol>
         <li><b>CREDITS.md 收口</b>：逐条核对"资产名 / 作者 / 来源 URL / 许可证 / 用在哪 / 是否需署名"。
@@ -563,7 +569,7 @@
       <tr><td>买完素材不记许可</td><td>提交时无法证明授权 → 可能直接违规，且补不回来</td><td>采购一件填一行，当场填</td></tr>
       <tr><td>把 itch 的 <code>CC0</code> 当成"安全"</td><td><b>CC0 ≠ 非 AI</b>——AI 生成的包也能标 CC0</td><td>同时看 <code>AI Disclosure</code> 字段</td></tr>
       <tr><td>给角色做行走动画 / 加帧</td><td>已经决定彻底不做动画（团队做像素动画效果不理想），剪影下几乎看不出损失</td><td>保持静态剪影 + 代码做朝向与轻微倾斜</td></tr>
-      <tr><td>等到 9/25 再定美术风格</td><td>UI / 道具 / 截图全部要重做，且截图是提交材料</td><td>9/17 前把分辨率、色板、tileset 定死</td></tr>
+      <tr><td>等到 9/25 再定美术风格</td><td>UI / 道具 / 截图全部要重做，且截图是提交材料</td><td>9/15 前把分辨率、色板、tileset 定死</td></tr>
       <tr><td>直接改工程里的文件</td><td>会和 YDC 的改动互相覆盖</td><td>素材按 ID 命名放进交付目录，由 YDC 导入</td></tr>
     </table>
   </div>
@@ -575,9 +581,9 @@
     <h3>三个冻结点</h3>
     <table class="tbl">
       <tr><th>冻结项</th><th>时间</th><th>冻结之后允许什么</th><th>不允许什么</th></tr>
-      <tr><td>视觉风格（分辨率/色板/tileset）</td><td class="d">9/17</td><td>补充同类素材、修色偏</td><td>换风格、换分辨率</td></tr>
+      <tr><td>视觉风格（分辨率/色板/tileset）</td><td class="d">9/15</td><td>补充同类素材、修色偏</td><td>换风格、换分辨率</td></tr>
       <tr><td><b>文案与判定点（编号/分类/后果）</b></td><td class="d">9/25</td><td>改台词文字、调参数、删句</td><td>改编号、加句、改分类定义</td></tr>
-      <tr><td>功能范围（MVP 八项）</td><td class="d">9/21</td><td>修 bug、调手感</td><td>加新机制、加新场景</td></tr>
+      <tr><td>功能范围（MVP 八项）</td><td class="d">9/19</td><td>修 bug、调手感</td><td>加新机制、加新场景</td></tr>
     </table>
     <div class="note">
       <b>冻结例外的流程（只走这一条）：</b>要改 → 在群里说明"改什么 + 为什么现在必须改 + 会影响谁" → 受影响的两个人点头 → 才改。
@@ -592,24 +598,23 @@
       <li><b>Windows</b> 可运行（导出 .exe 并在一台干净机器上试跑过）</li>
       <li>投稿期内才开始开发（<b>没有拿旧项目</b>）</li>
       <li>素材全部合法授权：无盗用、<b>无未授权同人</b>、无"personal use only"、无 CC-BY-NC / GPL / CC-BY-SA</li>
-      <li>全程<b>无任何 AI 生成内容</b>（美术／音频／文本／<b>代码</b>）</li>
-      <li><b>不做任何 AI 语音、不克隆任何人的声音</b></li>
+      <li>全程<b>无任何 AI 生成内容</b>（美术／音效／文本／<b>代码</b>）</li>
+      <li><b>不做任何 AI 语音、不克隆任何人的声音</b>（本作全程无语音，天然满足）</li>
+      <li>叙事为<b>纯文本逐字显示、无任何配音</b>——文字即它的身体</li>
       <li>非 18+ NSFW；投票期免费、人人可玩</li>
       <li>使用官方标签 <code>#HawktoberHorrors</code></li>
       <li>⚠️ <b>提交前亲眼逐条读 itch 页面的 Rules 原文</b>（不靠转述）</li>
-      <li>⚠️ <b>2026 明确不提供任何延期</b>——内部 9/30 提交，留 3 天缓冲</li>
+      <li>⚠️ <b>2026 明确不提供任何延期</b>——<b>内部 9/29 提交</b>，留 4 天缓冲</li>
     </ul>
-    <div class="note bad" style="margin-bottom:0">
-      <b>待核实项（别当成已通过）：</b>官方"没有任何口白与文字对话"这一条——
-      本作是<b>单向文本广播</b>（不是对话），<b>可以争取，但必须读官方原文确认</b>。
-      这一条会影响"台词是否配语音"的决定，所以要在 9/18 之前有结论。
+    <div class="note ok" style="margin-bottom:0">
+      <b>已由 9/13 的决定消解的一项：</b>官方"没有任何口白与文字对话"这条调味料——
+      本作是<b>单向文本广播</b>（不是对话），且<b>全程无配音</b>，因此不触碰这一条，<b>不需要再去争取或逐字核实</b>。
     </div>
   </div>
 
   <div class="card">
     <h3>本页之外还需要团队定夺的事</h3>
     <ul>
-      <li><b>语音到底配不配</b>：这是"无台词"规则 + 音频可行性两件事交叉的结果，只有团队能定。</li>
       <li><b>CD 的最终值</b>：由盲测数据决定，不靠拍脑袋。</li>
       <li><b>结局分几档</b>：建议 3 档，超过 4 档收益递减（玩家只看到一档）。</li>
       <li><b>游戏是中文还是英文</b>：直接决定字体方案与 itch 页面的受众。</li>
@@ -619,16 +624,16 @@
   <div class="card">
     <h3>下一步（按这个顺序做）</h3>
     <ol>
-      <li><b>YDC</b> 在 9/17 前把判定点表的可填版本 + 工程骨架做好，发到群里。</li>
-      <li><b>XJW</b> 拿到表就开填，同时交付故事梗概与 CD 初值。</li>
-      <li><b>YPQ</b> 先动音频（尤其确认 Freesound 能不能下载），9/18 给出语音可行性结论。</li>
-      <li>三人在 9/18–9/21 合力完成<b>原型灰盒 + 第一次盲测</b>——这是整个项目最关键的一步，它决定玩法成不成立。</li>
+      <li><b>YDC</b> 在 <b>9/15 前</b>把判定点表的可填版本 + 工程骨架做好，发到群里（G1 里属于我的那一项）。</li>
+      <li><b>XJW</b> 拿到表就开填，同时交付故事梗概、结局分档规则与 CD 初值（G1）。</li>
+      <li><b>YPQ</b> 交素材规格书 + 缺口清单（G1），并<b>先动音效</b>——尤其确认 Freesound 能不能下载。</li>
+      <li>三人在 <b>9/16–9/19</b> 合力完成<b>原型灰盒 + 第一次盲测</b>——这是整个项目最关键的一步，它决定玩法成不成立（G2）。</li>
     </ol>
   </div>
 
   <p class="muted small" style="margin-top:26px">
     依据：《别信它》方案书（YDC，2026-09-11）·《素材需求清单_别信它》·《恐怖jam免费素材清单》·《itch-horror-assets-license》· 官方 itch 页面信息。
-    本页只写事实、规则与判定条件；玩法与技术选型由团队内部定夺。日期为内部计划，官方截止以 itch 页面为准。
+    本页只写事实、规则与判定条件；玩法与技术选型由团队内部定夺。日期为内部计划（内部死线 9/29），官方截止以 itch 页面为准。
   </p>
 
 </div>
