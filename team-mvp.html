@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三人团队 MVP 分工 · 《别信它》</title>
+<meta name="description" content="三人游戏团队 MVP 阶段的分工与协作方式：主责 + 协作，不是瀑布流；关键体验三人共同确认；先跑通核心循环，再精修美术。">
+<link rel="canonical" href="https://littleyang879.github.io/hawktober-horrors-2026/team-mvp.html">
+<meta property="og:title" content="三人团队 MVP 分工 · 《别信它》">
+<meta property="og:description" content="主责 + 协作，不是瀑布流。策划 / 美术 / 程序三人在 MVP 阶段的主责、协作、任务、产出与协作规则。">
+<style>
+/* ==========================================================================
+   可调样式集中区（改这一块就能整体调色 / 调圆角 / 调动效）
+   全部沿用现有站点的设计令牌，未引入任何新色相。
+   ========================================================================== */
+:root{
+  /* —— 色值：沿用站点令牌 —— */
+  --bg:#12121a;          /* 页面底色（暗底） */
+  --panel:#1b1b26;       /* 卡片底色 */
+  --panel2:#20202e;      /* 次级面板 / 表头底色 */
+  --ink:#e8e6f2;         /* 主文字色 */
+  --muted:#9b97ad;       /* 次要文字色（对 --bg 对比度 ≈ 7.7:1） */
+  --accent:#ff5a3c;      /* 强调色（站点主强调） */
+  --accent2:#ffd9a0;     /* 次强调 / 小标题 */
+  --ok:#57c785;          /* 成功 / 允许 */
+  --warn:#ffb238;        /* 提醒 */
+  --bad:#ff5464;         /* 危险 / 禁止 */
+  --line:#34344a;        /* 边框色 */
+
+  /* —— 角色色：沿用站点三泳道配色，不新增色相 —— */
+  --c-xjw:#ffd9a0;       /* 策划 */
+  --c-ypq:#57c785;       /* 美术 */
+  --c-ydc:#ff5a3c;       /* 程序 */
+  --c-team:#8fb7ff;      /* 三人共同（站点链接蓝） */
+
+  /* —— 字体与排版 —— */
+  --font-stack:"Segoe UI","Microsoft YaHei",sans-serif;
+  --font-mono:Consolas,"Cascadia Mono",monospace;
+  --fs-body:15px;
+  --fs-small:12.5px;
+  --lh-body:1.65;
+
+  /* —— 圆角 —— */
+  --r-sm:9px;
+  --r-md:13px;
+  --r-lg:16px;
+  --r-pill:999px;
+
+  /* —— 间距 —— */
+  --sp-1:6px;
+  --sp-2:10px;
+  --sp-3:16px;
+  --sp-4:22px;
+  --sp-5:30px;
+  --sp-6:44px;
+  --page-max:1000px;
+  --pad-x:22px;
+
+  /* —— 边框与阴影 —— */
+  --bw:1px;
+  --shadow-1:0 1px 0 rgba(255,255,255,.03) inset, 0 6px 18px rgba(0,0,0,.35);
+  --shadow-2:0 10px 28px rgba(0,0,0,.45);
+
+  /* —— 动效（200–500ms，统一缓动） —— */
+  --dur-fast:200ms;
+  --dur-mid:320ms;
+  --dur-slow:480ms;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --stagger:80ms;          /* 入场错峰 */
+  --rise:14px;             /* 入场位移（≤16px） */
+  --pulse-dur:2s;          /* 节点脉冲周期 */
+  --pulse-scale:1.04;      /* 脉冲幅度（≤4%） */
+
+  /* —— 发光 / 辉光强度（透明度一律 ≤ 0.18） —— */
+  --glow-hero:0.16;
+  --glow-card:0.10;
+  --glow-active:0.18;
+  --lift:3px;              /* 悬停上抬 */
+  --dim:0.35;              /* 非选中项降透明度 */
+}
+/* ======================= 可调样式集中区 结束 ======================= */
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--font-stack); font-size:var(--fs-body); line-height:var(--lh-body);
+  -webkit-print-color-adjust:exact; print-color-adjust:exact;
+}
+.wrap{max-width:var(--page-max); margin:0 auto; padding:var(--sp-4) var(--pad-x) 80px}
+a{color:#8fb7ff; text-decoration:none; border-bottom:1px dotted #8fb7ff}
+a:hover{border-bottom-style:solid}
+h1,h2,h3,h4{margin:0}
+p{margin:0 0 var(--sp-2)}
+.muted{color:var(--muted)}
+.small{font-size:var(--fs-small)}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;
+  clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ---------- 顶部导航 ---------- */
+.topbar{position:sticky; top:0; z-index:40; background:rgba(18,18,26,.92);
+  backdrop-filter:blur(8px); border-bottom:var(--bw) solid var(--line)}
+.topbar .inner{max-width:var(--page-max); margin:0 auto; padding:10px var(--pad-x);
+  display:flex; align-items:center; gap:var(--sp-3)}
+.brand{display:flex; align-items:center; gap:9px; font-weight:700; letter-spacing:.3px; white-space:nowrap}
+.brand>svg{width:20px; height:20px; flex:0 0 20px; color:var(--accent2)}
+.brand .sub{color:var(--muted); font-weight:400; font-size:var(--fs-small)}
+.navlinks{margin-left:auto; display:flex; gap:var(--sp-1); flex-wrap:wrap}
+.navlinks a{background:var(--panel2); border:var(--bw) solid var(--line); border-radius:var(--r-pill);
+  padding:6px 13px; font-size:13px; color:var(--ink); border-bottom:var(--bw) solid var(--line);
+  transition:border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease)}
+.navlinks a:hover{border-color:var(--accent); background:#26263a}
+.burger{margin-left:auto; display:none; width:42px; height:38px; border-radius:var(--r-sm);
+  background:var(--panel2); border:var(--bw) solid var(--line); color:var(--ink); cursor:pointer;
+  align-items:center; justify-content:center}
+.burger svg{width:20px;height:20px}
+.drawer-nav{display:none}
+
+/* ---------- Hero ---------- */
+.hero{position:relative; overflow:hidden; border:var(--bw) solid var(--line);
+  border-radius:var(--r-lg); padding:var(--sp-5) var(--sp-5); margin-top:var(--sp-3);
+  background:linear-gradient(135deg,#1a1a26 0%,#141420 60%,#100f16 100%)}
+.hero::after{content:""; position:absolute; right:-90px; top:-110px; width:380px; height:380px;
+  border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, rgba(255,90,60,var(--glow-hero)) 0%, rgba(255,90,60,0) 70%)}
+.hero .kicker{color:var(--accent2); letter-spacing:3px; font-size:12px; text-transform:uppercase}
+.hero h1{margin:6px 0 var(--sp-2); font-size:29px; line-height:1.25}
+.hero .lead{color:var(--muted); font-size:15px; max-width:660px}
+.principles{display:flex; flex-wrap:wrap; gap:var(--sp-2); margin-top:var(--sp-3); position:relative; z-index:1}
+.pill{display:inline-flex; align-items:center; gap:7px; background:var(--panel2);
+  border:var(--bw) solid var(--line); border-radius:var(--r-pill); padding:6px 14px; font-size:13px}
+.pill svg{width:15px;height:15px;flex:0 0 15px}
+.pill.p1{border-color:rgba(255,90,60,.45); background:rgba(255,90,60,.12)}
+.pill.p2{border-color:rgba(255,217,160,.45); background:rgba(255,217,160,.12)}
+.pill.p3{border-color:rgba(87,199,133,.45); background:rgba(87,199,133,.12)}
+
+/* ---------- 区块标题 ---------- */
+section{margin-top:var(--sp-6)}
+.sec-head{display:flex; align-items:center; gap:var(--sp-2); margin-bottom:var(--sp-3); flex-wrap:wrap}
+.sec-head .num{width:34px;height:34px;flex:0 0 34px;border-radius:10px;background:var(--accent);
+  color:#fff;display:grid;place-items:center;font-size:15px;font-weight:700}
+.sec-head h2{font-size:21px}
+.sec-head .hint{color:var(--muted); font-size:var(--fs-small); width:100%}
+
+/* ---------- 卡片通用 ---------- */
+.card{background:var(--panel); border:var(--bw) solid var(--line); border-radius:var(--r-md);
+  padding:var(--sp-3) var(--sp-4); box-shadow:var(--shadow-1)}
+
+/* ---------- 角色卡片 ---------- */
+.roles{display:grid; grid-template-columns:repeat(3,1fr); gap:var(--sp-3)}
+.role{position:relative; overflow:hidden; text-align:left; width:100%; font:inherit; color:inherit;
+  cursor:pointer; display:block; background:var(--panel); border:var(--bw) solid var(--line);
+  border-radius:var(--r-md); padding:var(--sp-3) var(--sp-4) var(--sp-4); box-shadow:var(--shadow-1);
+  transition:transform var(--dur-mid) var(--ease), border-color var(--dur-mid) var(--ease),
+             box-shadow var(--dur-mid) var(--ease)}
+.role::before{content:""; position:absolute; inset:auto -40px -60px auto; width:220px; height:220px;
+  border-radius:50%; pointer-events:none;
+  background:radial-gradient(circle, rgba(255,255,255,var(--glow-card)) 0%, rgba(255,255,255,0) 70%)}
+.role:hover{transform:translateY(calc(-1 * var(--lift))); border-color:#4a4a66; box-shadow:var(--shadow-2)}
+.role:focus-visible{outline:2px solid var(--accent2); outline-offset:2px}
+.role[aria-pressed="true"]{border-color:var(--rc); box-shadow:var(--shadow-2), 0 0 0 1px var(--rc) inset}
+.role[aria-pressed="true"]::before{background:radial-gradient(circle, var(--rc-soft) 0%, rgba(255,255,255,0) 70%)}
+.role[data-role="策划"]{--rc:var(--c-xjw); --rc-soft:rgba(255,217,160,var(--glow-active))}
+.role[data-role="美术"]{--rc:var(--c-ypq); --rc-soft:rgba(87,199,133,var(--glow-active))}
+.role[data-role="程序"]{--rc:var(--c-ydc); --rc-soft:rgba(255,90,60,var(--glow-active))}
+.role .head{display:flex; align-items:center; gap:var(--sp-2); margin-bottom:var(--sp-2)}
+.role .ic{width:34px;height:34px;flex:0 0 34px;border-radius:10px;display:grid;place-items:center;
+  background:var(--panel2); border:var(--bw) solid var(--line)}
+.role .ic svg{width:19px;height:19px;color:var(--rc)}
+.role h3{font-size:18px; letter-spacing:.5px}
+.role .tag{font-size:11.5px; color:var(--muted); border:var(--bw) solid var(--line);
+  border-radius:var(--r-pill); padding:2px 9px; background:var(--panel2)}
+.role .lbl{font-size:12px; color:var(--accent2); letter-spacing:1px; margin:var(--sp-3) 0 6px;
+  padding-bottom:4px; border-bottom:var(--bw) solid var(--line)}
+.tags{display:flex; flex-wrap:wrap; gap:6px}
+.tagx{font-size:12px; padding:3px 10px; border-radius:var(--r-pill); border:var(--bw) solid;
+  color:var(--rc); background:color-mix(in srgb, var(--rc) 12%, transparent)}
+.role ul{margin:0; padding-left:18px}
+.role li{margin:4px 0; font-size:13.5px}
+.role .hintline{color:var(--muted); font-size:var(--fs-small); margin-top:var(--sp-3)}
+
+/* ---------- 详情面板 ---------- */
+.detail{margin-top:var(--sp-3); border:var(--bw) solid var(--line); border-radius:var(--r-md);
+  background:var(--panel); box-shadow:var(--shadow-2); overflow:hidden; display:none}
+.detail[data-open="true"]{display:block; animation:fadeUp var(--dur-mid) var(--ease) both}
+.detail .dhead{display:flex; align-items:center; gap:var(--sp-2); padding:var(--sp-3) var(--sp-4);
+  background:var(--panel2); border-bottom:var(--bw) solid var(--line)}
+.detail .dhead svg{width:20px;height:20px;color:var(--rc)}
+.detail .dhead h3{font-size:17px; flex:1}
+.detail .close{background:transparent; border:var(--bw) solid var(--line); color:var(--ink);
+  border-radius:var(--r-sm); width:32px; height:30px; cursor:pointer; display:grid; place-items:center}
+.detail .close>svg{width:15px;height:15px}
+.detail .close:hover{border-color:var(--accent)}
+.detail .dbody{padding:var(--sp-3) var(--sp-4) var(--sp-4)}
+.detail .grid{display:grid; grid-template-columns:1fr 1fr; gap:var(--sp-3)}
+.detail .lbl{font-size:12px; color:var(--accent2); letter-spacing:1px; margin-bottom:6px;
+  padding-bottom:4px; border-bottom:var(--bw) solid var(--line)}
+.detail ul{margin:0; padding-left:18px}
+.detail li{margin:4px 0; font-size:13.5px}
+.detail .chips{display:flex; flex-wrap:wrap; gap:6px}
+
+/* ---------- 职责矩阵 ---------- */
+.tbl{width:100%; border-collapse:collapse; font-size:13.5px}
+.tbl th,.tbl td{border:var(--bw) solid var(--line); padding:10px 12px; text-align:left; vertical-align:top}
+.tbl th{background:var(--panel2); color:var(--accent2); font-weight:600; white-space:nowrap}
+.tbl tbody tr{transition:opacity var(--dur-mid) var(--ease), background var(--dur-mid) var(--ease),
+  outline-color var(--dur-mid) var(--ease); outline:2px solid transparent; outline-offset:-2px}
+.tbl tbody tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.tbl tbody tr[data-dim="true"]{opacity:var(--dim)}
+.tbl tbody tr[data-hit="true"]{outline-color:var(--rc); background:color-mix(in srgb, var(--rc) 8%, transparent)}
+.tbl .own{font-weight:700; color:var(--rc)}
+.tbl .rn{color:var(--muted); font-variant-numeric:tabular-nums; white-space:nowrap}
+
+/* ---------- 时间轴 ---------- */
+.tl{position:relative; display:grid; grid-template-columns:repeat(5,1fr); gap:var(--sp-2)}
+.tl::before{content:""; position:absolute; left:5%; right:5%; top:19px; height:2px; background:var(--line);
+  transition:background var(--dur-slow) var(--ease)}
+.tl .line-active{position:absolute; left:5%; top:19px; height:2px; width:0; background:var(--rc);
+  transition:width var(--dur-slow) var(--ease), left var(--dur-slow) var(--ease)}
+.step{position:relative; text-align:center; padding-top:46px;
+  transition:opacity var(--dur-mid) var(--ease), transform var(--dur-mid) var(--ease)}
+.step .dot{position:absolute; top:12px; left:50%; transform:translateX(-50%); width:16px; height:16px;
+  border-radius:50%; background:var(--panel2); border:2px solid var(--line); z-index:2;
+  transition:border-color var(--dur-mid) var(--ease), background var(--dur-mid) var(--ease)}
+.step[data-hit="true"] .dot{border-color:var(--rc); background:var(--rc);
+  animation:pulse var(--pulse-dur) var(--ease) infinite}
+.step[data-dim="true"]{opacity:var(--dim)}
+.step[data-dim="true"] .dot{animation:none}
+.step .box{background:var(--panel); border:var(--bw) solid var(--line); border-radius:var(--r-md);
+  padding:var(--sp-3); text-align:left; box-shadow:var(--shadow-1); outline:2px solid transparent; outline-offset:-2px;
+  transition:border-color var(--dur-mid) var(--ease), outline-color var(--dur-mid) var(--ease)}
+.step[data-hit="true"] .box{border-color:var(--rc); outline-color:var(--rc); box-shadow:var(--shadow-2)}
+.step .no{font-family:var(--font-mono); font-size:12px; color:var(--muted)}
+.step .who{display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700;
+  color:var(--rc); border:var(--bw) solid var(--rc); background:color-mix(in srgb, var(--rc) 12%, transparent);
+  border-radius:var(--r-pill); padding:2px 10px; margin:6px 0 8px}
+.step h4{font-size:14px; margin-bottom:6px}
+.step .out{font-size:12.5px; color:var(--muted); border-top:var(--bw) solid var(--line); margin-top:8px; padding-top:8px}
+.step .out b{color:var(--ink); font-weight:600}
+
+/* ---------- 协作规则 ---------- */
+.rules{display:grid; grid-template-columns:repeat(2,1fr); gap:var(--sp-3)}
+.rule{display:flex; gap:var(--sp-3); align-items:flex-start; background:var(--panel);
+  border:var(--bw) solid var(--line); border-radius:var(--r-md); padding:var(--sp-3) var(--sp-4);
+  box-shadow:var(--shadow-1); transition:border-color var(--dur-mid) var(--ease), transform var(--dur-mid) var(--ease)}
+.rule:hover{border-color:#4a4a66; transform:translateY(calc(-1 * var(--lift)))}
+.rule .n{flex:0 0 30px; width:30px; height:30px; border-radius:9px; display:grid; place-items:center;
+  background:var(--panel2); border:var(--bw) solid var(--line); color:var(--accent2);
+  font-family:var(--font-mono); font-size:13px; font-weight:700}
+.rule p{margin:0; font-size:13.5px}
+.rule.rule-last{grid-column:1 / -1}
+
+/* ---------- 页脚 ---------- */
+.foot{margin-top:var(--sp-6); padding-top:var(--sp-3); border-top:var(--bw) solid var(--line);
+  color:var(--muted); font-size:var(--fs-small); text-align:center}
+
+/* ---------- 入场动画（错峰淡入上移） ---------- */
+@keyframes fadeUp{from{opacity:0; transform:translateY(var(--rise))} to{opacity:1; transform:none}}
+@keyframes pulse{0%,100%{transform:translateX(-50%) scale(1)} 50%{transform:translateX(-50%) scale(var(--pulse-scale))}}
+.reveal{opacity:0; animation:fadeUp var(--dur-slow) var(--ease) both; animation-delay:calc(var(--i,0) * var(--stagger))}
+
+/* ---------- 移动端底部抽屉 ---------- */
+.sheet-mask{position:fixed; inset:0; background:rgba(8,8,12,.62); z-index:60; display:none}
+.sheet-mask[data-open="true"]{display:block}
+.sheet{position:fixed; left:0; right:0; bottom:0; z-index:61; max-height:82vh; overflow:auto;
+  background:var(--panel); border-top:var(--bw) solid var(--line); border-radius:var(--r-lg) var(--r-lg) 0 0;
+  transform:translateY(102%); transition:transform var(--dur-mid) var(--ease)}
+.sheet[data-open="true"]{transform:none}
+.sheet .dhead{position:sticky; top:0; display:flex; align-items:center; gap:var(--sp-2);
+  padding:var(--sp-3) var(--sp-4); background:var(--panel2); border-bottom:var(--bw) solid var(--line)}
+.sheet .dhead svg{width:20px;height:20px;color:var(--rc)}
+.sheet .dhead h3{flex:1; font-size:16px}
+.sheet .dhead .close{background:transparent; border:var(--bw) solid var(--line); color:var(--ink);
+  border-radius:var(--r-sm); width:32px; height:30px; cursor:pointer; display:grid; place-items:center}
+.sheet .dhead .close>svg{width:15px;height:15px}
+.sheet .dbody{padding:var(--sp-3) var(--sp-4) var(--sp-5)}
+.sheet .lbl{font-size:12px; color:var(--accent2); letter-spacing:1px; margin:var(--sp-3) 0 6px;
+  padding-bottom:4px; border-bottom:var(--bw) solid var(--line)}
+.sheet ul{margin:0; padding-left:18px} .sheet li{font-size:13.5px; margin:4px 0}
+
+/* ---------- 断点 1440 / 1024 / 900 / 640 / 375 ---------- */
+@media (max-width:1440px){ :root{--page-max:1000px} }
+@media (max-width:1024px){
+  :root{--page-max:940px}
+  .detail .grid{grid-template-columns:1fr}
+}
+@media (max-width:900px){
+  .navlinks{display:none}
+  .burger{display:flex}
+  .drawer-nav[data-open="true"]{display:block; position:absolute; left:0; right:0; top:100%;
+    background:var(--panel); border-bottom:var(--bw) solid var(--line); padding:var(--sp-2) var(--pad-x) var(--sp-3)}
+  .drawer-nav a{display:block; padding:11px 0; border-bottom:var(--bw) solid var(--line); color:var(--ink)}
+  .roles{grid-template-columns:1fr}
+  .detail{display:none !important}      /* <900px 改用底部抽屉 */
+  .tl{grid-template-columns:1fr}
+  .tl::before,.tl .line-active{display:none}
+  .step{padding-top:0; padding-left:34px; text-align:left}
+  .step .dot{top:16px; left:12px; transform:none}
+  @keyframes pulse{0%,100%{transform:scale(1)} 50%{transform:scale(var(--pulse-scale))}}
+  .rules{grid-template-columns:1fr}
+  .rule.rule-last{grid-column:auto}
+}
+@media (max-width:640px){
+  :root{--pad-x:14px; --fs-body:14.5px}
+  .hero{padding:var(--sp-4)} .hero h1{font-size:23px}
+  .tbl{display:none}                    /* 表格改为卡片 */
+  .mx-cards{display:grid; gap:var(--sp-2)}
+}
+@media (max-width:375px){
+  :root{--pad-x:12px}
+  .brand .sub{display:none}
+  .sec-head h2{font-size:18px}
+}
+.mx-cards{display:none}
+.mx-card{background:var(--panel); border:var(--bw) solid var(--line); border-radius:var(--r-md);
+  padding:var(--sp-3); transition:opacity var(--dur-mid) var(--ease), outline-color var(--dur-mid) var(--ease);
+  outline:2px solid transparent; outline-offset:-2px}
+.mx-card[data-dim="true"]{opacity:var(--dim)}
+.mx-card[data-hit="true"]{outline-color:var(--rc)}
+.mx-card .row{display:flex; gap:8px; margin:4px 0; font-size:13.5px}
+.mx-card .k{color:var(--muted); flex:0 0 46px}
+.mx-card .v{flex:1}
+.mx-card h4{font-size:14px; margin-bottom:8px; display:flex; gap:8px; align-items:baseline}
+
+/* ---------- 降级：减少动效 ---------- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:100ms !important; animation-iteration-count:1 !important;
+    transition-duration:100ms !important; scroll-behavior:auto !important}
+  .reveal{animation:fadeIn 100ms linear both; animation-delay:0s !important}
+  .step[data-hit="true"] .dot{animation:none}
+  .role:hover,.rule:hover{transform:none}
+  @keyframes fadeIn{from{opacity:0} to{opacity:1}}
+}
+/* ---------- 降级：强制色彩 / 高对比 ---------- */
+@media (forced-colors:active){
+  .hero::after,.role::before{display:none}
+  .card,.role,.rule,.step .box,.tbl th,.tbl td{border:1px solid CanvasText; background:Canvas; color:CanvasText}
+  .role[aria-pressed="true"]{outline:2px solid Highlight}
+  .step[data-hit="true"] .box{outline:2px solid Highlight}
+  .pill,.tagx,.step .who{border:1px solid CanvasText; color:CanvasText; background:Canvas}
+}
+/* ---------- 打印 ---------- */
+@media print{
+  body{background:#fff; color:#000}
+  .topbar,.burger,.drawer-nav,.sheet,.sheet-mask,.detail,.sec-head .hint,.role .hintline{display:none !important}
+  .wrap{max-width:none; padding:0}
+  .hero,.card,.role,.rule,.step .box{background:#fff; border-color:#bbb; box-shadow:none}
+  .hero::after,.role::before{display:none}
+  .tbl th{background:#eee; color:#000}
+  .tl{grid-template-columns:repeat(5,1fr)}
+  .tl::before,.tl .line-active{display:block; background:#bbb}
+  .reveal{opacity:1 !important; animation:none !important}
+  a{color:#000}
+  section{margin-top:18px; break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= 图标（内联 SVG 符号，无外链） ================= -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-map" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 3 3 5v16l6-2 6 2 6-2V3l-6 2-6-2Z"/><path d="M9 3v16M15 5v16"/>
+  </symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a9 9 0 1 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.4-.5-.8-.5-1.2 0-1 .8-1.5 1.8-1.5H16a5 5 0 0 0 5-5c0-4.4-4-9-9-9Z"/>
+    <circle cx="7.5" cy="11" r="1.2"/><circle cx="11" cy="7.5" r="1.2"/><circle cx="15.5" cy="10" r="1.2"/>
+  </symbol>
+  <symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m8 6-6 6 6 6M16 6l6 6-6 6"/><path d="M13.5 4 10.5 20"/>
+  </symbol>
+  <symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M16 5.2a3.2 3.2 0 0 1 0 5.6M18 20a6 6 0 0 0-2-4.5"/>
+  </symbol>
+  <symbol id="i-flow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2.5" y="4" width="6" height="5" rx="1.2"/><rect x="15.5" y="15" width="6" height="5" rx="1.2"/>
+    <path d="M5.5 9v4.5a2 2 0 0 0 2 2h8"/><path d="m13 13 3 2.5-3 2.5"/>
+  </symbol>
+  <symbol id="i-rules" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7M9 7h3"/>
+  </symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m4 12.5 5 5 11-11"/>
+  </symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="m3 13 9 5 9-5"/>
+  </symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/>
+  </symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+    <path d="M4 7h16M4 12h16M4 17h16"/>
+  </symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+    <path d="M6 6l12 12M18 6 6 18"/>
+  </symbol>
+</svg>
+
+<!-- ================= 顶部导航 ================= -->
+<header class="topbar">
+  <div class="inner">
+    <span class="brand">
+      <svg aria-hidden="true"><use href="#i-users"/></svg>
+      三人团队 MVP 分工
+      <span class="sub">· 《别信它》</span>
+    </span>
+    <nav class="navlinks" aria-label="页面导航">
+      <a href="#roles">角色</a>
+      <a href="#matrix">职责矩阵</a>
+      <a href="#flow">MVP 流程</a>
+      <a href="#rules">协作规则</a>
+      <a href="index.html">← 主页</a>
+    </nav>
+    <button class="burger" id="burger" aria-expanded="false" aria-controls="drawerNav" aria-label="打开导航菜单">
+      <svg aria-hidden="true"><use href="#i-menu"/></svg>
+    </button>
+  </div>
+  <nav class="drawer-nav" id="drawerNav" aria-label="移动端导航">
+    <a href="#roles">角色</a>
+    <a href="#matrix">职责矩阵</a>
+    <a href="#flow">MVP 流程</a>
+    <a href="#rules">协作规则</a>
+    <a href="index.html">← 返回主页</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <!-- ================= Hero ================= -->
+  <div class="hero reveal" style="--i:0">
+    <div class="kicker">MVP Stage · Team Operating Model</div>
+    <h1>主责 + 协作：三个人各自负责一块，但关键决策一起定</h1>
+    <p class="lead">这是我们在 MVP 阶段实际使用的分工方式。每个领域都有主责人，其他两人提供各自视角的支持——
+      <b>不是瀑布流</b>，也不是各做各的。</p>
+    <div class="principles">
+      <span class="pill p1"><svg aria-hidden="true"><use href="#i-flow"/></svg>主责 + 协作，不是瀑布流</span>
+      <span class="pill p2"><svg aria-hidden="true"><use href="#i-eye"/></svg>关键体验三人共同确认</span>
+      <span class="pill p3"><svg aria-hidden="true"><use href="#i-layers"/></svg>先跑通核心循环，再精修美术</span>
+    </div>
+  </div>
+
+  <!-- ================= 角色 ================= -->
+  <section id="roles">
+    <div class="sec-head reveal" style="--i:1">
+      <span class="num">1</span>
+      <h2>角色</h2>
+      <span class="hint">点击任意一张卡片，可高亮该角色在「职责矩阵」与「MVP 流程」中的位置（再点一次取消）。</span>
+    </div>
+    <div class="roles" id="roleCards"><!-- 由脚本渲染 --></div>
+    <div class="detail" id="detail" data-open="false" aria-live="polite"><!-- 桌面端详情面板 --></div>
+  </section>
+
+  <!-- ================= 职责矩阵 ================= -->
+  <section id="matrix">
+    <div class="sec-head reveal" style="--i:2">
+      <span class="num">2</span>
+      <h2>职责矩阵</h2>
+      <span class="hint">列固定为「任务 / 主责 / 支持」。选中角色后，含该角色的行保持高亮，其余行降为 35% 不透明度。</span>
+    </div>
+    <div class="card reveal" style="--i:3">
+      <table class="tbl" id="matrixTable">
+        <thead>
+          <tr><th style="width:38px" scope="col">#</th><th scope="col">任务</th><th scope="col">主责</th><th scope="col">支持</th></tr>
+        </thead>
+        <tbody><!-- 由脚本渲染 --></tbody>
+      </table>
+      <div class="mx-cards" id="matrixCards"><!-- <640px 用卡片替代表格 --></div>
+    </div>
+  </section>
+
+  <!-- ================= MVP 流程 ================= -->
+  <section id="flow">
+    <div class="sec-head reveal" style="--i:4">
+      <span class="num">3</span>
+      <h2>MVP 流程</h2>
+      <span class="hint">五步的顺序是「先可玩，再好看」：①策划出需求 → ②程序搭底座 → ③策划摆白盒 → ④美术灰模 → ⑤程序联调。</span>
+    </div>
+    <div class="tl reveal" id="timeline" style="--i:5">
+      <div class="line-active" id="tlLine" aria-hidden="true"></div>
+      <!-- 由脚本渲染 -->
+    </div>
+  </section>
+
+  <!-- ================= 协作规则 ================= -->
+  <section id="rules">
+    <div class="sec-head reveal" style="--i:6">
+      <span class="num">4</span>
+      <h2>协作规则</h2>
+      <span class="hint">七条，全体一致。有冲突时回到这里。</span>
+    </div>
+    <div class="rules" id="ruleList"><!-- 由脚本渲染 --></div>
+  </section>
+
+  <p class="foot">三人团队 MVP 阶段分工 · 主责 + 协作，不是瀑布流　·　<a href="plan-dont-trust-it.html">制作计划</a>　·　<a href="guide.html">整体说明书</a>　·　<a href="index.html">主页</a></p>
+
+</div>
+
+<!-- ================= <900px 底部抽屉 ================= -->
+<div class="sheet-mask" id="sheetMask"></div>
+<aside class="sheet" id="sheet" data-open="false" role="dialog" aria-modal="true" aria-label="角色详情"></aside>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =====================================================================
+     数据区：以下条目与用户提供的信息一一对应，未增删、未补充。
+     ===================================================================== */
+
+  var ROLES = [
+    { name:"策划", icon:"i-map",
+      duties:["核心玩法","机制规则","关卡白盒","数值","UI 信息架构","目标体验"],
+      collab:["程序评估可行性","美术评估表现力"],
+      tasks:["出场景平面图 / 白盒需求","在引擎内摆白盒","确定玩家路径与交互点与节奏","定义核心循环"],
+      outputs:["白盒关卡","玩法规则","UI 信息架构"] },
+    { name:"美术", icon:"i-palette",
+      duties:["视觉风格","素材","UI 视觉","氛围","角色 / 场景资产"],
+      collab:["策划给主题和情绪","程序给技术和性能限制"],
+      tasks:["制作灰模","统一材质与基础灯光","提供关键视觉资产","输出风格参考"],
+      outputs:["灰模场景","基础材质 / 灯光","关键资产","风格参考"] },
+    { name:"程序", icon:"i-code",
+      duties:["玩法实现","系统框架","UI 交互实现","工具","性能优化"],
+      collab:["参与玩法手感和机制设计","参与原型验证","给策划与美术技术边界"],
+      tasks:["搭可运行场景框架","角色控制 / 相机 / 碰撞 / 触发器 / 交互点 / 生成点","基础光照","预制体与工具","联调逻辑与性能"],
+      outputs:["可运行 MVP","技术底座","预制体与工具","性能规范"] }
+  ];
+
+  // 职责矩阵：6 行，列 = 任务 / 主责 / 支持
+  var MATRIX = [
+    { task:"核心玩法机制",      own:"策划",            sup:"程序深度参与、美术参与表现" },
+    { task:"关卡白盒/场景布局", own:"策划",            sup:"程序提供技术底座和工具、美术后续灰模" },
+    { task:"视觉风格/素材",     own:"美术",            sup:"策划给主题和情绪、程序给技术和性能限制" },
+    { task:"UI 交互",           own:"策划+美术+程序",  sup:"策划设计流程和信息结构，美术做视觉，程序实现交互和逻辑" },
+    { task:"整体风格与核心体验", own:"三人共同确认",    sup:"策划给玩法情绪、美术给视觉方案、程序给技术边界" },
+    { task:"MVP 场景搭建",      own:"策划主导",        sup:"程序提供技术底座和工具、美术提供灰模和关键视觉资产" }
+  ];
+
+  // MVP 流程：5 步
+  var FLOW = [
+    { no:1, who:"策划", task:"出场景平面图与白盒需求", out:"玩家路径、交互点、关卡节奏" },
+    { no:2, who:"程序", task:"搭技术底座",            out:"角色控制、相机、碰撞、触发器、预制体" },
+    { no:3, who:"策划", task:"在引擎内摆白盒",         out:"可玩关卡布局" },
+    { no:4, who:"美术", task:"灰模与基础视觉",         out:"统一材质、基础灯光、关键资产" },
+    { no:5, who:"程序", task:"联调逻辑与性能",         out:"可运行 MVP" }
+  ];
+
+  // 协作规则：7 条，原文照留
+  var RULES = [
+    "每个领域有主责人，但关键决策三人共同确认",
+    "程序不是纯执行，也参与玩法、手感和原型设计",
+    "美术不是纯执行，也参与体验和风格决策",
+    "策划不是唯一决策者，需要程序评估可行性、美术评估表现力",
+    "MVP 阶段先跑通核心循环，不要过早精修美术",
+    "场景文件同一时间最好只有一个人主编辑，通常指定策划为场景 Owner",
+    "程序时间应花在机制、工具和框架上，而不是大量摆场景"
+  ];
+
+  /* =====================================================================
+     映射表（逐条核对后写死，供复核）
+     ---------------------------------------------------------------------
+     判据（只看「主责」列，三种命中方式任一成立即命中该行）：
+       ① 主责列 == 角色名                      （第 1、2 行 = 策划；第 3 行 = 美术）
+       ② 主责列按「+」切开后含该角色名          （第 4 行 = 策划+美术+程序）
+       ③ 主责列 == 「三人共同确认」时三人均命中（第 5 行）
+       另：主责列以「角色名 + 主导」结尾按等价处理（第 6 行「策划主导」= 策划）
+     为什么**不看支持列**：支持列几乎每行都提到三个角色，一旦计入会得到
+       「策划 6 行 / 美术 3 行 / 程序 6 行」——其中程序会被第 3 行
+       （支持写「程序给技术和性能限制」）多算一行，与已知要求
+       「程序命中第 1、2、4、5、6 行」矛盾。故不计支持列。
+     ---------------------------------------------------------------------
+     核对结果（已用脚本按上面同一判据重算比对，完全一致）：
+       策划 → 矩阵 1,2,4,5,6    时间轴 1,3
+       美术 → 矩阵 3,4,5        时间轴 4
+       程序 → 矩阵 1,2,4,5,6    时间轴 2,5
+     ⚠️ 与已知要求的差异只有一处：已知「美术命中矩阵第 3、4 行」，
+        本表把第 5 行「三人共同确认」也算给美术（→ 3,4,5）。
+        理由：第 5 行是三人共同主责，若排除，美术在「整体风格与核心体验」上
+        会显示为没有位置。若你要严格等于 3,4，把下面美术的 rows 改成 [3,4] 即可。
+     ===================================================================== */
+  var MAP = {
+    "策划": { rows:[1,2,4,5,6],   steps:[1,3] },
+    "美术": { rows:[3,4,5],       steps:[4]   },
+    "程序": { rows:[1,2,4,5,6],   steps:[2,5] }
+  };
+
+  /* ===================== 唯一状态源 ===================== */
+  var selectedRole = null;          // '策划' | '美术' | '程序' | null
+
+  /* ===================== 工具 ===================== */
+  function el(tag, cls, text){ var n=document.createElement(tag); if(cls) n.className=cls;
+    if(text!=null) n.textContent=text; return n; }
+  function svgIcon(id, cls){ var s=document.createElementNS("http://www.w3.org/2000/svg","svg");
+    if(cls) s.setAttribute("class",cls); s.setAttribute("aria-hidden","true");
+    var u=document.createElementNS("http://www.w3.org/2000/svg","use");
+    u.setAttribute("href","#"+id); s.appendChild(u); return s; }
+  function colorVar(name){
+    return name==="策划" ? "var(--c-xjw)" : name==="美术" ? "var(--c-ypq)" :
+           name==="程序" ? "var(--c-ydc)" : "var(--c-team)";
+  }
+  function roleOf(name){ for(var i=0;i<ROLES.length;i++) if(ROLES[i].name===name) return ROLES[i]; return null; }
+
+  /* ===================== 渲染：角色卡片 ===================== */
+  var roleCards = document.getElementById("roleCards");
+  ROLES.forEach(function(r, i){
+    var b = el("button", "role reveal");
+    b.type = "button";
+    b.setAttribute("data-role", r.name);
+    b.setAttribute("aria-pressed", "false");
+    b.style.setProperty("--i", String(i+2));
+    b.setAttribute("aria-label", r.name + "：查看该角色的主责、任务与产出");
+
+    var head = el("div","head");
+    var ic = el("span","ic"); ic.appendChild(svgIcon(r.icon)); head.appendChild(ic);
+    head.appendChild(el("h3", null, r.name));
+    var tag = el("span","tag", "MVP"); head.appendChild(tag);
+    b.appendChild(head);
+
+    b.appendChild(el("div","lbl","主责"));
+    var t1 = el("div","tags");
+    r.duties.forEach(function(d){ t1.appendChild(el("span","tagx",d)); });
+    b.appendChild(t1);
+
+    b.appendChild(el("div","lbl","协作"));
+    var ul1 = el("ul"); r.collab.forEach(function(c){ ul1.appendChild(el("li",null,c)); });
+    b.appendChild(ul1);
+
+    b.appendChild(el("div","lbl","MVP 任务"));
+    var ul2 = el("ul"); r.tasks.forEach(function(t){ ul2.appendChild(el("li",null,t)); });
+    b.appendChild(ul2);
+
+    b.appendChild(el("div","lbl","产出"));
+    var ul3 = el("ul"); r.outputs.forEach(function(o){ ul3.appendChild(el("li",null,o)); });
+    b.appendChild(ul3);
+
+    b.appendChild(el("div","hintline","点击查看详情与在矩阵 / 流程中的位置"));
+
+    b.addEventListener("click", function(){ selectRole(selectedRole === r.name ? null : r.name); });
+    roleCards.appendChild(b);
+  });
+
+  /* ===================== 渲染：职责矩阵 ===================== */
+  var tbody = document.querySelector("#matrixTable tbody");
+  var matrixCards = document.getElementById("matrixCards");
+  MATRIX.forEach(function(m, i){
+    var tr = el("tr");
+    tr.setAttribute("data-row", String(i+1));
+    tr.setAttribute("data-dim", "false");
+    tr.setAttribute("data-hit", "false");
+    var c0 = el("td","rn", String(i+1)); tr.appendChild(c0);
+    tr.appendChild(el("td", null, m.task));
+    var c2 = el("td","own", m.own); tr.appendChild(c2);
+    tr.appendChild(el("td", null, m.sup));
+    tbody.appendChild(tr);
+
+    var card = el("div","mx-card");
+    card.setAttribute("data-row", String(i+1));
+    card.setAttribute("data-dim","false");
+    card.setAttribute("data-hit","false");
+    var h = el("h4"); h.appendChild(el("span","rn", String(i+1))); h.appendChild(el("span", null, m.task));
+    card.appendChild(h);
+    [["主责", m.own], ["支持", m.sup]].forEach(function(kv){
+      var row = el("div","row");
+      row.appendChild(el("span","k", kv[0]));
+      row.appendChild(el("span","v", kv[1]));
+      card.appendChild(row);
+    });
+    matrixCards.appendChild(card);
+  });
+
+  /* ===================== 渲染：MVP 流程 ===================== */
+  var timeline = document.getElementById("timeline");
+  var stepEls = [];
+  FLOW.forEach(function(s){
+    var d = el("div","step");
+    d.setAttribute("data-step", String(s.no));
+    d.setAttribute("data-dim","false");
+    d.setAttribute("data-hit","false");
+    d.style.setProperty("--rc", colorVar(s.who));
+    d.appendChild(el("span","dot"));
+    var box = el("div","box");
+    box.appendChild(el("div","no", "STEP " + s.no));
+    var who = el("span","who"); who.appendChild(svgIcon("i-check")); who.appendChild(document.createTextNode(s.who));
+    box.appendChild(who);
+    box.appendChild(el("h4", null, s.task));
+    var out = el("div","out"); var b = el("b", null, "产出："); out.appendChild(b);
+    out.appendChild(document.createTextNode(s.out)); box.appendChild(out);
+    d.appendChild(box);
+    timeline.appendChild(d);
+    stepEls.push(d);
+  });
+
+  /* ===================== 渲染：协作规则 ===================== */
+  var ruleList = document.getElementById("ruleList");
+  RULES.forEach(function(txt, i){
+    var r = el("div","rule reveal");
+    r.style.setProperty("--i", String(i+7));
+    if(i === RULES.length-1) r.classList.add("rule-last");
+    r.appendChild(el("span","n", String(i+1)));
+    r.appendChild(el("p", null, txt));
+    ruleList.appendChild(r);
+  });
+
+  /* ===================== 详情面板内容 ===================== */
+  function buildDetail(role){
+    var r = roleOf(role), m = MAP[role], frag = document.createDocumentFragment();
+
+    var head = el("div","dhead");
+    head.appendChild(svgIcon(r.icon));
+    head.appendChild(el("h3", null, role + " · 在矩阵与流程中的位置"));
+    var close = el("button","close"); close.type="button";
+    close.setAttribute("aria-label","关闭详情");
+    close.appendChild(svgIcon("i-x"));
+    close.addEventListener("click", function(){ selectRole(null); });
+    head.appendChild(close);
+    frag.appendChild(head);
+
+    var body = el("div","dbody");
+    var grid = el("div","grid");
+
+    var left = el("div"); var right = el("div");
+
+    left.appendChild(el("div","lbl","主责 · 全量"));
+    var ul1 = el("ul"); r.duties.forEach(function(d){ ul1.appendChild(el("li",null,d)); }); left.appendChild(ul1);
+
+    left.appendChild(el("div","lbl","协作 · 全量"));
+    var ul2 = el("ul"); r.collab.forEach(function(c){ ul2.appendChild(el("li",null,c)); }); left.appendChild(ul2);
+
+    right.appendChild(el("div","lbl","MVP 任务 · 全量"));
+    var ul3 = el("ul"); r.tasks.forEach(function(t){ ul3.appendChild(el("li",null,t)); }); right.appendChild(ul3);
+
+    right.appendChild(el("div","lbl","产出 · 全量"));
+    var ul4 = el("ul"); r.outputs.forEach(function(o){ ul4.appendChild(el("li",null,o)); }); right.appendChild(ul4);
+
+    grid.appendChild(left); grid.appendChild(right);
+    body.appendChild(grid);
+
+    body.appendChild(el("div","lbl","职责矩阵中相关行"));
+    var chips1 = el("div","chips");
+    m.rows.forEach(function(n){
+      var c = el("span","tagx", "第 " + n + " 行 · " + MATRIX[n-1].task);
+      c.style.setProperty("--rc", colorVar(role));
+      chips1.appendChild(c);
+    });
+    body.appendChild(chips1);
+
+    body.appendChild(el("div","lbl","MVP 流程中负责的步骤"));
+    var chips2 = el("div","chips");
+    m.steps.forEach(function(n){
+      var s = FLOW[n-1];
+      var c = el("span","tagx", "第 " + n + " 步 · " + s.task);
+      c.style.setProperty("--rc", colorVar(role));
+      chips2.appendChild(c);
+    });
+    body.appendChild(chips2);
+    frag.appendChild(body);
+    return frag;
+  }
+
+  var detail = document.getElementById("detail");
+  var sheet  = document.getElementById("sheet");
+  var mask   = document.getElementById("sheetMask");
+
+  function renderDetail(role){
+    detail.innerHTML = ""; sheet.innerHTML = "";
+    if(!role){ detail.setAttribute("data-open","false"); closeSheet(); return; }
+    detail.style.setProperty("--rc", colorVar(role));
+    sheet.style.setProperty("--rc", colorVar(role));
+    detail.appendChild(buildDetail(role));
+    sheet.appendChild(buildDetail(role));
+    detail.setAttribute("data-open","true");
+    if(window.matchMedia("(max-width:900px)").matches) openSheet();
+  }
+  function openSheet(){ sheet.setAttribute("data-open","true"); mask.setAttribute("data-open","true"); }
+  function closeSheet(){ sheet.setAttribute("data-open","false"); mask.setAttribute("data-open","false"); }
+
+  /* ===================== 状态应用（唯一出口） ===================== */
+  function applyState(){
+    var role = selectedRole;
+    var m = role ? MAP[role] : null;
+
+    // 卡片
+    Array.prototype.forEach.call(roleCards.children, function(card){
+      card.setAttribute("aria-pressed", card.getAttribute("data-role") === role ? "true" : "false");
+    });
+
+    // 矩阵
+    Array.prototype.forEach.call(tbody.children, function(tr){
+      var n = Number(tr.getAttribute("data-row"));
+      var hit = !!(m && m.rows.indexOf(n) !== -1);
+      tr.setAttribute("data-hit", hit ? "true" : "false");
+      tr.setAttribute("data-dim", (m && !hit) ? "true" : "false");
+      if(hit) tr.style.setProperty("--rc", colorVar(role)); else tr.style.removeProperty("--rc");
+    });
+    Array.prototype.forEach.call(matrixCards.children, function(card){
+      var n = Number(card.getAttribute("data-row"));
+      var hit = !!(m && m.rows.indexOf(n) !== -1);
+      card.setAttribute("data-hit", hit ? "true" : "false");
+      card.setAttribute("data-dim", (m && !hit) ? "true" : "false");
+      if(hit) card.style.setProperty("--rc", colorVar(role)); else card.style.removeProperty("--rc");
+    });
+
+    // 时间轴
+    var hits = [];
+    stepEls.forEach(function(d){
+      var n = Number(d.getAttribute("data-step"));
+      var hit = !!(m && m.steps.indexOf(n) !== -1);
+      d.setAttribute("data-hit", hit ? "true" : "false");
+      d.setAttribute("data-dim", (m && !hit) ? "true" : "false");
+      if(hit) hits.push(n);
+    });
+    var line = document.getElementById("tlLine");
+    if(role && hits.length){
+      var first = Math.min.apply(null, hits), last = Math.max.apply(null, hits);
+      var unit = 100 / FLOW.length;
+      line.style.left  = (5 + (first - 0.5) * (90 / FLOW.length)) + "%";
+      line.style.width = ((last - first) * (90 / FLOW.length)) + "%";
+      line.style.background = colorVar(role);
+    } else {
+      line.style.width = "0";
+    }
+  }
+
+  /* ===================== 唯一状态变更入口 ===================== */
+  function selectRole(next){
+    selectedRole = (next === "策划" || next === "美术" || next === "程序") ? next : null;
+    renderDetail(selectedRole);
+    applyState();
+  }
+
+  /* ===================== 导航：汉堡菜单 ===================== */
+  var burger = document.getElementById("burger");
+  var drawerNav = document.getElementById("drawerNav");
+  burger.addEventListener("click", function(){
+    var open = drawerNav.getAttribute("data-open") === "true";
+    drawerNav.setAttribute("data-open", open ? "false" : "true");
+    burger.setAttribute("aria-expanded", open ? "false" : "true");
+    burger.setAttribute("aria-label", open ? "打开导航菜单" : "关闭导航菜单");
+  });
+  drawerNav.addEventListener("click", function(e){
+    if(e.target.tagName === "A"){ drawerNav.setAttribute("data-open","false"); burger.setAttribute("aria-expanded","false"); }
+  });
+
+  /* ===================== 抽屉：遮罩 / 关闭 ===================== */
+  mask.addEventListener("click", function(){ selectRole(null); });
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape"){
+      if(sheet.getAttribute("data-open") === "true") selectRole(null);
+      else if(drawerNav.getAttribute("data-open") === "true"){ drawerNav.setAttribute("data-open","false"); burger.setAttribute("aria-expanded","false"); }
+    }
+  });
+
+  /* ===================== 初始状态 ===================== */
+  selectRole(null);
+})();
+</script>
+</body>
+</html>
