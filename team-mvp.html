@@ -784,6 +784,35 @@ section{margin-top:var(--sp-6)}
   function closeSheet(){ sheet.setAttribute("data-open","false"); mask.setAttribute("data-open","false"); }
 
   /* ===================== 状态应用（唯一出口） ===================== */
+  // 时间轴连接线：按**真实测量值**定位，不用百分比推算。
+  // 起因：原先用 "10% + (n-0.5)*16%" 估列宽，忽略了卡片 22px 内边距，
+  // 实测偏差 48px（线画在 x=638，第 4 步圆点中心在 x=686）。
+  // 改为读网格首列实际宽度与网格左边缘、按像素定位；断点切换/缩放时重算。
+  function layoutLine(){
+    var line = document.getElementById("tlLine");
+    var hits = [];
+    stepEls.forEach(function(d){ if(d.getAttribute("data-hit") === "true") hits.push(Number(d.getAttribute("data-step"))); });
+    var firstStep = stepEls[0];
+    if(!selectedRole || !hits.length || isMobile() || !firstStep){ line.style.display = "none"; return; }
+    var gap = parseFloat(getComputedStyle(timeline).columnGap) || 0;
+    var colW = firstStep.getBoundingClientRect().width + gap;
+    var gridLeft = firstStep.getBoundingClientRect().left - timeline.getBoundingClientRect().left;
+    var center = function(n){ return gridLeft + (n - 0.5) * colW; };
+    var a = Math.min.apply(null, hits), b = Math.max.apply(null, hits);
+    var leftPx, widthPx;
+    if(a === b){
+      widthPx = 22;                                    // 只命中一步：画一段固定长度的短线段
+      leftPx = center(a) - widthPx / 2;
+    } else {
+      leftPx = center(a);
+      widthPx = center(b) - center(a);
+    }
+    line.style.display = "block";
+    line.style.left = leftPx + "px";
+    line.style.width = widthPx + "px";
+    line.style.background = colorVar(selectedRole);
+  }
+
   function applyState(){
     var role = selectedRole;
     var m = role ? MAP[role] : null;
@@ -810,38 +839,14 @@ section{margin-top:var(--sp-6)}
     });
 
     // 时间轴
-    var hits = [];
     stepEls.forEach(function(d){
       var n = Number(d.getAttribute("data-step"));
       var hit = !!(m && m.steps.indexOf(n) !== -1);
       d.setAttribute("data-hit", hit ? "true" : "false");
       d.setAttribute("data-dim", (m && !hit) ? "true" : "false");
-      if(hit) hits.push(n);
     });
-    // 时间轴连接线：从最小命中步的中心 到 最大命中步的中心
-    // 容器左右各留 10% 内边距（与 CSS 的 .tl::before left/right:10% 一致），
-    // 故一列宽 = 80% / 5 = 16%，第 n 步中心 = 10% + (n-0.5)*16%
-    var line = document.getElementById("tlLine");
-    if(role && hits.length){
-      var COL = 80 / FLOW.length;                   // 单列宽（%）
-      var center = function(n){ return 10 + (n - 0.5) * COL; };
-      var first = Math.min.apply(null, hits), last = Math.max.apply(null, hits);
-      var leftPct, widthPct;
-      if(first === last){
-        // 只命中一步：宽度会算成 0，于是画一条固定宽度的短线段居中在节点上
-        widthPct = 2.2;
-        leftPct = center(first) - widthPct / 2;
-      } else {
-        leftPct = center(first);
-        widthPct = center(last) - center(first);
-      }
-      line.style.display = "block";
-      line.style.left = leftPct + "%";
-      line.style.width = widthPct + "%";
-      line.style.background = colorVar(role);
-    } else {
-      line.style.display = "none";
-    }
+
+    layoutLine();
   }
 
   /* ===================== 唯一状态变更入口 ===================== */
@@ -872,6 +877,14 @@ section{margin-top:var(--sp-6)}
       else if(drawerNav.getAttribute("data-open") === "true"){ drawerNav.setAttribute("data-open","false"); burger.setAttribute("aria-expanded","false"); }
     }
   });
+
+  /* ===================== 断点/尺寸变化后重算连接线 ===================== */
+  var relayoutTimer = null;
+  window.addEventListener("resize", function(){
+    if(relayoutTimer) clearTimeout(relayoutTimer);
+    relayoutTimer = setTimeout(layoutLine, 120);
+  });
+  if(typeof ResizeObserver === "function"){ new ResizeObserver(function(){ layoutLine(); }).observe(timeline); }
 
   /* ===================== 初始状态 ===================== */
   selectRole(null);
