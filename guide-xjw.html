@@ -109,7 +109,7 @@
     <table class="tbl">
       <tr><th>列</th><th>填什么</th><th>合法值 / 格式</th><th>可留空？</th></tr>
       <tr><td><code>编号</code></td><td>这句话的唯一 ID</td><td><code>S01-L007</code>：<code>S</code> + 场景两位 + <code>-L</code> + 句序三位</td><td class="d"><span class="pill bad">必填</span></td></tr>
-      <tr><td><code>场景</code></td><td>属于哪一段</td><td><code>S01</code> / <code>S02</code> / <code>S03</code>（对应三幕）</td><td class="d"><span class="pill bad">必填</span></td></tr>
+      <tr><td><code>场景</code></td><td>属于哪一段</td><td><code>S01</code> / <code>S02</code> / <code>S03</code>（对应三幕，含义见下表）</td><td class="d"><span class="pill bad">必填</span></td></tr>
       <tr><td><code>顺序</code></td><td>段内播放次序</td><td>整数，段内从 1 开始、不重复、<b>不留空号</b></td><td class="d"><span class="pill bad">必填</span></td></tr>
       <tr><td><code>台词</code></td><td>它说的那句话原文</td><td>文本，以标点结尾；字数见 <code>字数上限</code></td><td class="d"><span class="pill bad">必填</span></td></tr>
       <tr><td><code>分类</code></td><td>三类话中的哪一类</td><td><b>只能填三个词</b>：<code>真</code> / <code>假害</code> / <code>胡说</code></td><td class="d"><span class="pill bad">必填</span></td></tr>
@@ -129,6 +129,21 @@
         <b>要新的后果就来找 YDC 加，不要自己造词。</b></li>
       <li><b><code>顺序</code> 不能跳号</b>：段内必须是 1、2、3…。删一句话就把后面全部往前挪，不要留下 <code>1,2,4,5</code>。</li>
     </ol>
+
+    <h4>「三幕」是什么意思（<code>场景</code> 列怎么填）</h4>
+    <p class="small muted"><b>幕 ＝ 一局游戏的情绪分段</b>，不是三个房间、也不是三个关卡。本作全程在<b>一个房间</b>里，三幕是同一空间里它态度递进的三段过程。</p>
+    <table class="tbl">
+      <tr><th>幕</th><th><code>场景</code> 列填</th><th>建议时长</th><th>它想达到的目的</th><th>玩家应该体验到</th></tr>
+      <tr><td>第一幕</td><td class="d"><code>S01</code></td><td class="d">约 2–3 分钟</td><td>让你习惯听它说话、习惯它的语气</td><td>"这东西好像只是在跟我聊天"</td></tr>
+      <tr><td>第二幕</td><td class="d"><code>S02</code></td><td class="d">约 3–4 分钟</td><td><b>让你失去行动的余地</b>——它开始在你 CD 冷却时说话</td><td>"我明明知道该按，但我按不了"</td></tr>
+      <tr><td>第三幕</td><td class="d"><code>S03</code></td><td class="d">约 3 分钟</td><td>摊牌：它不再掩饰目的</td><td>"原来它要的不是骗我，是不让我动"</td></tr>
+    </table>
+    <div class="note" style="margin-bottom:0">
+      ID 一路排下来就是整局的播放顺序：<code>S02-L004</code> = <b>第二幕的第 4 句</b>。
+      分幕的三个用处：①写文案时有节奏骨架，不会前 3 分钟就把最狠的话说完；②程序按 <code>场景</code> 分段控制节奏；
+      ③第二幕是唯一放"<b>连续判断点</b>"（CD 冷却期间你按不了）的地方——那是全场唯一的紧张来源。
+      <span class="muted">时长与每幕目的都可以调整，由你定；只有"三类话齐全"是硬要求。</span>
+    </div>
   </div>
 
   <h2>③ <code>后果-不按</code> 合法清单（封闭枚举）</h2>
